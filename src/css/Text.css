@@ -1,0 +1,61 @@
+.TextContainer {
+    margin-top: 0%;
+    
+  }
+  
+  .Text1 {
+    color: rgb(0, 0, 0);
+    font-size: 6.5rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+    margin-bottom: 30%;
+    font-weight: 750;
+    text-align: center;
+    animation: fade-in 1.2s ease-in-out;
+    will-change: opacity, transform; /* Add will-change property */
+  }
+  
+  .text2 {
+    color: skyblue;
+  }
+  
+  .animate-on-scroll-2 {
+    margin-top: 150px;
+    margin-bottom: 120px;
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255));
+
+  }
+  .animate-on-scroll-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh; /* Set the height of the container to the full viewport height */
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(67, 71, 75));
+
+  }
+
+  .animate-on-scroll-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125vh; /* Set the height of the container to the full viewport height */
+    background-image: linear-gradient(to bottom, rgb(67, 71, 75), rgb(0, 0, 0));
+  }
+  
+  .Text3 {
+    color: white;
+    font-size: 6.8rem;
+    margin-top: 45px; 
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 0%;
+    font-weight: 650;
+    text-align: center;
+    animation: fade-in 1.2s ease-in-out;
+  }
+  
+  .text4 {
+    color: skyblue;
+  }
+  

@@ -1,0 +1,16 @@
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(50px) scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0.5) scale(2);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-in-out;
+    will-change: opacity, transform; /* Add will-change property */
+  }
+
