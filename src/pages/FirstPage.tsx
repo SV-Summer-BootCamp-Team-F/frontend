@@ -7,7 +7,7 @@ const FirstPage = () => {
   const buttonElementRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    // Scene 생성
+    // Scene 생성 
     const scene = new THREE.Scene();
     //size
     const sizes = {
