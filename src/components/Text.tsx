@@ -1,10 +1,31 @@
-
+import { useState } from 'react';
+import '../css/Text.css';
 
 const Text = () => {
-return (
-    <div className='TextContainer'>
-      <h1 className='Text1'>나와 명함을 주고받은 주변사람들을 <span className='text2'>한눈에</span> 볼 수 있습니다!</h1>
-      
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleClick = () => {
+    setIsVisible(!isVisible);
+  };
+
+  const handleAnimationEnd = () => {
+    if (!isVisible) {
+      setIsVisible(false);
+    }
+  };
+
+  return (
+    <div className={`TextContainer ${isVisible ? 'fadeIn' : 'fadeOut'}`} onAnimationEnd={handleAnimationEnd}>
+      {!isVisible && (
+        <h1 className='Text1' onClick={handleClick}>
+          {/* 화면을 클릭하여 나타날 때의 텍스트 */}
+        </h1>
+      )}
+      {isVisible && (
+        <h1 className='Text1' onClick={handleClick}>
+          {/* 화면을 클릭하여 사라질 때의 텍스트 */}
+        </h1>
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const FirstPage = () => {
     //size
     const sizes = {
       width: window.innerWidth,
-      height: window.innerHeight,
+      height: window.innerHeight
     };
     //camera
     const camera = new THREE.PerspectiveCamera(
@@ -25,7 +25,7 @@ const FirstPage = () => {
     scene.add(camera);
     //renderer
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: true
     });
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -68,11 +68,9 @@ const FirstPage = () => {
     document.body.appendChild(buttonElementRef.current);
 
     // Button event listener
-    const handleButtonClick = () => {
+    buttonElementRef.current.addEventListener('click', () => {
       navigate('/login');
-    };
-
-    buttonElementRef.current.addEventListener('click', handleButtonClick);
+    });
 
     window.addEventListener('resize', () => {
       // Update sizes
@@ -100,7 +98,7 @@ const FirstPage = () => {
       side: THREE.DoubleSide,
       envMapIntensity: 5,
       emissive: 0xA4AA0,
-      emissiveIntensity: 10,
+      emissiveIntensity: 10
     });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
@@ -112,7 +110,7 @@ const FirstPage = () => {
     const ctx = canvas.getContext('2d')!;
     canvas.height = 100;
     canvas.width = 100;
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = '#ffa';
     ctx.beginPath();
     ctx.arc(10, 50, 25, 0, 2 * Math.PI);
     ctx.fill();
@@ -121,20 +119,20 @@ const FirstPage = () => {
     const particlesmaterial = new THREE.PointsMaterial({
       size: 0.01,
       map: star,
-      transparent: true,
+      transparent: true
     });
-    const particlesCnt = 5000;
+    const particlesCnt = 5500;
     const posArray = new Float32Array(particlesCnt * 3);
     const colorsArray = new Float32Array(particlesCnt * 3);
     for (let i = 0; i < particlesCnt * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * (Math.random() * 5);
+      posArray[i] = (Math.random() - 0.5) * (Math.random() * 4);
       colorsArray[i] = Math.random();
     }
 
     particlesGeometry.setAttribute(
       'position',
       new THREE.BufferAttribute(posArray, 3)
-    )
+    );
     particlesGeometry.setAttribute(
       'color',
       new THREE.BufferAttribute(colorsArray, 3)
@@ -163,24 +161,24 @@ const FirstPage = () => {
       // Update particle positions
       const positions = particlesGeometry.getAttribute('position') as THREE.BufferAttribute;
       for (let i = 0; i < particlesCnt; i++) {
-        const i3 = i * 3;
-        const x = positions.getX(i) || 0;
-        const y = positions.getY(i) || 0;
-        const z = positions.getZ(i) || 0;
+        const i3 = i * 5;
+        const x = positions.getX(i) || 1;
+        const y = positions.getY(i) || 1;
+        const z = positions.getZ(i) || 1;
 
         // Randomly move particles in x, y, z directions
         positions.setXYZ(
           i3,
           x + (Math.random() - 0.1) * 0.00001,
           y + (Math.random() - 0.2) * 0.002,
-          z + (Math.random() - 0.1) * 0.002
+          z + (Math.random() - 0.1) * 0.001
         );
       }
       positions.needsUpdate = true;
 
-      particlesMesh.rotation.x += 0.03 * (targetRotation.y - particlesMesh.rotation.x);
-      particlesMesh.rotation.y += 0.03 * (targetRotation.x - particlesMesh.rotation.y);
-
+      particlesMesh.rotation.x += 0.03 * (targetRotation.x - particlesMesh.rotation.x);
+      particlesMesh.rotation.y += 0.03 * (targetRotation.y - particlesMesh.rotation.y);
+      particlesMesh.rotation.z += 0.03 * (targetRotation.y - particlesMesh.rotation.x);
       sphere.rotation.y += 0.05;
 
       renderer.render(scene, camera);
@@ -212,4 +210,4 @@ const FirstPage = () => {
   return null;
 };
 
-export default FirstPage;
+export default FirstPage

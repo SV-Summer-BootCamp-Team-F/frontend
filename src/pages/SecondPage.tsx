@@ -66,7 +66,7 @@ const Second = () => {
   return (
     <div className="main-container">
       <Link to="/">
-        <div style={{ position: 'fixed', top: '4%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>plus+</span></div>
+        <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>plus+</span></div>
       </Link>
       <div ref={TextRef} className="animate-on-scroll-1">
 

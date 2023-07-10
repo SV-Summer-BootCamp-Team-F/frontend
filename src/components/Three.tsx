@@ -1,120 +1,170 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-const Three = () => {
-  const canvasRef = useRef<HTMLDivElement>(null);
+const Sphere = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const modelRef = useRef<THREE.Object3D>();
+  const [isLarge, setIsLarge] = useState<boolean>(false);
+  const [showText, setShowText] = useState<boolean>(false);
 
   useEffect(() => {
-    // Scene creation
-    const scene = new THREE.Scene();
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let renderer: THREE.WebGLRenderer;
+    let light: THREE.DirectionalLight;
 
-    // Size
-    const sizes = {
-      width: window.innerWidth,
-      height: window.innerHeight * 0.9 // Adjust the height by multiplying with a fraction
+    const init = () => {
+      // Set up the scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffffff); // White background
+
+      // Set up the camera
+      camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.z = 1;
+
+      // Set up the renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      containerRef.current?.appendChild(renderer.domElement);
+
+      // Add lighting
+      light = new THREE.DirectionalLight(0xffffff, 60);
+      light.position.set(3, 2, 2);
+      scene.add(light);
+
+      // Load the scene.gltf model
+      const loader = new GLTFLoader();
+      loader.load(
+        'src/sphere/scene.gltf',
+        (gltf) => {
+          const model = gltf.scene;
+
+          if (model) {
+            modelRef.current = model;
+            scene.add(model);
+
+            // Add reflective material
+            model.traverse((child) => {
+              if (child instanceof THREE.Mesh) {
+                const material = new THREE.MeshPhysicalMaterial({
+                  color: 'skyblue',
+                  metalness: 0.99,
+                  roughness: 0.001,
+                });
+                child.material = material;
+              }
+            });
+
+            // Animation loop
+            const animate = () => {
+              requestAnimationFrame(animate);
+
+              // Rotate the model
+              if (model) {
+                model.rotation.x += 0.02;
+                model.rotation.y += 0.01;
+              }
+
+              // Change background color gradually
+              const backgroundColor = new THREE.Color().lerpColors(new THREE.Color(0x000000), new THREE.Color(0xffffff), model.scale.x / 3.5);
+              scene.background = backgroundColor;
+
+              renderer.render(scene, camera);
+            };
+
+            animate();
+          }
+        },
+        undefined,
+        (error) => {
+          console.error('Error loading GLTF file:', error);
+        }
+      );
     };
 
-    // Camera
-    const camera = new THREE.PerspectiveCamera(
-      85,
-      sizes.width / sizes.height,
-      0.1,
-      100
-    );
-    camera.position.z = 2.5;
-    scene.add(camera);
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 5));
-    renderer.setClearColor(new THREE.Color('#ffffff'), 2); // Set background color to white
-    canvasRef.current?.appendChild(renderer.domElement);
-
-    // Resize handling
-    const handleResize = () => {
-      // Update sizes
-      sizes.width = window.innerWidth;
-      sizes.height = window.innerHeight * 0.9; // Adjust the height by multiplying with a fraction
-
-      // Update camera
-      camera.aspect = sizes.width / sizes.height;
-      camera.updateProjectionMatrix();
-
-      // Update renderer
-      renderer.setSize(sizes.width, sizes.height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Objects
-    // Sphere
-    const geometry = new THREE.IcosahedronGeometry(1);
-    const material = new THREE.MeshStandardMaterial({ // Use MeshStandardMaterial for shadows
-      color: 0x87ceeb, // Set sky blue color
-      metalness: 1.6,
-      roughness: 0.2,
-      side: THREE.DoubleSide,
-      envMapIntensity: 10,
-      emissive: 'skyblue',
-      emissiveIntensity: 0.9
-    });
-    const sphere = new THREE.Mesh(geometry, material);
-    sphere.castShadow = true; // Enable casting shadows
-    sphere.receiveShadow = true; // Enable receiving shadows
-    scene.add(sphere);
-
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(10, 10, 10);
-    directionalLight.castShadow = true; // Enable casting shadows
-    scene.add(directionalLight);
-
-    // Set up shadow properties for the light
-    directionalLight.shadow.mapSize.width = 1024;
-    directionalLight.shadow.mapSize.height = 1024;
-    directionalLight.shadow.camera.near = 0.5;
-    directionalLight.shadow.camera.far = 500;
-
-    // Mouse variables
-    const mouse = new THREE.Vector2();
-    const targetRotation = new THREE.Vector2();
-
-    const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = (event.clientX / sizes.width) * 5 - 1;
-      mouse.y = -(event.clientY / sizes.height) * 5 + 1;
-      const rotationSpeed = 0.06;
-      targetRotation.x = mouse.x * rotationSpeed;
-      targetRotation.y = mouse.y * rotationSpeed;
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      // Spin
-      sphere.rotation.x += 0.03;
-      sphere.rotation.y += 0.01;
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    return () => {
-      // Clean up event listeners
-      window.removeEventListener('resize', handleResize);
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
+    init();
   }, []);
 
-  return <div ref={canvasRef} style={{ marginTop: '-630px', marginBottom: '0px' }}></div>; // Adjust marginTop value as desired
+  const handleModelClick = () => {
+    const model = modelRef.current;
+
+    if (model) {
+      const targetScale = isLarge ? new THREE.Vector3(1, 1, 1) : new THREE.Vector3(9.5, 9.5, 9.5);
+      const initialScale = model.scale.clone();
+      const animationDuration = 1400;
+      const frameRate = 70;
+      const totalFrames = animationDuration / (1000 / frameRate);
+      let currentFrame = 0;
+
+      const animateScale = () => {
+        if (currentFrame >= totalFrames) {
+          setIsLarge(!isLarge);
+          setShowText(true); // Show the text after scaling animation is complete
+          return;
+        }
+
+        const t = currentFrame / totalFrames;
+        const scale = initialScale.clone().lerp(targetScale, t);
+
+        model.scale.copy(scale);
+
+        currentFrame++;
+
+        requestAnimationFrame(animateScale);
+      };
+
+      animateScale();
+    }
+  };
+
+  const handleTextClick = () => {
+    setShowText(false); // Hide the text when clicked
+  };
+
+  return (
+    <div>
+      <div ref={containerRef} style={{ marginTop: '-237px', marginBottom: '-100px' }} onClick={handleModelClick} />
+      {showText && (
+        <Text isVisible={true} onClick={handleTextClick} />
+      )}
+    </div>
+  );
 };
 
-export default Three;
+interface TextProps {
+  isVisible: boolean;
+  onClick: () => void;
+}
+
+const Text = ({ isVisible, onClick }: TextProps) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isShowing, setIsShowing] = useState(isVisible);
+
+  const handleClick = () => {
+    if (!isAnimating) {
+      setIsAnimating(true);
+      setIsShowing(!isShowing);
+      setTimeout(() => {
+        onClick();
+        setIsAnimating(false);
+      }, 500);
+    }
+  };
+
+  useEffect(() => {
+    setIsShowing(isVisible);
+  }, [isVisible]);
+
+  return (
+    <h1 className={`Text1 ${isShowing ? 'fadeIn' : 'fadeOut'}`} onClick={handleClick}>
+      나와 명함을 주고받은 사람들을 <span className='text2'>한눈에</span> 볼 수 있습니다!
+    </h1>
+  );
+};
+
+
+
+
+
+export default Sphere;
