@@ -18,7 +18,7 @@ module.exports = {
   jsxBracketSameLine: false, // 여러 줄의 JSX에서 마지막 >를 마지막 줄에 위치시키는지 여부
 
   // 파서 설정
-  parser: "babylon", // 사용할 파서 (기본은 'babylon')
+  parser: "babel-ts", // 사용할 파서 (기본은 'babylon')
   filepath: "", // 변환할 파일의 경로
 
   // 범위 설정
