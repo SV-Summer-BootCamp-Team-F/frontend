@@ -1,13 +1,9 @@
-import DraggableContainer from "../../components/containers/DraggableContainer";
+import RelationGraph from "../../components/graphs/RelationGraph";
 
-const RelationPage: React.FC = () => {
+const RelationPage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <DraggableContainer>
-        <div className="w-full h-full p-4 bg-gray-200 rounded shadow">
-          This is draggable and covers the entire screen!
-        </div>
-      </DraggableContainer>
+    <div className="flex items-center justify-center w-screen h-screen">
+      <RelationGraph />
     </div>
   );
 };
