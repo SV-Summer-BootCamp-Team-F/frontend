@@ -79,11 +79,28 @@ type ChartPropsType = {
 };
 
 const Chart: React.FC<ChartPropsType> = ({ data }) => {
-  const width = 800;
-  const height = 600;
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <ZoomableSVG width={width} height={height}>
-      <ChartContent width={width} height={height} data={data} />
+    <ZoomableSVG width={dimensions.width} height={dimensions.height}>
+      <ChartContent width={dimensions.width} height={dimensions.height} data={data} />
     </ZoomableSVG>
   );
 };
@@ -95,7 +112,7 @@ const RelationGraph: React.FC = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen min-w-full border-black">
         <Chart data={data} />
       </div>
       <div>
