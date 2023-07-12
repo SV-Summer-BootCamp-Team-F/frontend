@@ -6,6 +6,7 @@ import Second from './pages/SecondPage';
 import Main from './pages/MainPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
+import EnrollPage from './pages/Card/EnrollPage';
 
 function App() {
   return ( 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/second" element={<Second />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/enrollPage" element={<EnrollPage />} />
       </Routes>
     </div>
   );
