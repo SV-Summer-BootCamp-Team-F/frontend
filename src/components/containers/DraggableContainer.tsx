@@ -9,7 +9,7 @@ type DraggableContainerPropsType = {
   children: React.ReactNode;
 };
 
-export const DraggableContainer: React.FC<DraggableContainerPropsType> = ({ children }) => {
+const DraggableContainer: React.FC<DraggableContainerPropsType> = ({ children }) => {
   const [position, setPosition] = useState<PositionType>({ x: 0, y: 0 });
   const [dragging, setDragging] = useState<boolean>(false);
   const [rel, setRel] = useState<PositionType | null>(null);
@@ -50,3 +50,5 @@ export const DraggableContainer: React.FC<DraggableContainerPropsType> = ({ chil
     </div>
   );
 };
+
+export default DraggableContainer;
