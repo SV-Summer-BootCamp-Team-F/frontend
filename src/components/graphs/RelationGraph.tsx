@@ -23,22 +23,29 @@ type ZoomableSVGPropsType = {
   children: React.ReactNode;
   width: number;
   height: number;
+  updateData: () => void;
 };
 
-const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height }) => {
+const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, updateData }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [k, setK] = useState<number>(1);
   const [x, setX] = useState<number>(0);
   const [y, setY] = useState<number>(0);
+
+  const resetZoom = () => {
+    setK(1);
+    setX(0);
+    setY(0);
+  };
 
   useEffect(() => {
     const zoomHandler = zoom<SVGSVGElement, unknown>().on(
       "zoom",
       (event: D3ZoomEvent<SVGSVGElement, unknown>) => {
         const { x, y, k } = event.transform;
+        setK(k);
         setX(x);
         setY(y);
-        setK(k);
       }
     );
     if (svgRef.current) {
@@ -49,6 +56,16 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height }
   return (
     <svg ref={svgRef} width={width} height={height}>
       <g transform={`translate(${x}, ${y}) scale(${k})`}>{children}</g>
+      <foreignObject x={10} y={10} width={200} height={200}>
+        <button
+          onClick={() => {
+            updateData();
+            resetZoom();
+          }}
+        >
+          Update Data
+        </button>
+      </foreignObject>
       <text x="10" y="10" fill="black">
         Hello World
       </text>
@@ -76,13 +93,20 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ width, height, data }) 
 
 type ChartPropsType = {
   data: DataPointType[];
+  n: number;
+  maxR: number;
 };
 
-const Chart: React.FC<ChartPropsType> = ({ data }) => {
+const Chart: React.FC<ChartPropsType> = ({ data, n, maxR }) => {
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const [localData, setLocalData] = useState<DataPointType[]>(data);
+
+  const updateData = () => {
+    setLocalData(generateDataPoints(n, maxR));
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,8 +123,8 @@ const Chart: React.FC<ChartPropsType> = ({ data }) => {
   }, []);
 
   return (
-    <ZoomableSVG width={dimensions.width} height={dimensions.height}>
-      <ChartContent width={dimensions.width} height={dimensions.height} data={data} />
+    <ZoomableSVG width={dimensions.width} height={dimensions.height} updateData={updateData}>
+      <ChartContent width={dimensions.width} height={dimensions.height} data={localData} />
     </ZoomableSVG>
   );
 };
@@ -113,10 +137,7 @@ const RelationGraph: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen min-w-full border-black">
-        <Chart data={data} />
-      </div>
-      <div>
-        <button onClick={() => setData(generateDataPoints(n, maxR))}>update</button>
+        <Chart data={data} n={n} maxR={maxR} />
       </div>
     </div>
   );
