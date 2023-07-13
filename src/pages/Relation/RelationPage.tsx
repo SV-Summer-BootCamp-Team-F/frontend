@@ -1,4 +1,4 @@
-import RelationGraph from "../../components/graphs/RelationGraph";
+import RelationGraph from "../../components/relation/RelationGraph";
 
 const RelationPage = () => {
   return (

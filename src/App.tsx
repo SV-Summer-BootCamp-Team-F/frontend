@@ -7,7 +7,7 @@ import Second from "./pages/SecondPage";
 import Main from "./pages/MainPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import RelationGraph from "./components/graphs/RelationGraph.tsx";
+import RelationGraph from "./components/relation/RelationGraph.tsx";
 
 function App() {
   return (
