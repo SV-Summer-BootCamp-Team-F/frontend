@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import UserPage from "./pages/User/UserPage";
 import UserPage2 from "./pages/User/UserPage2";
+import TestPage from "./pages/test/TestPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/userPage" element={<UserPage />} />
         <Route path="/userPage2" element={<UserPage2 />} />
+        <Route path="/Test" element={<TestPage />} />
       </Routes>
     </div>
   );
