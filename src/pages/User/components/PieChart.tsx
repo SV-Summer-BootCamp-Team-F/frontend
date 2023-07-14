@@ -14,10 +14,13 @@ const PieChart = () => {
           plotBorderWidth: null,
           plotShadow: false,
           type: "pie",
+          styledMode: false, // styledMode 활성화
+          borderRadius: 30,
+          shadow: true,
         },
         title: {
           text: "Browser market shares in May, 2020",
-          align: "left",
+          align: "center",
         },
         tooltip: {
           pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",

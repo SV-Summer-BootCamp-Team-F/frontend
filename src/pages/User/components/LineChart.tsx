@@ -2,15 +2,23 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
+import HC_more from "highcharts/highcharts-more";
+import HC_exporting from "highcharts/modules/exporting";
+import HC_styled from "highcharts/css/highcharts.css";
+
+HC_more(Highcharts);
+HC_exporting(Highcharts);
+
 const LineChart = () => {
   const options = {
     title: {
-      text: "U.S Solar Employment Growth",
-      align: "left",
-    },
-    subtitle: {
-      text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
-      align: "left",
+      margin: 50,
+      text: "Business card count statistics",
+      align: "center",
+      style: {
+        color: "black",
+        fontWeight: "bold",
+      },
     },
     yAxis: {
       title: {
@@ -34,6 +42,12 @@ const LineChart = () => {
         },
         pointStart: 2010,
       },
+    },
+    chart: {
+      styledMode: false, // styledMode 활성화
+      borderRadius: 30,
+      margin: [100, 100, 100, 100],
+      shadow: true,
     },
     series: [
       {

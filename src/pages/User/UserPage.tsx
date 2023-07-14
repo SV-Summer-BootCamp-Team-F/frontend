@@ -47,7 +47,7 @@ const UserPage = () => {
     <div
       style={{
         display: "flex",
-        minHeight: innerHeight,
+        // minHeight: innerHeight,
         padding: "20px",
       }}
     >
@@ -56,6 +56,7 @@ const UserPage = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "stretch",
+          marginRight: "100px",
         }}
       >
         <UserInfo
@@ -67,21 +68,35 @@ const UserPage = () => {
         />
         <button
           onClick={() => handleButtonClick("cardInfo")}
-          style={{ flexBasis: "100px", marginTop: "10px", marginBottom: "10px" }}
+          style={{
+            flexBasis: "100px",
+            marginTop: "10px",
+            marginBottom: "10px",
+            color: "white",
+            fontSize: "20px",
+          }}
         >
           Card Info
         </button>
-        <button onClick={() => handleButtonClick("chart")} style={{ flexBasis: "100px" }}>
+        <button
+          onClick={() => handleButtonClick("chart")}
+          style={{ flexBasis: "100px", color: "white", fontSize: "20px" }}
+        >
           Chart
         </button>
       </div>
       <div style={{ marginLeft: "20px" }}>
         {showCardInfo && (
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <img
               src="https://www.printrobo.co.kr/cdn/blog/870x531-pb10008.jpg"
               alt="명함 사진"
-              style={{ height: "260px", border: "1px solid black", borderLeft: "none" }}
+              style={{
+                width: "500px",
+                border: "1px solid black",
+                borderRadius: "20px",
+                marginBottom: "50px",
+              }}
             />
             <CardInfo
               name={card.name}
@@ -89,15 +104,26 @@ const UserPage = () => {
               phoneNumber={user.phoneNumber}
               introduction={card.introduction}
             />
-            <UserProfile />
+            {/* <UserProfile /> */}
           </div>
         )}
 
         <div style={{ display: "flex" }}>
           {showLineChart && (
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <h1>Line Chart</h1>
-              <div style={{ width: "500px", height: "300px" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                marginRight: "50px",
+              }}
+            >
+              <div
+                style={{
+                  width: "500px",
+                  height: "300px",
+                }}
+              >
                 <LineChart />
               </div>
             </div>
@@ -105,7 +131,6 @@ const UserPage = () => {
 
           {showPieChart && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <h1>Pie Chart</h1>
               <div style={{ width: "400px", height: "400px" }}>
                 <PieChart />
               </div>

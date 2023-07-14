@@ -17,12 +17,15 @@ const UserInfo = ({ avatar, name, email, phoneNumber, passwd }) => {
         alt="Avatar"
         style={{ borderRadius: "50%", width: "150px", marginBottom: "20px" }}
       />
-      <h2 style={{ fontSize: "20px", marginBottom: "30px" }}>{name}</h2>
-      <h1 className="text-3xl font-bold underline">test</h1>
       <div>
-        <p>Email: {email}</p>
-        <p>Phone: {phoneNumber}</p>
-        <p>Passwd: {passwd}</p>
+        <h2 style={{ fontSize: "20px", marginBottom: "30px" }}>{name}</h2>
+        <h1 className="text-3xl font-bold underline">test</h1>
+        <div>
+          <p>Email: {email}</p>
+          <p>Phone: {phoneNumber}</p>
+          <p>Passwd: {passwd}</p>
+        </div>
+        <button style={{ color: "white", borderRadius: "20px" }}>Edit Profile</button>
       </div>
     </div>
   );
