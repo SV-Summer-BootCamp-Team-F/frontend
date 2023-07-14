@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../../css/enroll.css";
 
 function EnrollPage() {
   const [name, setName] = useState("");
@@ -38,66 +38,58 @@ function EnrollPage() {
           Remember <span className="plus">plus+</span>
         </h2>
         <h2 className="enroll-title">인적사항</h2>
-        <div className="form-group">
-          <img className="example-picture" src="https://via.placeholder.com/339x189" />
-          <div
-            className="picture-explain"
-            style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-          >
-            등록할 명함 사진
-          </div>
-          <input type="file" id="photo" name="photo" />
-        </div>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="enroll-form-group">
+            <img className="example-picture" src="https://via.placeholder.com/339x189" />
+            <div
+              className="picture-explain"
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+              등록할 명함 사진
+            </div>
+            <input type="file" id="photo" name="photo" />
+          </div>
+          <div className="enroll-form-group">
             <label className="label">이름</label>
             <input
-              type="text"
-              className="enroll-input"
+              type="name"
+              className="login-input"
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
           </div>
-          <div className="form-group">
-            <label className="label">개인 전화번호</label>
+          <div className="enroll-form-group">
+            <label className="label">개인 전화번호*</label>
             <input
-              type="tel"
-              className="enroll-input"
+              type="phone"
+              className="login-input"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="enroll-form-group">
             <label className="label">이메일</label>
             <input
               type="email"
-              className="enroll-input"
+              className="login-input"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="enroll-form-group">
             <label className="label">자기 소개</label>
             <textarea
-              className="enroll-input"
+              className="login-input"
               value={introduction}
               onChange={(event) => setIntroduction(event.target.value)}
             ></textarea>
           </div>
+          <Link to="/second">
+            <button type="submit" className="loginButton">
+              명함 등록
+            </button>
+          </Link>
         </form>
-        <Button
-          variant="white"
-          style={{
-            backgroundColor: "skyblue",
-            color: "black",
-            fontWeight: "450",
-            fontSize: "0.9rem",
-            padding: "0.7rem 10.5rem",
-            borderRadius: "10px",
-          }}
-        >
-          명함 등록
-        </Button>
       </div>
     </div>
   );
