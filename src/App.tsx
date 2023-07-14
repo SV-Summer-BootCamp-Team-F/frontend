@@ -1,14 +1,15 @@
-import { Routes, Route } from 'react-router-dom';
-import FirstPage from './pages/FirstPage';
-import Login from './pages/LoginPage';
-import Signup from './pages/SignupPage';
-import Second from './pages/SecondPage';
-import Main from './pages/MainPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Routes, Route } from "react-router-dom";
+import FirstPage from "./pages/FirstPage";
+import Login from "./pages/LoginPage";
+import Signup from "./pages/SignupPage";
+import Second from "./pages/SecondPage";
+import Main from "./pages/MainPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import TestPage from "./pages/test/TestPage";
 
 function App() {
-  return ( 
+  return (
     <div>
       <Routes>
         <Route path="/" element={<FirstPage />} />
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/second" element={<Second />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/Test" element={<TestPage />} />
       </Routes>
     </div>
   );
