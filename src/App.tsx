@@ -8,6 +8,7 @@ import Main from "./pages/MainPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import RelationGraph from "./components/relation/RelationGraph.tsx";
+import TestPage from "./pages/test/TestPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/relationPage" element={<RelationPage />} />
         <Route path="/relationGraph" element={<RelationGraph />} />
+        <Route path="/Test" element={<TestPage />} />
       </Routes>
     </div>
   );
