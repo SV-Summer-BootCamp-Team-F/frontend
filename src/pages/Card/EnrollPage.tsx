@@ -37,12 +37,12 @@ function EnrollPage() {
         <h2 className="remember">
           Remember <span className="plus">plus+</span>
         </h2>
-        <h2 className="enroll-title">인적사항</h2>
+        <h2 className="enroll">인적사항</h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group">
             <img className="example-picture" src="https://via.placeholder.com/339x189" />
             <div
-              className="picture-explain"
+              className="enroll-form-group"
               style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
               등록할 명함 사진
@@ -50,10 +50,10 @@ function EnrollPage() {
             <input type="file" id="photo" name="photo" />
           </div>
           <div className="enroll-form-group">
-            <label className="label">이름</label>
+            <label className="label">이름*</label>
             <input
               type="name"
-              className="login-input"
+              className="enroll-input"
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
@@ -62,7 +62,7 @@ function EnrollPage() {
             <label className="label">개인 전화번호*</label>
             <input
               type="phone"
-              className="login-input"
+              className="enroll-input"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
             />
@@ -71,7 +71,7 @@ function EnrollPage() {
             <label className="label">이메일</label>
             <input
               type="email"
-              className="login-input"
+              className="enroll-input"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -79,13 +79,13 @@ function EnrollPage() {
           <div className="enroll-form-group">
             <label className="label">자기 소개</label>
             <textarea
-              className="login-input"
+              className="enroll-input"
               value={introduction}
               onChange={(event) => setIntroduction(event.target.value)}
             ></textarea>
           </div>
           <Link to="/second">
-            <button type="submit" className="loginButton">
+            <button type="submit" className="enrollButton">
               명함 등록
             </button>
           </Link>
