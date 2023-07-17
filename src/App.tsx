@@ -7,6 +7,9 @@ import MainPage from './pages/MainPage';
 import RelationPage from './pages/Relation/RelationPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
+import UserPage from "./pages/User/UserPage";
+import RelationGraph from "./components/relation/RelationGraph.tsx";
+import TestPage from "./pages/test/TestPage";
 
 function App() {
   return ( 
@@ -18,6 +21,10 @@ function App() {
         <Route path="/second" element={<IntroPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/relation" element={<RelationPage />} />
+        <Route path="/userPage" element={<UserPage />} />
+        <Route path="/relationPage" element={<RelationPage />} />
+        <Route path="/relationGraph" element={<RelationGraph />} />
+        <Route path="/Test" element={<TestPage />} />
       </Routes>
     </div>
   );
