@@ -9,7 +9,7 @@ const UserPage = () => {
   const [showLineChart, setShowLineChart] = useState(false);
   const [showPieChart, setShowPieChart] = useState(false);
 
-  const handleButtonClick = (component: string) => {
+  const handleButtonClick = (component) => {
     setShowCardInfo(component === "cardInfo");
     setShowLineChart(component === "chart");
     setShowPieChart(component === "chart");
@@ -21,7 +21,7 @@ const UserPage = () => {
     phoneNumber: "010-0002-0029",
     introduction: "I love banana Ice Cream!",
   };
-  // className="h-screen flex justify-center items-center"
+
   return (
     <div className="flex flex-col items-center w-screen h-auto">
       <UserProfile />
@@ -49,30 +49,17 @@ const UserPage = () => {
           introduction={card.introduction}
         />
       )}
-      <div style={{ display: "flex" }} className="mb-20">
+      <div className="flex ml-20 mb-20 mr-20">
         {showLineChart && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              marginRight: "50px",
-            }}
-          >
-            <div
-              style={{
-                width: "500px",
-                height: "300px",
-              }}
-            >
+          <div className="flex flex-col items-center mr-10">
+            <div className="w-500 h-300">
               <LineChart />
             </div>
           </div>
         )}
-
         {showPieChart && (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div style={{ width: "400px", height: "400px" }}>
+          <div className="flex flex-col items-center">
+            <div className="w-400 h-400">
               <PieChart />
             </div>
           </div>

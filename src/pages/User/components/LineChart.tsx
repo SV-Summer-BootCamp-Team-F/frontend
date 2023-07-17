@@ -12,7 +12,6 @@ HC_exporting(Highcharts);
 const LineChart = () => {
   const options = {
     title: {
-      margin: 50,
       text: "Business card count statistics",
       align: "center",
       style: {
