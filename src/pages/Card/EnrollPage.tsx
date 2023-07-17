@@ -18,7 +18,7 @@ function EnrollPage() {
           Remember <span className="text-blue">plus+</span>
         </div>
       </Link>
-      <div className="bg-white p-8 w-800px rounded-15 text-center mt-80px shadow-md rounded-md">
+      <div className="bg-white p-40 w-800px rounded-15 text-center mt-80px shadow-md rounded-md">
         <h2 className="remember">
           Remember <span className="plus">plus+</span>
         </h2>
@@ -26,14 +26,29 @@ function EnrollPage() {
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group">
             <img
+              id="preview-image"
               className="example-picture"
               src="https://via.placeholder.com/339x189"
               alt="Example"
             />
-            <div className="enroll-form-group flex justify-center items-center mb-3">
-              등록할 명함 사진
-            </div>
-            <input type="file" id="photo" name="photo" />
+            <input
+              type="file"
+              id="photo"
+              name="photo"
+              onChange={(event) => {
+                const file = event.target.files && event.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = function (e) {
+                    const previewImage = document.getElementById("preview-image");
+                    if (previewImage) {
+                      previewImage.src = e.target.result;
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+            />
           </div>
 
           <div className="enroll-form-group text-left mb-3">
