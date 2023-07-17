@@ -14,8 +14,8 @@ const MainPage: React.FC = () => {
         <Link to="/">
           <div style={{ position: 'fixed', top: '5%', right: '10%', transform: 'translate(50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1.2rem', cursor: 'pointer' }}>LOG<span style={{ color: 'skyblue' }}>OUT</span></div>
         </Link>
-          <div style={{ position: 'absolute', top: '50%', left: '18%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '2.5rem', cursor: 'pointer' }}>BuisnessCard <span style={{ color: 'skyblue' }}>registration</span></div> 
-          <div style={{ position: 'absolute', top: '140%', left: '80%', transform: 'translate(-50%, -50%)', color: 'skyblue', fontWeight: 'bolder', fontSize: '3.6rem', cursor: 'pointer' }}>My <span style={{ color: 'black' }}>Connection</span></div>
+          <div style={{ position: 'absolute', top: '50%', left: '18%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '2.5rem'}}>BuisnessCard <span style={{ color: 'skyblue' }}>registration</span></div> 
+          <div style={{ position: 'absolute', top: '140%', left: '80%', transform: 'translate(-50%, -50%)', color: 'skyblue', fontWeight: 'bolder', fontSize: '3.6rem'}}>My <span style={{ color: 'black' }}>Connection</span></div>
         <div className="main-container"></div>
         <Card />
         <div style={{ position: 'absolute', top: '35rem', left: '15rem' }}>
