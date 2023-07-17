@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import UserInfo from "./components/UserInfo";
 import CardInfo from "./components/CardInfo";
 import LineChart from "./components/LineChart";
 import PieChart from "./components/PieChart";
@@ -16,127 +15,68 @@ const UserPage = () => {
     setShowPieChart(component === "chart");
   };
 
-  const user = {
-    avatar: "https://i.pinimg.com/736x/77/c3/ba/77c3ba3d5cb9cbcc9734269054a5d57e.jpg",
-    name: "Pochacco",
-    email: "banana@naver.com",
-    phoneNumber: "010-0002-0029",
-    passwd: "************",
-  };
-
   const card = {
     name: "Pochacco",
     email: "icecream@gmail.net",
+    phoneNumber: "010-0002-0029",
     introduction: "I love banana Ice Cream!",
   };
-
-  const [innerHeight, setInnerHeight] = useState(window.innerHeight);
-
-  useEffect(() => {
-    const resizeListener = () => {
-      setInnerHeight(window.innerHeight);
-    };
-    window.addEventListener("resize", resizeListener);
-
-    return () => {
-      window.removeEventListener("resize", resizeListener);
-    };
-  }, []);
-
+  // className="h-screen flex justify-center items-center"
   return (
-    <div
-      style={{
-        display: "flex",
-        // minHeight: innerHeight,
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "stretch",
-          marginRight: "100px",
-        }}
-      >
-        <UserInfo
-          avatar={user.avatar}
-          name={user.name}
-          email={user.email}
-          phoneNumber={user.phoneNumber}
-          passwd={user.passwd}
-        />
+    <div className="flex flex-col items-center w-screen h-auto">
+      <UserProfile />
+      <div className="mb-12">
         <button
           onClick={() => handleButtonClick("cardInfo")}
-          style={{
-            flexBasis: "100px",
-            marginTop: "10px",
-            marginBottom: "10px",
-            color: "white",
-            fontSize: "20px",
-          }}
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Card Info
         </button>
         <button
           onClick={() => handleButtonClick("chart")}
-          style={{ flexBasis: "100px", color: "white", fontSize: "20px" }}
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Chart
         </button>
       </div>
-      <div style={{ marginLeft: "20px" }}>
-        {showCardInfo && (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <img
-              src="https://www.printrobo.co.kr/cdn/blog/870x531-pb10008.jpg"
-              alt="명함 사진"
+      {showCardInfo && (
+        <CardInfo
+          name={card.name}
+          email={card.email}
+          phoneNumber={card.phoneNumber}
+          introduction={card.introduction}
+        />
+      )}
+      <div style={{ display: "flex" }} className="mb-20">
+        {showLineChart && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginRight: "50px",
+            }}
+          >
+            <div
               style={{
                 width: "500px",
-                border: "1px solid black",
-                borderRadius: "20px",
-                marginBottom: "50px",
+                height: "300px",
               }}
-            />
-            <CardInfo
-              name={card.name}
-              email={card.email}
-              phoneNumber={user.phoneNumber}
-              introduction={card.introduction}
-            />
-            {/* <UserProfile /> */}
+            >
+              <LineChart />
+            </div>
           </div>
         )}
 
-        <div style={{ display: "flex" }}>
-          {showLineChart && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "50px",
-              }}
-            >
-              <div
-                style={{
-                  width: "500px",
-                  height: "300px",
-                }}
-              >
-                <LineChart />
-              </div>
+        {showPieChart && (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ width: "400px", height: "400px" }}>
+              <PieChart />
             </div>
-          )}
-
-          {showPieChart && (
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ width: "400px", height: "400px" }}>
-                <PieChart />
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
