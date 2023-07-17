@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import RelationPage from "./pages/Relation/RelationPage.tsx";
 import FirstPage from "./pages/FirstPage";
 import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
@@ -6,7 +7,11 @@ import Second from "./pages/SecondPage";
 import Main from "./pages/MainPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+<<<<<<< HEAD
 import EnrollPage from "./pages/Card/EnrollPage";
+=======
+import RelationGraph from "./components/relation/RelationGraph.tsx";
+>>>>>>> 351b8938eba0280efb70b6e0c8797d322b612fde
 import TestPage from "./pages/test/TestPage";
 
 function App() {
@@ -18,7 +23,12 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/second" element={<Second />} />
         <Route path="/main" element={<Main />} />
+<<<<<<< HEAD
         <Route path="/enrollPage" element={<EnrollPage />} />
+=======
+        <Route path="/relationPage" element={<RelationPage />} />
+        <Route path="/relationGraph" element={<RelationGraph />} />
+>>>>>>> 351b8938eba0280efb70b6e0c8797d322b612fde
         <Route path="/Test" element={<TestPage />} />
       </Routes>
     </div>
