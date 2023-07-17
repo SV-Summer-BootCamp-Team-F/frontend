@@ -40,11 +40,12 @@ const FirstPage = () => {
     plusSpan.style.color = 'skyblue';
     titleElement.appendChild(plusSpan);
     titleElement.style.position = 'absolute';
-    titleElement.style.top = '14%';
-    titleElement.style.left = '40%';
+    titleElement.style.top = '5%';
+    titleElement.style.left = '12%';
     titleElement.style.transform = 'translateX(-50%)';
+    titleElement.style.fontWeight = '800';
     titleElement.style.fontFamily = '"Times New Roman", Times, serif';
-    titleElement.style.fontSize = '130px';
+    titleElement.style.fontSize = '30px';
     titleElement.style.color = '#fff';
     titleElement.style.opacity = '0';
     document.body.appendChild(titleElement);
@@ -57,8 +58,7 @@ const FirstPage = () => {
     buttonElementRef.current.style.left = '50%';
     buttonElementRef.current.style.transform = 'translate(-50%, -50%)';
     buttonElementRef.current.style.padding = '70px 50px';
-    buttonElementRef.current.style.fontFamily = '"Times New Roman", Times, serif';
-    buttonElementRef.current.style.fontSize = '18px';
+    buttonElementRef.current.style.fontSize = '15px';
     buttonElementRef.current.style.fontWeight = '900';
     buttonElementRef.current.style.color = '#fff';
     buttonElementRef.current.style.backgroundColor = 'rgba(33, 40, 42, 0.001)';
@@ -110,7 +110,7 @@ const FirstPage = () => {
     const ctx = canvas.getContext('2d')!;
     canvas.height = 100;
     canvas.width = 100;
-    ctx.fillStyle = '#ffa';
+    ctx.fillStyle = '#fff';
     ctx.beginPath();
     ctx.arc(10, 50, 25, 0, 2 * Math.PI);
     ctx.fill();
@@ -176,9 +176,11 @@ const FirstPage = () => {
       }
       positions.needsUpdate = true;
 
-      particlesMesh.rotation.x += 0.03 * (targetRotation.x - particlesMesh.rotation.x);
-      particlesMesh.rotation.y += 0.03 * (targetRotation.y - particlesMesh.rotation.y);
-      particlesMesh.rotation.z += 0.03 * (targetRotation.y - particlesMesh.rotation.x);
+      particlesMesh.rotation.x += 0.006 * (targetRotation.y + particlesMesh.rotation.z);
+      particlesMesh.rotation.y += 0.03 * (targetRotation.x - particlesMesh.rotation.z);
+      particlesMesh.rotation.z += 0.03 * (targetRotation.x - particlesMesh.rotation.z);
+      particlesMesh.position.y -= 0.0005; // 이동하는 속도를 조정할 수 있습니다.
+
       sphere.rotation.y += 0.05;
 
       renderer.render(scene, camera);
@@ -188,7 +190,7 @@ const FirstPage = () => {
 
     setTimeout(() => {
       titleElement.style.opacity = '1';
-      titleElement.style.transition = 'opacity 0.8s ease';
+      titleElement.style.transition = 'opacity 2.4s ease';
     }, 300);
 
     setTimeout(() => {

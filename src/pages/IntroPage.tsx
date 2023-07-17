@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import Slide from '../components/intro/Slide';
 import Profile from '../components/intro/Profile';
 import Text from '../components/intro/Text';
-import Text2 from '../components/Text2';
-import Three from '../components/Three';
-import '../css/Scroll.css';
+import Sphere from '../components/Sphere';
+import Anychart from '../components/Anychart';
 import '../css/Text.css';
 
-const Second = () => {
+const IntroPage = () => {
   const profileRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const TextRef = useRef<HTMLDivElement | null>(null);
@@ -66,25 +65,27 @@ const Second = () => {
   return (
     <div className="main-container">
       <Link to="/">
-        <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>plus+</span></div>
+        <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>Plus+</span></div>
       </Link>
       <div ref={TextRef} className="animate-on-scroll-1">
 
       </div>
-      <Text />
-      <Three />
+      <Sphere />
       <div ref={profileRef} className="animate-on-scroll-2">
+        
         <Profile />
+        <Anychart/>
       </div>
       <div className="animate-on-scroll-3">
         <Slide />
 
       </div>
       <div className="animate-on-scroll-4">
-        <Text2 />
+        <Text />
+        
       </div>
     </div>
   );
 };
 
-export default Second;
+export default IntroPage;
