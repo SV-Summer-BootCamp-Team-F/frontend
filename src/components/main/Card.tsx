@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Card.css';
+import '../../css/Card.css';
 
 const Card: React.FC = () => {
   const [isHidden, setIsHidden] = useState(true);

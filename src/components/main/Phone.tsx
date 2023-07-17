@@ -7,7 +7,7 @@ const Card: React.FC = () => {
     const handleScroll = () => {
       if (cardRef.current) {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-        const rotation = scrollTop / -37; // Adjust the rotation speed here
+        const rotation = scrollTop / -40; // Adjust the rotation speed here
         cardRef.current.style.transform = `rotate(${rotation}deg)`;
       }
     };

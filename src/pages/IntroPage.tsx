@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Slide from '../components/intro/Slide';
 import Profile from '../components/intro/Profile';
 import Text from '../components/intro/Text';
-import Sphere from '../components/Sphere';
-import Anychart from '../components/Anychart';
+import Sphere from '../components/intro/Sphere';
+import Anychart from '../components/intro/Anychart';
 import '../css/Text.css';
 
 const IntroPage = () => {
