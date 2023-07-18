@@ -19,7 +19,7 @@ const TestPage = () => {
             </div>
             <div className="w-full md:w-5/12 lg:w-1/3">
               <div className="flex items-center space-x-3 md:justify-end">
-                <button className="inline-flex items-center justify-center rounded-md bg-primary py-[10px] px-8 text-center text-base font-semibold text-white hover:bg-opacity-90">
+                <button className="inline-flex items-center justify-center rounded-md bg-rememberBlue py-[10px] px-8 text-center text-base font-semibold text-white hover:bg-opacity-90">
                   Accept
                 </button>
                 <button className="inline-flex items-center justify-center rounded-md bg-white py-[10px] px-8 text-center text-base font-semibold text-body-color shadow-card hover:bg-primary hover:text-white">
