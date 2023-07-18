@@ -40,7 +40,7 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
   }, []);
 
   return (
-    <svg ref={svgRef} width={width} height={height}>
+    <svg ref={svgRef} width={width} height={height} className="bg-rememberBlack">
       {/* 
         transform 속성을 이용해, 확대/축소와 이동을 적용합니다. 
         이 때, children은 확대/축소와 이동이 적용되는 SVG 요소들을 나타냅니다.
@@ -50,8 +50,9 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
         foreignObject 요소는 SVG 내에서 HTML 콘텐츠를 포함할 수 있도록 합니다. 
         여기서는 'Update Data' 버튼을 추가하였습니다.
       */}
-      <foreignObject x={10} y={10} width={200} height={200}>
+      <foreignObject x={240} y={40} width={600} height={400}>
         <button
+          className="btn btn-primary"
           onClick={() => {
             updateData(); // 버튼 클릭 시 데이터를 업데이트하고
             resetZoom(); // 확대/축소 상태를 초기화합니다.
