@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage';
 import IntroPage from './pages/IntroPage';
 import MainPage from './pages/MainPage';
 import RelationPage from './pages/Relation/RelationPage';
+import EnrollPage from "./pages/Card/EnrollPage";
 import UserPage from "./pages/User/UserPage";
 import RelationGraph from "./components/relation/RelationGraph.tsx";
 import TestPage from "./pages/test/TestPage";
@@ -21,8 +22,8 @@ function App() {
         <Route path="/second" element={<IntroPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/relation" element={<RelationPage />} />
+        <Route path="/enrollPage" element={<EnrollPage />} />
         <Route path="/userPage" element={<UserPage />} />
-        <Route path="/relationPage" element={<RelationPage />} />
         <Route path="/relationGraph" element={<RelationGraph />} />
         <Route path="/Test" element={<TestPage />} />
       </Routes>
