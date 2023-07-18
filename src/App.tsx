@@ -5,11 +5,11 @@ import SignupPage from './pages/SignupPage';
 import IntroPage from './pages/IntroPage';
 import MainPage from './pages/MainPage';
 import RelationPage from './pages/Relation/RelationPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./index.css";
 import UserPage from "./pages/User/UserPage";
 import RelationGraph from "./components/relation/RelationGraph.tsx";
 import TestPage from "./pages/test/TestPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./index.css";
 
 function App() {
   return ( 

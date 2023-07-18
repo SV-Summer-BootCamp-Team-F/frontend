@@ -34,7 +34,6 @@ const IntroPage = () => {
 
     const profileObserver = new IntersectionObserver(animateOnScroll, options);
     const cardObserver = new IntersectionObserver(animateOnScroll, options);
-
     const profileRefCopy = profileRef.current;
     const cardRefCopy = cardRef.current;
     const TextRefCopy = TextRef.current;
@@ -68,17 +67,14 @@ const IntroPage = () => {
         <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>Plus+</span></div>
       </Link>
       <div ref={TextRef} className="animate-on-scroll-1">
-
       </div>
       <Sphere />
       <div ref={profileRef} className="animate-on-scroll-2">
-        
         <Profile />
         <Anychart/>
       </div>
       <div className="animate-on-scroll-3">
         <Slide />
-
       </div>
       <div className="animate-on-scroll-4">
         <Text />
