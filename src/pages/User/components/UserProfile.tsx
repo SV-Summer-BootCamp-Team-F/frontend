@@ -1,6 +1,13 @@
 import React from "react";
 
-const UserProfile = () => {
+interface UserProfileProps {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  passwd: string;
+}
+
+const UserProfile: React.FC<UserProfileProps> = ({ name, email, phoneNumber, passwd }) => {
   return (
     <div className="mt-20 mb-12 flex bg-white rounded-lg shadow-md px-28 py-16">
       <img
@@ -9,12 +16,12 @@ const UserProfile = () => {
         alt="Profile picture"
       />
       <div className="ml-20">
-        <h2 className="text-8xl font-semibold mt-3">Pochacco</h2>
-        <p className=" text-gray-600 mt-1">Frontend Engineer</p>
+        <h2 className="text-8xl font-semibold mt-3">{name}</h2>
+        {/* <p className=" text-gray-600 mt-1">Frontend Engineer</p> */}
         <div>
-          <h5 className=" text-gray-600 mt-4 text-xl">Email: pochacco@gmail.com</h5>
-          <h5 className=" text-gray-600 mt-4 text-xl">Phone: 010-0002-0029</h5>
-          <h5 className=" text-gray-600 mt-4 mb-16 text-xl">Passwd: *************</h5>
+          <h5 className=" text-gray-600 mt-4 text-xl">Email: {email}</h5>
+          <h5 className=" text-gray-600 mt-4 text-xl">Phone: {phoneNumber}</h5>
+          <h5 className=" text-gray-600 mt-4 mb-16 text-xl">Passwd: {passwd}</h5>
         </div>
         <button
           type="button"
