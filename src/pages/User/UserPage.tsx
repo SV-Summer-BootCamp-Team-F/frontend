@@ -3,6 +3,7 @@ import CardInfo from "./components/CardInfo";
 import LineChart from "./components/LineChart";
 import PieChart from "./components/PieChart";
 import UserProfile from "./components/UserProfile";
+import BarChart from "./components/BarChart";
 
 interface User {
   name: string;
@@ -19,16 +20,12 @@ interface Card {
 }
 
 const UserPage: React.FC = () => {
-  const [showCardInfo, setShowCardInfo] = useState<boolean>(false);
-  const [showLineChart, setShowLineChart] = useState<boolean>(false);
-  const [showPieChart, setShowPieChart] = useState<boolean>(false);
-  const [showStatistics, setShowStatistics] = useState<boolean>(false);
+  const [showCardInfo, setShowCardInfo] = useState<boolean>(true);
+  const [showChart, setShowChart] = useState<boolean>(false);
 
   const handleButtonClick = (component: string) => {
     setShowCardInfo(component === "cardInfo");
-    setShowLineChart(component === "chart");
-    setShowPieChart(component === "chart");
-    setShowStatistics(component === "statistics");
+    setShowChart(component === "chart");
   };
 
   const user: User = {
@@ -46,7 +43,7 @@ const UserPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen h-auto">
+    <div className="flex flex-col items-center w-screen h-auto bg-blue-400">
       <UserProfile
         name={user.name}
         email={user.email}
@@ -77,27 +74,18 @@ const UserPage: React.FC = () => {
           introduction={card.introduction}
         />
       )}
-      <div className="flex">
-        <div className="flex ml-20 mb-20 mr-20">
-          {/* <div className="w-56 h-32">bar</div> */}
-          {showLineChart && (
-            <div className="flex flex-col items-center mr-10">
-              <div className="w-500 h-300">
-                <LineChart />
-              </div>
-            </div>
-          )}
+      {showChart && (
+        <div className="flex justify-around">
+          <div className="flex flex-col">
+            <div className="w-full h-80 rounded-3xl bg-white"></div>
+            <LineChart />
+          </div>
+          <div className="flex flex-col">
+            <PieChart />
+            <BarChart />
+          </div>
         </div>
-        <div className="flex flex-col">
-          {showPieChart && (
-            <div className="flex flex-col items-center">
-              <div className="w-400 h-400">
-                <PieChart />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -13,8 +13,9 @@ const LineChart = () => {
   const options = {
     chart: {
       type: "line",
-      borderRadius: 30,
-      shadow: true,
+      borderRadius: 24,
+      width: 600,
+      height: 450,
     },
     title: {
       text: "Monthly Average Temperature",
