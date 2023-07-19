@@ -14,7 +14,7 @@ const BarChart = () => {
     chart: {
       type: "column",
       width: 250,
-      height: 350,
+      height: 300,
       borderRadius: 24,
     },
     title: {

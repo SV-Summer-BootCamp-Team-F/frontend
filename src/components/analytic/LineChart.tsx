@@ -14,7 +14,7 @@ const LineChart = () => {
     chart: {
       type: "line",
       borderRadius: 24,
-      width: 600,
+      width: 675,
       height: 450,
     },
     title: {
