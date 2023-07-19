@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CardInfo from "./components/CardInfo";
 import LineChart from "./components/LineChart";
 import PieChart from "./components/PieChart";
 import UserProfile from "./components/UserProfile";
 
-const UserPage = () => {
+const UserPage: React.FC = () => {
   const [showCardInfo, setShowCardInfo] = useState(false);
   const [showLineChart, setShowLineChart] = useState(false);
   const [showPieChart, setShowPieChart] = useState(false);
 
-  const handleButtonClick = (component) => {
+  const handleButtonClick = (component: string) => {
     setShowCardInfo(component === "cardInfo");
     setShowLineChart(component === "chart");
     setShowPieChart(component === "chart");
