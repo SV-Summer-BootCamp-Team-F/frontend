@@ -92,7 +92,7 @@ const Sphere = () => {
     if (model) {
       const targetScale = isLarge ? new THREE.Vector3(1, 1, 1) : new THREE.Vector3(9.5, 9.5, 9.5);
       const initialScale = model.scale.clone();
-      const animationDuration = 1400;
+      const animationDuration = 1700;
       const frameRate = 70;
       const totalFrames = animationDuration / (1000 / frameRate);
       let currentFrame = 0;
@@ -118,15 +118,21 @@ const Sphere = () => {
     }
   };
 
-  const handleTextClick = () => {
-    setShowText(false); // Hide the text when clicked
+  const handleScreenClick = () => {
+    if (!isLarge) {
+      setShowText(false); // Hide the text when screen is clicked
+    } else {
+      setTimeout(() => {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' }); // Scroll to next page
+      }, 2000);
+    }
   };
 
   return (
-    <div>
+    <div onClick={handleScreenClick}>
       <div ref={containerRef} style={{ marginTop: '-237px', marginBottom: '-100px' }} onClick={handleModelClick} />
       {showText && (
-        <Text isVisible={true} onClick={handleTextClick} />
+        <Text isVisible={true} onClick={handleScreenClick} />
       )}
     </div>
   );
@@ -162,9 +168,5 @@ const Text = ({ isVisible, onClick }: TextProps) => {
     </h1>
   );
 };
-
-
-
-
 
 export default Sphere;
