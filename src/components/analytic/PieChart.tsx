@@ -16,12 +16,12 @@ const PieChart = () => {
       plotBorderWidth: null,
       plotShadow: false,
       type: "pie",
-      width: 250,
-      height: 300,
+      width: 350,
+      height: 350,
       borderRadius: 24,
     },
     title: {
-      text: "Browser market shares in March, 2022",
+      text: "Browser market shares, 2022",
       align: "left",
     },
     tooltip: {

@@ -13,12 +13,12 @@ const BarChart = () => {
   const options = {
     chart: {
       type: "column",
-      width: 250,
-      height: 300,
+      width: 350,
+      height: 250,
       borderRadius: 24,
     },
     title: {
-      text: "Corn vs wheat estimated production for 2020",
+      text: "Corn vs wheat production 2020",
       align: "left",
     },
     subtitle: {
