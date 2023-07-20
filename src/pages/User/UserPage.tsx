@@ -8,19 +8,12 @@ import CardPhoto from "../../components/card/CardPhoto";
 import StatisticsBox from "../../components/analytic/StatisticsBox";
 import axios from "axios";
 
-interface User {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  passwd: string;
-}
-
-interface Card {
+type CardType = {
   name: string;
   email: string;
   phoneNumber: string;
   introduction: string;
-}
+};
 
 const UserPage: React.FC = () => {
   const [showCardInfo, setShowCardInfo] = useState<boolean>(true);
@@ -52,7 +45,7 @@ const UserPage: React.FC = () => {
     setShowChart(component === "chart");
   };
 
-  const card: Card = {
+  const card: CardType = {
     name: "Pochacco",
     email: "icecream@gmail.net",
     phoneNumber: "010-0002-0029",

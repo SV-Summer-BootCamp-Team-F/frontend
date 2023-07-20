@@ -8,7 +8,7 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = ({ name, email, phoneNumber, passwd }) => {
   return (
-    <div className="w-[290px] max-w-lg my-10 bg-white rounded-lg shadow-md p-12 box-border">
+    <div className="w-[270px] max-w-lg my-10 bg-white rounded-lg shadow-md p-16 box-border">
       <img
         className="w-[170px] h-[170px] rounded-full mx-auto mb-16"
         src="https://i.pinimg.com/736x/77/c3/ba/77c3ba3d5cb9cbcc9734269054a5d57e.jpg"
