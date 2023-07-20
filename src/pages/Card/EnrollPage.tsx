@@ -40,9 +40,11 @@ function EnrollPage() {
                 if (file) {
                   const reader = new FileReader();
                   reader.onload = function (e) {
-                    const previewImage = document.getElementById("preview-image");
-                    if (previewImage) {
-                      previewImage.src = e.target.result;
+                    const previewImage = document.getElementById(
+                      "preview-image"
+                    ) as HTMLImageElement;
+                    if (previewImage && e.target && e.target.result) {
+                      previewImage.src = e.target.result as string;
                     }
                   };
                   reader.readAsDataURL(file);
