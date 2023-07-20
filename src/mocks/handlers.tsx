@@ -17,6 +17,22 @@ const handlers = [
       })
     );
   }),
+
+  rest.get("/api/v1/users/info/:userId", (req, res, ctx) => {
+    const { userId } = req.params;
+
+    // Replace the following placeholder data with actual user information
+    const userProfile = {
+      userId: "1",
+      profilePictureUrl: "https://example.com/user-profile-picture.jpg",
+      name: "John Doe",
+      email: "john.doe@example.com",
+      phoneNumber: "123-456-7890",
+      passwd: "examplePassword123",
+    };
+
+    return res(ctx.status(200), ctx.json(userProfile));
+  }),
 ];
 
 export default handlers;
