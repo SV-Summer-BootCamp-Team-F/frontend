@@ -1,12 +1,13 @@
 import React from "react";
-interface UserProfileProps {
+
+type UserProfilePropsType = {
   name: string;
   email: string;
   phoneNumber: string;
   passwd: string;
-}
+};
 
-const UserProfile: React.FC<UserProfileProps> = ({ name, email, phoneNumber, passwd }) => {
+const UserProfile: React.FC<UserProfilePropsType> = ({ name, email, phoneNumber, passwd }) => {
   return (
     <div className="w-[270px] max-w-lg my-10 bg-white rounded-lg shadow-md p-16 box-border">
       <img

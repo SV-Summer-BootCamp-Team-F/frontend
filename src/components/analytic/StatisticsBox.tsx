@@ -1,12 +1,12 @@
 import React from "react";
 
-interface StatisticsBoxProps {
+type StatisticsBoxPropsType = {
   color: string;
   title: string;
   number: number;
-}
+};
 
-const StatisticsBox: React.FC<StatisticsBoxProps> = ({ color, title, number }) => {
+const StatisticsBox: React.FC<StatisticsBoxPropsType> = ({ color, title, number }) => {
   return (
     <div
       className={`flex flex-col items-center justify-center w-[150px] bg-${color} rounded-3xl mr-10`}
