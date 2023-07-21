@@ -16,13 +16,13 @@ const PieChart = () => {
       plotBorderWidth: null,
       plotShadow: false,
       type: "pie",
-      styledMode: false, // styledMode 활성화
-      borderRadius: 30,
-      shadow: true,
+      width: 250,
+      height: 300,
+      borderRadius: 24,
     },
     title: {
-      text: "Browser market shares in May, 2020",
-      align: "center",
+      text: "Browser market shares in March, 2022",
+      align: "left",
     },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
@@ -37,9 +37,9 @@ const PieChart = () => {
         allowPointSelect: true,
         cursor: "pointer",
         dataLabels: {
-          enabled: true,
-          format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+          enabled: false,
         },
+        showInLegend: true,
       },
     },
     series: [
@@ -49,41 +49,29 @@ const PieChart = () => {
         data: [
           {
             name: "Chrome",
-            y: 70.67,
+            y: 74.77,
             sliced: true,
             selected: true,
           },
           {
             name: "Edge",
-            y: 14.77,
+            y: 12.82,
           },
           {
             name: "Firefox",
-            y: 4.86,
+            y: 4.63,
           },
           {
             name: "Safari",
-            y: 2.63,
+            y: 2.44,
           },
           {
             name: "Internet Explorer",
-            y: 1.53,
-          },
-          {
-            name: "Opera",
-            y: 1.4,
-          },
-          {
-            name: "Sogou Explorer",
-            y: 0.84,
-          },
-          {
-            name: "QQ",
-            y: 0.51,
+            y: 2.02,
           },
           {
             name: "Other",
-            y: 2.6,
+            y: 3.28,
           },
         ],
       },

@@ -7,7 +7,6 @@ import MainPage from "./pages/MainPage";
 import RelationPage from "./pages/Relation/RelationPage";
 import EnrollPage from "./pages/Card/EnrollPage";
 import UserPage from "./pages/User/UserPage";
-import RelationGraph from "./components/relation/RelationGraph.tsx";
 import TestPage from "./pages/test/TestPage";
 import "./pageAnime.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -30,7 +29,6 @@ function App() {
             <Route path="/relation" element={<RelationPage />} />
             <Route path="/enrollPage" element={<EnrollPage />} />
             <Route path="/userPage" element={<UserPage />} />
-            <Route path="/relationGraph" element={<RelationGraph />} />
             <Route path="/Test" element={<TestPage />} />
           </Routes>
         </CSSTransition>
