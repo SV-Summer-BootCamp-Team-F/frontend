@@ -12,7 +12,7 @@ const BUTTON_CLASSNAME =
 
 const CardInfo: React.FC<CardInfoProps> = ({ name, email, phoneNumber, introduction }) => {
   return (
-    <div className="rounded-lg shadow-md flex justify-center items-center px-[30px] py-20 w-[500px] h-[300px]">
+    <div className="rounded-lg shadow-md flex justify-center items-center px-[60px] py-[30px] w-[500px] h-[300px]">
       <div className="flex justify-around items-center w-full">
         <div className="flex flex-col w-[400px]">
           <h2 className="text-[30px] mb-[14px] font-semibold">{name}</h2>

@@ -27,10 +27,17 @@ const UserPage: React.FC = () => {
     user_photo: "",
   });
 
+  const [cardData, setCardData] = useState({
+    card_name: "",
+    card_email: "",
+    phone_num: "",
+    card_intro: "",
+  });
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userId = 1; // Replace this with the actual user ID you want to fetch
+        const userId = 2; // Replace this with the actual user ID you want to fetch
         const response = await axios.get(`/api/v1/users/info/${userId}`);
         setUserData(response.data.result);
       } catch (error) {
@@ -41,16 +48,23 @@ const UserPage: React.FC = () => {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    const fetchCardData = async () => {
+      try {
+        const cardId = 1; // Replace this with the actual card ID you want to fetch
+        const response = await axios.get(`/api/v1/cards/info/${cardId}`);
+        setCardData(response.data.result);
+      } catch (error) {
+        console.error("Error fetching card data:", error);
+      }
+    };
+
+    fetchCardData();
+  }, []);
+
   const handleButtonClick = (component: string) => {
     setShowCardInfo(component === "cardInfo");
     setShowChart(component === "chart");
-  };
-
-  const card: CardType = {
-    name: "Pochacco",
-    email: "icecream@gmail.net",
-    phoneNumber: "010-0002-0029",
-    introduction: "I love banana Ice Cream!",
   };
 
   return (
@@ -61,6 +75,7 @@ const UserPage: React.FC = () => {
           email={userData.user_email}
           phoneNumber={userData.phone_num}
           passwd={userData.password}
+          photo={userData.user_photo}
         />
         <div className="flex justify-between items-center w-[270px]">
           <button
@@ -85,10 +100,10 @@ const UserPage: React.FC = () => {
             <CardPhoto />
           </div>
           <CardInfo
-            name={card.name}
-            email={card.email}
-            phoneNumber={card.phoneNumber}
-            introduction={card.introduction}
+            name={cardData.card_name}
+            email={cardData.card_email}
+            phoneNumber={cardData.phone_num}
+            introduction={cardData.card_intro}
           />
         </div>
       )}
