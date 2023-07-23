@@ -6,20 +6,28 @@ import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
 import CardPhoto from "../../components/card/CardPhoto";
 import StatisticsBox from "../../components/analytic/StatisticsBox";
-import axios from "axios";
+
+type UserType = {
+  user_name: string;
+  user_email: string;
+  password: string;
+  phone_num: string;
+  user_photo: string;
+};
 
 type CardType = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  introduction: string;
+  card_name: string;
+  card_email: string;
+  phone_num: string;
+  card_intro: string;
+  card_photo: string;
 };
 
 const UserPage: React.FC = () => {
   const [showCardInfo, setShowCardInfo] = useState<boolean>(true);
   const [showChart, setShowChart] = useState<boolean>(false);
 
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<UserType>({
     user_name: "",
     user_email: "",
     password: "",
@@ -27,39 +35,36 @@ const UserPage: React.FC = () => {
     user_photo: "",
   });
 
-  const [cardData, setCardData] = useState({
+  const [cardData, setCardData] = useState<CardType>({
     card_name: "",
     card_email: "",
     phone_num: "",
     card_intro: "",
+    card_photo: "",
   });
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userId = 2; // Replace this with the actual user ID you want to fetch
-        const response = await axios.get(`/api/v1/users/info/${userId}`);
-        setUserData(response.data.result);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
+  const userId = 1;
 
   useEffect(() => {
-    const fetchCardData = async () => {
+    const fetchData = async () => {
       try {
-        const cardId = 1; // Replace this with the actual card ID you want to fetch
-        const response = await axios.get(`/api/v1/cards/info/${cardId}`);
-        setCardData(response.data.result);
+        const userResponse = await fetch("/api/v1/users/info/" + userId);
+        const cardResponse = await fetch("/api/v1/cards/info/" + userId);
+
+        if (!userResponse.ok || !cardResponse.ok) {
+          throw new Error("Network response was not ok.");
+        }
+
+        const userData: { message: string; result: UserType } = await userResponse.json();
+        const cardData: { message: string; result: CardType } = await cardResponse.json();
+
+        setUserData(userData.result);
+        setCardData(cardData.result);
       } catch (error) {
-        console.error("Error fetching card data:", error);
+        console.error("데이터를 불러오는데 오류가 발생했습니다:", error);
       }
     };
-
-    fetchCardData();
+    fetchData();
   }, []);
 
   const handleButtonClick = (component: string) => {
@@ -94,10 +99,10 @@ const UserPage: React.FC = () => {
           </button>
         </div>
       </div>
-      {showCardInfo && (
+      {showCardInfo && cardData && (
         <div className="flex flex-col mt-10">
           <div className="mb-[20px]">
-            <CardPhoto />
+            <CardPhoto card_photo={cardData.card_photo} />
           </div>
           <CardInfo
             name={cardData.card_name}
