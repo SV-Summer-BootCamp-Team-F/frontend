@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function NewEnrollPage() {
+function EnrollPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [introduction, setIntroduction] = useState("");
+  const [relation, setReletion] = useState("");
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -60,9 +60,9 @@ function NewEnrollPage() {
         </div>
       </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
-        <h1 className="font-bold text-[28px] mb-5">
-          My business <span className="plus">card+</span>
-        </h1>
+        <h2 className="font-bold text-[25px] mb-4">
+          New Business <span className="plus">Card+</span>
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
             <img
@@ -90,7 +90,7 @@ function NewEnrollPage() {
               <label className="label text-[13px]">이름*</label>
               <input
                 type="name"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+                className="w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -99,27 +99,28 @@ function NewEnrollPage() {
               <label className="label text-[13px]">개인 전화번호*</label>
               <input
                 type="phone"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+                className="w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
+              />
+            </div>
+            <div className="enroll-form-group text-left mb-3">
+              <label className="label text-[13px]">나와의 관계*</label>
+              <input
+                type="text"
+                className="w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+                value={relation}
+                onChange={(event) => setReletion(event.target.value)}
               />
             </div>
             <div className="enroll-form-group text-left mb-3">
               <label className="label text-[13px]">이메일</label>
               <input
                 type="email"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+                className="w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-            </div>
-            <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[13px]">자기 소개</label>
-              <textarea
-                className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={introduction}
-                onChange={(event) => setIntroduction(event.target.value)}
-              ></textarea>
             </div>
           </div>
 
@@ -134,4 +135,4 @@ function NewEnrollPage() {
   );
 }
 
-export default NewEnrollPage;
+export default EnrollPage;

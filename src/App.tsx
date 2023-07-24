@@ -6,11 +6,11 @@ import IntroPage from "./pages/IntroPage";
 import MainPage from "./pages/MainPage";
 import RelationPage from "./pages/Relation/RelationPage";
 import EnrollPage from "./pages/Card/EnrollPage";
-import NewEnrollPage from "./pages/Card/NewEnrollPage";
 import UserPage from "./pages/User/UserPage";
 import TestPage from "./pages/test/TestPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import NewEnrollPage from "./pages/Card/NewEnrollPage";
 
 function App() {
   return (

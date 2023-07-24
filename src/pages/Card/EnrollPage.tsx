@@ -60,9 +60,9 @@ function EnrollPage() {
         </div>
       </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
-        <h1 className="font-bold text-[28px] mb-5">
-          My business <span className="plus">card+</span>
-        </h1>
+        <h2 className="font-bold text-[25px] mb-4">
+          My Business <span className="plus">Card+</span>
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
             <img
@@ -123,11 +123,9 @@ function EnrollPage() {
             </div>
           </div>
 
-          <Link to="/second">
-            <button type="submit" className="text-rememberBlueActive text-[14px] border-gray-200">
-              명함 등록
-            </button>
-          </Link>
+          <button type="submit" className="text-rememberBlueActive text-[14px] border-gray-200">
+            명함 등록
+          </button>
         </form>
       </div>
     </div>
