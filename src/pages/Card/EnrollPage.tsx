@@ -95,7 +95,7 @@ function EnrollPage() {
           </div>
           <div className="enroll-form-group mt-3">
             <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[13px]">Name*</label>
+              <label className="label text-[13px] font-medium">Name*</label>
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -104,7 +104,7 @@ function EnrollPage() {
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Phone*</label>
               <input
                 type="phone"
@@ -114,7 +114,7 @@ function EnrollPage() {
                 onChange={(event) => setPhone(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Email</label>
               <input
                 type="email"
@@ -126,7 +126,7 @@ function EnrollPage() {
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Introduction</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"

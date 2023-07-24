@@ -94,7 +94,7 @@ function EnrollPage() {
               <span className="text-2xl">+</span>
             </label>
           </div>
-          <div className="enroll-form-group mt-3">
+          <div className="enroll-form-group mt-3 font-medium">
             <div className="enroll-form-group text-left mb-3">
               <label className="label text-[13px]">Name*</label>
               <input
@@ -105,7 +105,7 @@ function EnrollPage() {
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Phone*</label>
               <input
                 type="phone"
@@ -115,7 +115,7 @@ function EnrollPage() {
                 onChange={(event) => setPhone(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Relation*</label>
               <input
                 type="relation"
@@ -127,7 +127,7 @@ function EnrollPage() {
                 onChange={(event) => setRelation(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Email</label>
               <input
                 type="email"
@@ -139,7 +139,7 @@ function EnrollPage() {
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
-            <div className="enroll-form-group text-left mb-3">
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Memo</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -194,7 +194,7 @@ function EnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                  Check Your Card
+                  Check New Card
                 </h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
