@@ -1,10 +1,7 @@
-import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
-import HC_styled from "highcharts/css/highcharts.css";
 
 HC_more(Highcharts);
 HC_exporting(Highcharts);

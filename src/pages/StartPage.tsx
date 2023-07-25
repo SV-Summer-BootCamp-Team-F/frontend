@@ -41,7 +41,7 @@ const FirstPage = () => {
     titleElement.appendChild(plusSpan);
     titleElement.style.position = 'absolute';
     titleElement.style.top = '5%';
-    titleElement.style.left = '12%';
+    titleElement.style.left = '49.5%';
     titleElement.style.transform = 'translateX(-50%)';
     titleElement.style.fontWeight = '800';
     titleElement.style.fontFamily = '"Times New Roman", Times, serif';

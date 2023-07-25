@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../css/Signup.css';
+import '../../css/Signup.css';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -15,11 +14,6 @@ const Signup = () => {
 
   return (
     <div className="form-container">
-      <Link to='/'>
-        <div style={{ position: 'absolute', top: '4%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>
-          Remember <span style={{ color: 'skyblue' }}>plus+</span>
-        </div>
-      </Link>
       <div className='signup-container'>
         <h2 className='remember'>
           Remember <span className='plus'>plus+</span>

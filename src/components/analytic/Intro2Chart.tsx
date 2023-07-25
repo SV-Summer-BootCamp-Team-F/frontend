@@ -1,5 +1,5 @@
-import ThreeDPieChart from "../../components/analytic/ThreeDPieChart";
-import IntroLineChart from "../../components/analytic/IntroLineChart";
+import ThreeDPieChart from "./ThreeDPieChart";
+import IntroLineChart from "./IntroLineChart";
 const TestPage = () => {
  const data: [string, number][] = [
   ["Teacher", 11.1],

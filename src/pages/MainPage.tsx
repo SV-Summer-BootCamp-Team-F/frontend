@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/main/Card';
 import Phone from '../components/main/Phone';
-import Button from '../components/Button';
+import Button from '../components/main/Button';
 
 
 const MainPage: React.FC = () => {
@@ -10,12 +10,9 @@ const MainPage: React.FC = () => {
     <div>
       <div>
         <Link to="/">
-          <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>Plus+</span></div>
-        </Link>
-        <Link to="/">
           <div style={{ position: 'fixed', top: '5%', right: '10%', transform: 'translate(50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1.3rem', cursor: 'pointer' }}>LOG<span style={{ color: 'skyblue' }}>OUT</span></div>
         </Link>
-        <Link to="/userPage">
+        <Link to="/user">
           <div style={{ position: 'fixed', top: '5%', right: '18%', transform: 'translate(50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1.3rem', cursor: 'pointer' }}>MY<span style={{ color: 'skyblue' }}>PAGE</span></div>
         </Link>
           <div style={{ position: 'absolute', top: '50%', left: '18%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '2.5rem'}}>BuisnessCard <span style={{ color: 'skyblue' }}>registration</span></div> 
@@ -23,7 +20,7 @@ const MainPage: React.FC = () => {
         <div className="main-container"></div>
         <Card />
         <div style={{ position: 'absolute', top: '35rem', left: '15rem' }}>
-          <Link to="/userPage">
+          <Link to="/enroll">
             <Button />
           </Link>
         </div>

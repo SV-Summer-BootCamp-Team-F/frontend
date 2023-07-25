@@ -13,11 +13,6 @@ function EnrollPage() {
 
   return (
     <div className="flex justify-center items-center ml-400 h-80vh">
-      <Link to="/">
-        <div className="absolute top-4 left-20 transform -translate-x-1/2 -translate-y-1/2 text-black font-bold text-lg cursor-pointer">
-          Remember <span className="text-blue">plus+</span>
-        </div>
-      </Link>
       <div className="bg-white p-40 w-800px rounded-15 text-center mt-80px shadow-md rounded-md">
         <h2 className="remember">
           Remember <span className="plus">plus+</span>

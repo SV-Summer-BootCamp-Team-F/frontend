@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../css/Login.css";
+import "../../css/Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -31,22 +31,6 @@ function Login() {
       className="form-container"
       style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <Link to="/">
-        <div
-          style={{
-            position: "absolute",
-            top: "4%",
-            left: "10%",
-            transform: "translate(-50%, -50%)",
-            color: "black",
-            fontWeight: "bolder",
-            fontSize: "1rem",
-            cursor: "pointer",
-          }}
-        >
-          Remember <span style={{ color: "skyblue" }}>plus+</span>
-        </div>
-      </Link>
       <div className="login-container">
         <h2 className="remember">
           Remember <span className="plus">plus+</span>
@@ -71,7 +55,7 @@ function Login() {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <Link to="/second">
+          <Link to="/intro">
             <button type="submit" className="loginButton">
               Login
             </button>
