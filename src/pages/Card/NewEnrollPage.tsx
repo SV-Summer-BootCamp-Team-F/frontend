@@ -6,7 +6,8 @@ function EnrollPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [introduction, setIntroduction] = useState("");
+  const [memo, setMemo] = useState("");
+  const [relation, setRelation] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -69,7 +70,7 @@ function EnrollPage() {
       </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
         <h2 className="font-bold text-[25px] mb-4">
-          My Business <span className="plus">Card</span>
+          New Business <span className="plus">Card</span>
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
@@ -93,9 +94,9 @@ function EnrollPage() {
               <span className="text-2xl">+</span>
             </label>
           </div>
-          <div className="enroll-form-group mt-3">
+          <div className="enroll-form-group mt-3 font-medium">
             <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[13px] font-medium">Name*</label>
+              <label className="label text-[13px]">Name*</label>
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -115,6 +116,18 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
+              <label className="label text-[13px]">Relation*</label>
+              <input
+                type="relation"
+                name="relation"
+                id="relation"
+                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+                value={relation}
+                placeholder="name@company.com"
+                onChange={(event) => setRelation(event.target.value)}
+              />
+            </div>
+            <div className="enroll-form-group text-left mb-3 font-medium">
               <label className="label text-[13px]">Email</label>
               <input
                 type="email"
@@ -127,12 +140,12 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[13px]">Introduction</label>
+              <label className="label text-[13px]">Memo</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={introduction}
-                placeholder="자기 소개"
-                onChange={(event) => setIntroduction(event.target.value)}
+                value={memo}
+                placeholder="비고"
+                onChange={(event) => setMemo(event.target.value)}
               ></textarea>
             </div>
           </div>
@@ -181,7 +194,7 @@ function EnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                  Check Your Card
+                  Check New Card
                 </h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -217,6 +230,15 @@ function EnrollPage() {
                   </div>
                   <div>
                     <label
+                      htmlFor="relation"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Relation:
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{relation}</div>
+                    </label>
+                  </div>
+                  <div>
+                    <label
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
@@ -229,8 +251,8 @@ function EnrollPage() {
                       htmlFor="indroduction"
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Introduction:
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{introduction}</div>
+                      Memo:
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
                     </label>
                   </div>
                   <Link to="/second">
