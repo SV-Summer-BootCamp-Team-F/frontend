@@ -4,7 +4,6 @@ import LineChart from "../../components/analytic/LineChart";
 import PieChart from "../../components/analytic/PieChart";
 import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
-import CardPhoto from "../../components/card/CardPhoto";
 import StatisticsBox from "../../components/analytic/StatisticsBox";
 
 type UserType = {
@@ -100,15 +99,13 @@ const UserPage: React.FC = () => {
         </div>
       </div>
       {showCardInfo && cardData && (
-        <div className="flex flex-col mt-10">
-          <div className="mb-[20px]">
-            <CardPhoto card_photo={cardData.card_photo} />
-          </div>
+        <div className="flex flex-col my-10">
           <CardInfo
             name={cardData.card_name}
             email={cardData.card_email}
             phoneNumber={cardData.phone_num}
             introduction={cardData.card_intro}
+            photo={cardData.card_photo}
           />
         </div>
       )}
@@ -116,10 +113,46 @@ const UserPage: React.FC = () => {
         <div className="flex justify-center mt-10">
           <div className="flex flex-col">
             <div className="w-full h-[150px] mb-[20px] flex">
-              <StatisticsBox color="rememberBlue" title="Today's View" number={300} />
-              <StatisticsBox color="rememberBlue" title="Today's View" number={200} />
-              <StatisticsBox color="rememberBlue" title="Today's View" number={100} />
-              <StatisticsBox color="rememberBlue" title="Today's View" number={400} />
+              <div
+                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
+              >
+                <div className="text-gray-600 text-center text-[13px] flex justify-center items-center font-semibold">
+                  Today's Views
+                </div>
+                <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                  300
+                </div>
+              </div>
+              <div
+                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
+              >
+                <div className="text-black text-center text-[13px] flex justify-center items-center font-semibold">
+                  Total Views
+                </div>
+                <div className="text-black text-[25px] flex justify-center items-center font-semibold">
+                  200
+                </div>
+              </div>
+              <div
+                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
+              >
+                <div className="text-gray-600 text-center text-[13px] flex justify-center items-center font-semibold">
+                  Today's Added Cards
+                </div>
+                <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                  100
+                </div>
+              </div>
+              <div
+                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
+              >
+                <div className="text-black text-center text-[13px] flex justify-center items-center font-semibold">
+                  Total Number of Cards Added
+                </div>
+                <div className="text-black text-[25px] flex justify-center items-center font-semibold">
+                  400
+                </div>
+              </div>
             </div>
             <LineChart />
           </div>

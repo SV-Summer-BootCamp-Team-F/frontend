@@ -11,20 +11,19 @@ HC_exporting(Highcharts);
 
 const BarChart = () => {
   const options = {
+    colors: ["#7CC7E8", "#01579B"],
     chart: {
       type: "column",
       width: 350,
       height: 250,
-      borderRadius: 24,
+      borderRadius: 12,
+      backgroundColor: "rgb(255, 255, 255, 0.8)",
+    },
+    exporting: {
+      enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
       text: "Corn vs wheat production 2020",
-      align: "left",
-    },
-    subtitle: {
-      text:
-        'Source: <a target="_blank" ' +
-        'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>',
       align: "left",
     },
     xAxis: {
@@ -62,7 +61,7 @@ const BarChart = () => {
   };
 
   return (
-    <div>
+    <div className="rounded-lg w-[350px] h-[250px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
