@@ -154,7 +154,7 @@ function EnrollPage() {
             onClick={toggleModal}
             className="text-rememberBlueActive text-[14px] border-gray-200"
           >
-            명함 등록
+            Add Card
           </button>
         </form>
       </div>
