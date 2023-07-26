@@ -77,7 +77,7 @@ function EnrollPage() {
             <img
               id="preview-image"
               className="example-picture max-w-full max-h-80"
-              src="https://i.ibb.co/jTVf7yn/business-Card4.jpg"
+              src="https://i.ibb.co/PwBY1cs/image.png"
               alt="Example"
             />
             <input
@@ -203,9 +203,7 @@ function EnrollPage() {
                       id="preview-image-modal"
                       className="example-picture max-w-full max-h-80"
                       src={
-                        photo
-                          ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/jTVf7yn/business-Card4.jpg"
+                        photo ? URL.createObjectURL(photo) : "https://i.ibb.co/PwBY1cs/image.pngg"
                       }
                       alt="Example"
                     />
