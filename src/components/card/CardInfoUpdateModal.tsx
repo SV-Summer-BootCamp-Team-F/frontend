@@ -13,15 +13,15 @@ const CloseIcon = () => (
   </svg>
 );
 
-export default function UserInfoUpdateModal({ onSaveChanges }) {
+export default function CardInfoUpdateModal({ onSaveChanges }) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [introduction, setIntro] = React.useState("");
 
   const handleSaveChanges = () => {
     // Add your logic here to save the changes (e.g., send data to the server)
-    onSaveChanges({ name, email, password });
+    onSaveChanges({ name, email, introduction });
     setShowModal(false);
   };
 
@@ -37,7 +37,7 @@ export default function UserInfoUpdateModal({ onSaveChanges }) {
         className="mt-8 w-[200px] h-[55px] text-[13px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-[10px] dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
         onClick={handleEditProfile}
       >
-        Edit Profile
+        Edit Card Info
       </button>
       {showModal ? (
         <>
@@ -47,7 +47,7 @@ export default function UserInfoUpdateModal({ onSaveChanges }) {
                 {/*header*/}
                 <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
                   <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Edit Profile
+                    Edit Card Info
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
@@ -87,14 +87,14 @@ export default function UserInfoUpdateModal({ onSaveChanges }) {
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="password"
                     >
-                      Password:
+                      Introduction:
                     </label>
                     <input
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      id="introduction"
+                      type="introduction"
+                      value={introduction}
+                      onChange={(e) => setIntro(e.target.value)}
                     />
                   </div>
                 </div>

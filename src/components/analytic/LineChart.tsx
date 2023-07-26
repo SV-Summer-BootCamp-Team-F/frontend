@@ -4,28 +4,24 @@ import HighchartsReact from "highcharts-react-official";
 
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
-import HC_styled from "highcharts/css/highcharts.css";
 
 HC_more(Highcharts);
 HC_exporting(Highcharts);
 
-const LineChart = () => {
-  const options = {
+const LineChart: React.FC = () => {
+  const options: Highcharts.Options = {
+    colors: ["#7CC7E8", "#01579B"],
     chart: {
       type: "line",
-      borderRadius: 24,
+      borderRadius: 12,
       width: 660,
       height: 450,
+      backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
-    title: {
-      text: "Monthly Average Temperature",
+    exporting: {
+      enabled: false,
     },
-    subtitle: {
-      text:
-        "Source: " +
-        '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
-        'target="_blank">Wikipedia.com</a>',
-    },
+    title: { text: "Monthly Statistics" },
     xAxis: {
       categories: [
         "Jan",
@@ -57,18 +53,20 @@ const LineChart = () => {
     },
     series: [
       {
+        type: "line",
         name: "Reggane",
         data: [16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2, 22.0, 17.8],
       },
       {
+        type: "line",
         name: "Tallinn",
-        data: [-2.9, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5, 2.0, -0.9],
+        data: [-5, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5, 2.0, -0.9],
       },
     ],
   };
 
   return (
-    <div>
+    <div className="rounded-xl w-[660px] h-[450px] bg-rgb(250, 250, 255, 1) shadow-md">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

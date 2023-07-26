@@ -1,7 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
-import { UserProfilePropsType } from "../components/user/UserProfile";
-import { CardInfoPropsType } from "../components/card/CardInfo";
+import { UserUpdatePropsType } from "../components/user/UserProfile";
+import { CardPhotoUpdatePropsType, CardUpdatePropsType } from "../components/card/CardInfo";
+
 const usersData = [
   {
     user_id: 1,
@@ -58,7 +59,15 @@ const handlers = [
       ctx.status(201),
       ctx.json({
         message: "유저정보 불러오기 성공",
-        result: user,
+        result: {
+          user_id: 1,
+          user_name: "Jinwon",
+          user_email: "jinwon0@naver.com",
+          password: "juwinwon987",
+          phone_num: "010-1234-1234",
+          user_photo:
+            "https://scontent-gmp1-1.xx.fbcdn.net/v/t1.6435-9/33644915_611600572507025_6634514494133370880_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9267fe&_nc_ohc=MVXfzeH_nOMAX_VA4dB&_nc_oc=AQk-NpsIMddvsYlqVN0u4lDpMeSH-iuP4PkTwbliHXyYq7kGw7OUNIXakcAEQWKzXRE&_nc_ht=scontent-gmp1-1.xx&oh=00_AfCwlgofJci9NDopdKSSTOf6avu1n4kTOHvy8_YJaGnTxQ&oe=64E0DDF9",
+        },
       })
     );
   }),
@@ -75,16 +84,21 @@ const handlers = [
       ctx.status(201),
       ctx.json({
         message: "명함정보 불러오기 성공",
-        result: card,
+        result: {
+          user_id: 1,
+          card_name: "정진원",
+          card_email: "jinwon0@naver.com",
+          phone_num: "010-1234-1234",
+          card_intro: "Hello, I'm Jinwon!",
+          card_photo: "https://www.printrobo.co.kr/cdn/blog/870x531-pb10008.jpg",
+        },
       })
     );
   }),
 
-  rest.put<UserProfilePropsType>("/api/v1/users/update/:userId", (req, res, ctx) => {
+  rest.put<UserUpdatePropsType>("/api/v1/users/update/", (req, res, ctx) => {
     const requestBody = req.body;
-    const { userId } = req.params;
-
-    const user = usersData.find((user) => user.user_id === Number(userId));
+    const user = usersData.find((user) => user.user_id === Number(requestBody.user_id));
 
     if (!user) {
       return res(ctx.status(404), ctx.json({ message: "유저를 찾을 수 없습니다." }));
@@ -98,6 +112,44 @@ const handlers = [
       ctx.status(202),
       ctx.json({
         message: "유저정보 수정 성공",
+      })
+    );
+  }),
+
+  rest.put<CardUpdatePropsType>("/api/v1/cards/update/", (req, res, ctx) => {
+    const requestBody = req.body;
+    const card = cardsData.find((card) => card.user_id === Number(requestBody.user_id));
+
+    if (!card) {
+      return res(ctx.status(404), ctx.json({ message: "유저를 찾을 수 없습니다." }));
+    }
+
+    card.card_name = requestBody.card_name;
+    card.card_email = requestBody.card_email;
+    card.card_intro = requestBody.card_intro;
+
+    return res(
+      ctx.status(202),
+      ctx.json({
+        message: "유저정보 수정 성공",
+      })
+    );
+  }),
+
+  rest.put<CardPhotoUpdatePropsType>("/api/v1/users/photo/", (req, res, ctx) => {
+    const requestBody = req.body;
+    const card = cardsData.find((card) => card.user_id === Number(requestBody.user_id));
+
+    if (!card) {
+      return res(ctx.status(404), ctx.json({ message: "유저를 찾을 수 없습니다." }));
+    }
+
+    card.card_photo = requestBody.card_photo;
+
+    return res(
+      ctx.status(202),
+      ctx.json({
+        message: "명함사진 수정 성공",
       })
     );
   }),
