@@ -10,6 +10,7 @@ import UserPage from "./pages/User/UserPage";
 import TestPage from "./pages/test/TestPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import NewEnrollPage from "./pages/Card/NewEnrollPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/relation" element={<RelationPage />} />
         <Route path="/enroll" element={<EnrollPage />} />
+        <Route path="/newenroll" element={<NewEnrollPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/test" element={<TestPage />} />
       </Routes>
