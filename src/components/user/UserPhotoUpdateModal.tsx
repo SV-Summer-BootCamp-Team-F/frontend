@@ -2,8 +2,8 @@ import React from "react";
 import { FaCamera } from "react-icons/fa";
 
 type UserPhotoUpdateModalPropsType = {
-  onSaveChanges: (data: { user_id: number; photo: string }) => Promise<void>;
-  updatedPhoto: File | null;
+  onSaveChanges: (data: { user_id: number; photo: string }) => void;
+  updatedPhoto: string;
 };
 // SVG icon for the close button
 const CloseIcon = () => (
@@ -21,13 +21,10 @@ export default function UserPhotoUpdateModal({
   onSaveChanges,
   updatedPhoto,
 }: UserPhotoUpdateModalPropsType) {
-  const user_id = 1;
   const [showModal, setShowModal] = React.useState(false);
-  const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null);
-  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
-
-  const handleSaveChanges = async () => {
-    onSaveChanges({ photo: selectedPhoto });
+  const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
+  const handleSaveChanges = () => {
+    onSaveChanges({ user_id: 0, photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
     setShowModal(false);
   };
   const handleEditProfile = () => {
@@ -42,12 +39,20 @@ export default function UserPhotoUpdateModal({
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedPhotoPreview(reader.result as string);
+        // Set the image preview URL
+        const result = reader.result as string | null;
+        setSelectedPhotoPreview(result); // Explicitly cast to string | null
       };
       reader.readAsDataURL(file);
-    } else {
-      setSelectedPhotoPreview(null);
     }
+  };
+
+  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
+
+  // Function to reset the selected photo
+  const handleResetPhoto = () => {
+    setSelectedPhoto(null);
+    setSelectedPhotoPreview(null);
   };
 
   return (

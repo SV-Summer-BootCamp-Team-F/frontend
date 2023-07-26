@@ -41,7 +41,13 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
     setUpdatedPhoto(photo);
   }, [name, email, passwd, photo]);
 
-  const handleSaveChanges = async (updatedUserData: UserUpdatePropsType) => {
+  const handleSaveChanges = async (updatedUserData: {
+    user_id: number;
+    name: string;
+    email: string;
+    password: string;
+    update_at: string;
+  }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
       updatedUserData.user_id = userId;
@@ -52,17 +58,14 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
         // Update the state with the new data
         setUpdatedName(updatedUserData.name);
         setUpdatedEmail(updatedUserData.email);
-        setUpdatedPassword(updatedUserData.passwd);
+        setUpdatedPassword(updatedUserData.password);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
 
-  const handlePhotoSaveChanges = async (updatedUserData: {
-    user_id: number;
-    photo: React.SetStateAction<string>;
-  }) => {
+  const handlePhotoSaveChanges = async (updatedUserData: { user_id: number; photo: string }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
       updatedUserData.user_id = userId;
