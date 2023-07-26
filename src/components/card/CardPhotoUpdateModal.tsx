@@ -19,7 +19,7 @@ export default function CardPhotoUpdateModal({ onSaveChanges, updatedPhoto }) {
   const [selectedPhoto, setSelectedPhoto] = React.useState(null); // New state for the selected photo file
 
   const handleSaveChanges = () => {
-    onSaveChanges({ photo: selectedPhoto || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
+    onSaveChanges({ photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
     setShowModal(false);
   };
 

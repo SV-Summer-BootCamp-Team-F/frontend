@@ -56,7 +56,6 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
     try {
       // Send the PUT request to the API endpoint with the updated data
       updatedCardData.user_id = userId;
-      updatedCardData.update_at = new Date().toISOString().slice(0, 10);
       const response = await axios.put("/api/v1/cards/update/", updatedCardData);
 
       if (response.status === 202) {
@@ -91,6 +90,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
     <div className="rounded-lg shadow-md flex flex-col justify-around items-center w-[700px] h-[800px]">
       <div className="relative">
         <img className="w-[600px]" src={updatedPhoto} alt="Card Photo" />
+        {/* onSaveChanges 함수를 handlePhotoSaveChanges로 변경 */}
         <CardPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} updatedPhoto={updatedPhoto} />
       </div>
       <div className="flex justify-around items-center w-full">
