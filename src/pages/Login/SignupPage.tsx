@@ -1,16 +1,37 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import '../../css/Signup.css';
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
+  const [user_email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [user_name, setName] = useState('');
+  const [user_phone, setPhone] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const SignupAPI = 'http://127.0.0.1:8000/api/v1/users/register/';
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}, Name: ${name}, Phone: ${phone}`);
-  }
+
+    try {
+      const response = await axios.post(SignupAPI, {
+        user_email,
+        password,
+        user_name,
+        user_phone,
+      });
+
+      console.log('회원가입 성공!', response.data);
+      alert("회원가입 성공!")
+      navigate("/login");
+
+    } catch (error: any) { 
+      console.error('회원가입 실패!', error.message);
+      alert("회원가입에 실패하였습니다")
+    }
+  };
 
   return (
     <div className="form-container">
@@ -22,11 +43,11 @@ const Signup = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="label">Your name</label>
-            <input type="text" className="signup-input" value={name} onChange={(event) => setName(event.target.value)} />
+            <input type="text" className="signup-input" value={user_name} onChange={(event) => setName(event.target.value)} />
           </div>
           <div className="form-group">
             <label className="label">Email</label>
-            <input type="email" className="signup-input" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <input type="email" className="signup-input" value={user_email} onChange={(event) => setEmail(event.target.value)} />
           </div>
           <div className="form-group">
             <label className="label">Password</label>
@@ -34,7 +55,7 @@ const Signup = () => {
           </div>
           <div className="form-group">
             <label className="label">Phone</label>
-            <input type="tel" className="signup-input" value={phone} onChange={(event) => setPhone(event.target.value)} />
+            <input type="tel" className="signup-input" value={user_phone} onChange={(event) => setPhone(event.target.value)} />
           </div>
           <button className="button" type="submit">Signup</button>
         </form>

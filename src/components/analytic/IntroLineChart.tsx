@@ -1,28 +1,27 @@
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
-type IntroChartPropsType = {
-  chartData: {
-    name: string;
-    data: number[] | null[];
-  }[];
+type ChartDataItemType = {
+  name: string;
+  data: (number | null)[];
 };
-
+type IntroChartPropsType = {
+  chartData: ChartDataItemType[];
+};
 const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
   const options: Highcharts.Options = {
     colors: ["#01579B"],
     title: {
-      text: "Number of Subscribers Status",
+      text: "Number of Users Trend on our site",
       align: "center",
     },
     // subtitle: {
-    //  text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
-    //  align: "left",
+    //   text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+    //   align: "left",
     // },
     yAxis: {
       title: {
-        text: "Number of Subscriber",
+        text: "Number of Users Trend on our site",
       },
     },
     xAxis: {
@@ -34,7 +33,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
       layout: "vertical",
       align: "right",
       verticalAlign: "middle",
-      
     },
     plotOptions: {
       series: {
@@ -44,15 +42,19 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
         pointStart: 2010,
       },
     },
-    series: chartData, // chartData를 바로 할당합니다.
+    series: [
+      {
+        type: "line",
+        name: "User",
+        data: chartData[0].data,
+      },
+    ],
     responsive: {
       rules: [
         {
           condition: {
-            maxWidth: 700,
-            
+            maxWidth: 500,
           },
-          
           chartOptions: {
             legend: {
               layout: "horizontal",
@@ -69,8 +71,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
       height: 500, // Set the height of the chart
     },
   };
-
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
-
 export default IntroLineChart;

@@ -41,7 +41,7 @@ const FirstPage = () => {
     titleElement.appendChild(plusSpan);
     titleElement.style.position = 'absolute';
     titleElement.style.top = '5%';
-    titleElement.style.left = '49.5%';
+    titleElement.style.left = '49%';
     titleElement.style.transform = 'translateX(-50%)';
     titleElement.style.fontWeight = '800';
     titleElement.style.fontFamily = '"Times New Roman", Times, serif';
@@ -69,7 +69,7 @@ const FirstPage = () => {
 
     // Button event listener
     buttonElementRef.current.addEventListener('click', () => {
-      navigate('/login');
+      navigate('/intro');
     });
 
     window.addEventListener('resize', () => {

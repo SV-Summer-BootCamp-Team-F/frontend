@@ -23,9 +23,9 @@ return (
       </Link>
           <Routes>
             <Route path="/" element={<StartPage />} />
+            <Route path="/intro" element={<IntroPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/intro" element={<IntroPage />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/relation" element={<RelationPage />} />
             <Route path="/enroll" element={<EnrollPage />} />
