@@ -12,9 +12,9 @@ HC_exporting(Highcharts);
 const PieChart = () => {
   const options = {
     colors: [
-      "#E1F5FE",
-      "#03A9F4",
       "#81D4FA",
+      "#03A9F4",
+      "#E1F5FE",
       "#01579B",
       "#B3E5FC",
       "#29B6F6",
@@ -28,7 +28,7 @@ const PieChart = () => {
       plotShadow: false,
       type: "pie",
       width: 350,
-      height: 350,
+      height: 330,
       borderRadius: 12,
       backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
@@ -94,7 +94,7 @@ const PieChart = () => {
   };
 
   return (
-    <div className="rounded-lg w-[350px] h-[350px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
+    <div className="rounded-lg w-[350px] h-[330px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

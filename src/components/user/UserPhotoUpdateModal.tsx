@@ -1,10 +1,10 @@
 import React from "react";
+import { FaCamera } from "react-icons/fa";
 
-export type CardInfoUpdateModalPropsType = {
-  onSaveChanges: (data: { name: string; email: string; introduction: string }) => void;
-  updatedPhoto: string;
+type UserPhotoUpdateModalPropsType = {
+  onSaveChanges: (data: { user_id: number; photo: string }) => Promise<void>;
+  updatedPhoto: File | null;
 };
-
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -17,32 +17,46 @@ const CloseIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
-
-export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateModalPropsType) {
+export default function UserPhotoUpdateModal({
+  onSaveChanges,
+  updatedPhoto,
+}: UserPhotoUpdateModalPropsType) {
+  const user_id = 1;
   const [showModal, setShowModal] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [introduction, setIntro] = React.useState("");
+  const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null);
+  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
 
-  const handleSaveChanges = () => {
-    // Add your logic here to save the changes (e.g., send data to the server)
-    onSaveChanges({ name, email, introduction });
+  const handleSaveChanges = async () => {
+    onSaveChanges({ photo: selectedPhoto });
     setShowModal(false);
   };
-
   const handleEditProfile = () => {
-    // Add your logic here to handle the "Edit Profile" button click
     setShowModal(true);
+  };
+  // Function to handle the photo file selection
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setSelectedPhoto(file);
+
+    // Optional: You can also show a preview of the selected photo
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setSelectedPhotoPreview(null);
+    }
   };
 
   return (
     <>
       <button
-        type="button"
-        className="mt-8 w-[200px] h-[55px] text-[13px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-[10px] dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        onClick={handleEditProfile}
+        className="absolute bottom-2.5 right-2 z-10 p-2 bg-black/50 rounded-full focus:outline-none shadow-md"
+        onClick={handleEditProfile} // Replace this with your desired action
       >
-        Edit Card Info
+        <FaCamera size={18} color={"white"} />
       </button>
       {showModal ? (
         <>
@@ -52,7 +66,7 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                 {/*header*/}
                 <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
                   <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Edit Card Info
+                    Profile Photo
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
@@ -64,44 +78,22 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                 {/*body*/}
                 <div className="relative px-12 py-8 flex-auto">
                   <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                      Name:
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photo">
+                      Upload Photo:
                     </label>
                     <input
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
-                      id="name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      id="photo"
+                      type="file"
+                      accept="image/*" // Only allow image files to be selected
+                      onChange={handlePhotoChange}
                     />
                   </div>
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                      Email:
-                    </label>
-                    <input
-                      className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="password"
-                    >
-                      Introduction:
-                    </label>
-                    <input
-                      className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
-                      id="introduction"
-                      type="introduction"
-                      value={introduction}
-                      onChange={(e) => setIntro(e.target.value)}
-                    />
-                  </div>
+                  {selectedPhotoPreview && (
+                    <div className="mb-4">
+                      <img src={selectedPhotoPreview} alt="Selected Preview" className="w-full" />
+                    </div>
+                  )}
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b">

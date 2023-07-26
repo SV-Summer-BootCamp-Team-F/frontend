@@ -1,6 +1,11 @@
 import React from "react";
 import { FaCamera } from "react-icons/fa";
 
+type CardPhotoUpdateModalPropsType = {
+  onSaveChanges: (data: { user_id: number; photo: string }) => void;
+  updatedPhoto: string;
+};
+
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -13,42 +18,46 @@ const CloseIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
-
-export default function CardPhotoUpdateModal({ onSaveChanges, updatedPhoto }) {
+export default function CardPhotoUpdateModal({
+  onSaveChanges,
+  updatedPhoto,
+}: CardPhotoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
-  const [selectedPhoto, setSelectedPhoto] = React.useState(null); // New state for the selected photo file
-
+  const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
   const handleSaveChanges = () => {
-    onSaveChanges({ photo: selectedPhoto || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
+    onSaveChanges({ user_id: 0, photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
     setShowModal(false);
   };
-
   const handleEditProfile = () => {
     setShowModal(true);
   };
-
   // Function to handle the photo file selection
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
     setSelectedPhoto(file);
-
     // Optional: You can also show a preview of the selected photo
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         // Set the image preview URL
-        setSelectedPhotoPreview(reader.result);
+        const result = reader.result as string | null;
+        setSelectedPhotoPreview(result); // Explicitly cast to string | null
       };
       reader.readAsDataURL(file);
     }
   };
+  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
 
-  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState(null);
+  // Function to reset the selected photo
+  const handleResetPhoto = () => {
+    setSelectedPhoto(null);
+    setSelectedPhotoPreview(null);
+  };
 
   return (
     <>
       <button
-        className="flex justify-center items-center w-[600px] h-[80px] absolute bottom-0 z-10 p-2.5 bg-black/30 focus:outline-none shadow-md"
+        className="flex justify-center items-center w-[500px] h-[80px] absolute bottom-0 z-10 p-2.5 bg-black/30 focus:outline-none shadow-md"
         onClick={handleEditProfile} // Replace this with your desired action
       >
         <FaCamera size={45} color={"white"} />

@@ -15,7 +15,7 @@ const LineChart: React.FC = () => {
       type: "line",
       borderRadius: 12,
       width: 660,
-      height: 450,
+      height: 430,
       backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
     exporting: {
@@ -66,7 +66,7 @@ const LineChart: React.FC = () => {
   };
 
   return (
-    <div className="rounded-xl w-[660px] h-[450px] bg-rgb(250, 250, 255, 1) shadow-md">
+    <div className="rounded-xl w-[660px] h-[430px] bg-rgb(250, 250, 255, 1) shadow-md">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
