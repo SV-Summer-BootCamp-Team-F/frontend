@@ -1,4 +1,4 @@
-// src/mocks/browser.js
+// src/mocks/browser.tsx
 import { setupWorker } from "msw";
 import handlers from "./handlers";
 
