@@ -18,6 +18,9 @@ const LineChart: React.FC = () => {
       height: 430,
       backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
+    credits: {
+      enabled: false,
+    },
     exporting: {
       enabled: false,
     },
@@ -40,7 +43,7 @@ const LineChart: React.FC = () => {
     },
     yAxis: {
       title: {
-        text: "Temperature (°C)",
+        text: "Count",
       },
     },
     plotOptions: {
@@ -54,13 +57,13 @@ const LineChart: React.FC = () => {
     series: [
       {
         type: "line",
-        name: "Reggane",
-        data: [16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2, 22.0, 17.8],
+        name: "Added business card count",
+        data: [16.0, 18, 16, 20, 18, 25, 30, 23, 34, 25, 27, 20],
       },
       {
         type: "line",
-        name: "Tallinn",
-        data: [-5, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5, 2.0, -0.9],
+        name: "Users who added my card",
+        data: [0, 5, 7, 4, 10, 14, 19, 16, 15, 20, 21, 23],
       },
     ],
   };

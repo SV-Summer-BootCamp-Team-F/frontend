@@ -19,6 +19,9 @@ const BarChart = () => {
       borderRadius: 12,
       backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
+    credits: {
+      enabled: false,
+    },
     exporting: {
       enabled: false, // 내보내기 버튼 활성화 여부
     },
