@@ -11,6 +11,7 @@ import UserPage from "./pages/User/UserPage";
 import TestPage from "./pages/test/TestPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import NewEnrollPage from "./pages/Card/NewEnrollPage";
 
 function App() {
 
@@ -21,17 +22,22 @@ return (
        color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>
         Remember <span style={{ color: 'skyblue' }}>Plus+</span></div>
       </Link>
-          <Routes>
-            <Route path="/" element={<StartPage />} />
-            <Route path="/intro" element={<IntroPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/main" element={<MainPage />} />
-            <Route path="/relation" element={<RelationPage />} />
-            <Route path="/enroll" element={<EnrollPage />} />
-            <Route path="/user" element={<UserPage />} />
-            <Route path="/Test" element={<TestPage />} />
-          </Routes>
+ 
+      <Routes>
+        {/* Path Endpoint에는 Page를 붙이지 않는 규칙을 설정합니다. */}
+        {/* 추가적으로 camelCase로 작성합니다 */}
+        <Route path="/" element={<StartPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/second" element={<IntroPage />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/relation" element={<RelationPage />} />
+        <Route path="/enroll" element={<EnrollPage />} />
+        <Route path="/newenroll" element={<NewEnrollPage />} />
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/test" element={<TestPage />} />
+      </Routes>
+
     </div>
   );
 }

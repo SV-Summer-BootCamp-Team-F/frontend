@@ -4,9 +4,12 @@ import Highcharts3D from "highcharts/highcharts-3d";
 import HighchartsReact from "highcharts-react-official";
 // Initialize the 3D module for Highcharts
 Highcharts3D(Highcharts);
+
+
 type PieChartPropsType = {
   data: [string, number][];
 };
+
 const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
   const chartOptions: Highcharts.Options = {
     colors: [
@@ -34,6 +37,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       text: "Job distribution ratio",
       align: "center",
     },
+
     accessibility: {
       point: {
         valueSuffix: "%",
@@ -46,7 +50,8 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       pie: {
         allowPointSelect: true,
         cursor: "pointer",
-        depth: 85,
+
+        depth: 35,
         dataLabels: {
           enabled: true,
           format: "{point.name}",
@@ -61,15 +66,19 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       },
     ],
   };
+
+
   useEffect(() => {
     // Clean up the chart on unmount
     return () => {
-      const chart = Highcharts.charts[1];
+      const chart = Highcharts.charts[0];
       if (chart) {
         chart.destroy();
       }
     };
   }, []);
+
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
 export default ThreeDPieChart;
+
