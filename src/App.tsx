@@ -9,9 +9,9 @@ import RelationPage from "./pages/Relation/RelationPage";
 import EnrollPage from "./pages/Card/EnrollPage";
 import UserPage from "./pages/User/UserPage";
 import TestPage from "./pages/test/TestPage";
+import NewEnrollPage from "./pages/Card/NewEnrollPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import NewEnrollPage from "./pages/Card/NewEnrollPage";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
           Remember <span style={{ color: "skyblue" }}>Plus+</span>
         </div>
       </Link>
+
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/intro" element={<IntroPage />} />

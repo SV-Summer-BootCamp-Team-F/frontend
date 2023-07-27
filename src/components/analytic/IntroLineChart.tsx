@@ -5,9 +5,11 @@ type ChartDataItemType = {
   name: string;
   data: (number | null)[];
 };
+
 type IntroChartPropsType = {
   chartData: ChartDataItemType[];
 };
+
 const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
   const options: Highcharts.Options = {
     colors: ["#01579B"],

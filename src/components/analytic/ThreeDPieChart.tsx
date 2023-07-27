@@ -4,9 +4,11 @@ import Highcharts3D from "highcharts/highcharts-3d";
 import HighchartsReact from "highcharts-react-official";
 // Initialize the 3D module for Highcharts
 Highcharts3D(Highcharts);
+
 type PieChartPropsType = {
   data: [string, number][];
 };
+
 const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
   const chartOptions: Highcharts.Options = {
     colors: [
@@ -71,6 +73,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       }
     };
   }, []);
+
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
 export default ThreeDPieChart;
