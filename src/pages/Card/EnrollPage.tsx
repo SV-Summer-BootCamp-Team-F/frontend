@@ -136,13 +136,26 @@ function EnrollPage() {
               ></textarea>
             </div>
           </div>
-          <button
-            type="submit"
-            onClick={toggleModal}
-            className="text-rememberBlueActive text-[14px] border-gray-200"
-          >
-            명함 등록
-          </button>
+          <div className="enroll-form-group">
+            <button
+              type="submit"
+              onClick={toggleModal}
+              className="text-rememberBlueActive text-[14px] border-gray-200"
+            >
+              명함 등록
+            </button>
+          </div>
+          <div className="mt-4 enroll-form-group">
+            <Link to="/newenroll">
+              <button
+                type="submit"
+                onClick={toggleModal}
+                className="text-rememberBlueActive text-[14px] border-gray-200"
+              >
+                새로운 명함 등록
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
 

@@ -70,7 +70,7 @@ function EnrollPage() {
       </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
         <h2 className="font-bold text-[25px] mb-4">
-          New Business <span className="plus">Card</span>
+          Other Business <span className="plus">Card</span>
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
