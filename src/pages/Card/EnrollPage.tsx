@@ -263,5 +263,4 @@ function EnrollPage() {
     </div>
   );
 }
-
 export default EnrollPage;

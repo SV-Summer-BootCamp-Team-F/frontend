@@ -1,27 +1,30 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import "../css/Login.css";
+import "../../css/Login.css";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [user_email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // 로그인 요청을 서버로 보내는 코드
-    axios
-      .post("/api/login", { email, password })
+    axios.post("http://0.0.0.0:8000/api/v1/users/login/", { user_email, password })
       .then((response) => {
         // 로그인 성공 시 처리
-        console.log(response.data);
+        console.log('로그인 성공!',response.data);
+          alert("환영합니다!")
+          navigate("/main");
         // 예: 토큰 저장, 로그인 상태 변경 등
       })
       .catch((error) => {
         // 로그인 실패 시 처리
-        console.error(error);
+        console.error('로그인 실패',error);
+          alert("이메일과 비밀번호를 다시 확인해주세요")
         // 예: 에러 메시지 표시 등
       });
   };
@@ -31,22 +34,6 @@ function Login() {
       className="form-container"
       style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <Link to="/">
-        <div
-          style={{
-            position: "absolute",
-            top: "4%",
-            left: "10%",
-            transform: "translate(-50%, -50%)",
-            color: "black",
-            fontWeight: "bolder",
-            fontSize: "1rem",
-            cursor: "pointer",
-          }}
-        >
-          Remember <span style={{ color: "skyblue" }}>plus+</span>
-        </div>
-      </Link>
       <div className="login-container">
         <h2 className="remember">
           Remember <span className="plus">plus+</span>
@@ -58,7 +45,7 @@ function Login() {
             <input
               type="email"
               className="login-input"
-              value={email}
+              value={user_email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
@@ -71,11 +58,10 @@ function Login() {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <Link to="/second">
             <button type="submit" className="loginButton">
               Login
             </button>
-          </Link>
+          
         </form>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
           <Link to="/Signup">
