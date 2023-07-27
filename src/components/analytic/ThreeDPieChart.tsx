@@ -5,6 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 // Initialize the 3D module for Highcharts
 Highcharts3D(Highcharts);
 
+
 type PieChartPropsType = {
   data: [string, number][];
 };
@@ -29,18 +30,14 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
         alpha: 45,
         beta: 0,
       },
+       width: 800,
+      height: 600,
     },
     title: {
-      text: "Number of Subscribers by Occupation",
+      text: "Job distribution ratio",
       align: "center",
     },
-    // subtitle: {
-    //   text:
-    //     "Source: " +
-    //     '<a href="https://www.counterpointresearch.com/global-smartphone-share/"' +
-    //     'target="_blank">Counterpoint Research</a>',
-    //   align: "left",
-    // },
+
     accessibility: {
       point: {
         valueSuffix: "%",
@@ -53,6 +50,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       pie: {
         allowPointSelect: true,
         cursor: "pointer",
+
         depth: 35,
         dataLabels: {
           enabled: true,
@@ -69,6 +67,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
     ],
   };
 
+
   useEffect(() => {
     // Clean up the chart on unmount
     return () => {
@@ -81,5 +80,5 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
 
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
-
 export default ThreeDPieChart;
+

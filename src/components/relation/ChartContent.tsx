@@ -11,7 +11,7 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ width, height, data }) 
       */}
       {data.map(({ x, y }, i) => (
         <g key={i}>
-          <circle cx={x} cy={y} r={5} fill="skyblue" />
+          <circle cx={x} cy={y} r={5} fill="white" stroke="black" stroke-width="0.8" />
         </g>
       ))}
     </g>

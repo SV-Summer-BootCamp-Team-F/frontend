@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import Slide from '../components/intro/Slide';
-import Profile from '../components/intro/Profile';
+import Information from '../components/intro/Information';
+import Slider from '../components/intro/Slider';
 import Text from '../components/intro/Text';
 import Sphere from '../components/intro/Sphere';
-import Anychart from '../components/intro/Anychart';
+import Chart from '../components/analytic/Intro2Chart';
 import '../css/Text.css';
 
 const IntroPage = () => {
@@ -38,17 +37,17 @@ const IntroPage = () => {
     const cardRefCopy = cardRef.current;
     const TextRefCopy = TextRef.current;
 
-    if (profileRefCopy) {
-      profileObserver.observe(profileRefCopy);
-    }
-    if (cardRefCopy) {
-      cardObserver.observe(cardRefCopy);
-    }
-    if (TextRefCopy) {
-      cardObserver.observe(TextRefCopy);
-    }
+      if (profileRefCopy) {
+        profileObserver.observe(profileRefCopy);
+      }
+      if (cardRefCopy) {
+        cardObserver.observe(cardRefCopy);
+      }
+      if (TextRefCopy) {
+        cardObserver.observe(TextRefCopy);
+      }
 
-    return () => {
+  return () => {
       if (profileRefCopy) {
         profileObserver.unobserve(profileRefCopy);
       }
@@ -59,24 +58,23 @@ const IntroPage = () => {
         cardObserver.unobserve(TextRefCopy);
       }
     };
-  }, []);
+      }, []);
 
   return (
     <div className="main-container">
-      <Link to="/">
-        <div style={{ position: 'fixed', top: '5%', left: '10%', transform: 'translate(-50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1rem', cursor: 'pointer' }}>Remember <span style={{ color: 'skyblue' }}>Plus+</span></div>
-      </Link>
       <div ref={TextRef} className="animate-on-scroll-1">
       </div>
       <Sphere />
       <div ref={profileRef} className="animate-on-scroll-2">
-        <Profile />
-        <Anychart/>
+      <Information />
       </div>
       <div className="animate-on-scroll-3">
-        <Slide />
+      <Slider />
       </div>
       <div className="animate-on-scroll-4">
+      <Chart/>
+      </div>
+      <div className="animate-on-scroll-5">
         <Text />
         
       </div>

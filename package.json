@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@babylonjs/core": "^6.11.1",
+    "@react-three/fiber": "^8.13.5",
     "@stur86/three-bmfont-text": "^3.0.4",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "@testing-library/jest-dom": "^5.16.5",
@@ -23,6 +24,7 @@
     "babylonjs-hook": "^0.1.1",
     "bootstrap": "^5.3.0",
     "d3": "^7.8.5",
+    "drei": "^2.2.21",
     "gltf-loader": "^1.0.0",
     "gsap": "^3.12.2",
     "highcharts": "^11.1.0",
@@ -56,6 +58,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "msw": "^1.2.2",
+
     "typescript": "^5.0.2",
     "vite": "^4.4.1"
   },
