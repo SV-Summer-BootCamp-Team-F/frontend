@@ -1,18 +1,22 @@
 import React from "react";
 
-interface StatisticsBoxProps {
+type StatisticsBoxProps = {
   color: string;
   title: string;
   number: number;
-}
+};
 
 const StatisticsBox: React.FC<StatisticsBoxProps> = ({ color, title, number }) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center w-[150px] bg-${color} rounded-3xl mr-10`}
+      className={`p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-${color} rounded-3xl mr-[20px]`}
     >
-      <h3 className="text-4xl font-semibold">{title}</h3>
-      <h4>{number}</h4>
+      <div className="text-gray-600 text-center text-[13px] flex justify-center items-center font-semibold">
+        {title}
+      </div>
+      <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+        {number}
+      </div>
     </div>
   );
 };

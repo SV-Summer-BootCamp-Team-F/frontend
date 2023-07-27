@@ -3,12 +3,22 @@ import HighchartsReact from "highcharts-react-official";
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
 
-
 HC_more(Highcharts);
 HC_exporting(Highcharts);
 
 const PieChart = () => {
   const options = {
+    colors: [
+      "#E1F5FE",
+      "#03A9F4",
+      "#81D4FA",
+      "#01579B",
+      "#B3E5FC",
+      "#29B6F6",
+      "#4FC3F7",
+      "#039BE5",
+      "#0288D1",
+    ],
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,
@@ -19,7 +29,7 @@ const PieChart = () => {
       borderRadius: 44,
     },
     title: {
-      text: "Browser market shares in March, 2022",
+      text: "Browser market shares, 2022",
       align: "left",
     },
     tooltip: {
@@ -77,7 +87,7 @@ const PieChart = () => {
   };
 
   return (
-    <div>
+    <div className="rounded-lg w-[350px] h-[350px] bg-rgb(255, 255, 255, 1) shadow-md">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

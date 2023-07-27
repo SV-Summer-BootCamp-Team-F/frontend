@@ -2,11 +2,13 @@ import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
+type ChartDataItemType = {
+  name: string;
+  data: (number | null)[];
+};
+
 type IntroChartPropsType = {
-  chartData: {
-    name: string;
-    data: number[] | null[];
-  }[];
+  chartData: ChartDataItemType[];
 };
 
 const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
@@ -17,8 +19,8 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
       align: "center",
     },
     // subtitle: {
-    //  text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
-    //  align: "left",
+    //   text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+    //   align: "left",
     // },
     yAxis: {
       title: {
@@ -34,7 +36,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
       layout: "vertical",
       align: "right",
       verticalAlign: "middle",
-      
     },
     plotOptions: {
       series: {
@@ -44,15 +45,19 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
         pointStart: 2010,
       },
     },
-    series: chartData, // chartData를 바로 할당합니다.
+    series: [
+      {
+        type: "line",
+        name: "Subscriber",
+        data: chartData[0].data,
+      },
+    ],
     responsive: {
       rules: [
         {
           condition: {
-            maxWidth: 700,
-            
+            maxWidth: 500,
           },
-          
           chartOptions: {
             legend: {
               layout: "horizontal",
@@ -62,11 +67,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
           },
         },
       ],
-    },
-    chart: {
-      type: "line", // Specify the chart type (you can change this to other types if needed)
-      width: 800, // Set the width of the chart
-      height: 500, // Set the height of the chart
     },
   };
 
