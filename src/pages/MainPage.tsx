@@ -2,28 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/main/Card";
 import Phone from "../components/main/Phone";
-import Button from "../components/Button";
+import Button from "../components/main/Button";
 
 const MainPage: React.FC = () => {
   return (
     <div>
       <div>
-        <Link to="/">
-          <div
-            style={{
-              position: "fixed",
-              top: "5%",
-              left: "10%",
-              transform: "translate(-50%, -50%)",
-              color: "black",
-              fontWeight: "bolder",
-              fontSize: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            Remember <span style={{ color: "skyblue" }}>Plus+</span>
-          </div>
-        </Link>
         <Link to="/">
           <div
             style={{

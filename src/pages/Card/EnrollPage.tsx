@@ -1,21 +1,58 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios, { AxiosResponse } from "axios";
+
+// Define an interface to represent the shape of the form data
+interface FormData {
+  photo: File | null;
+  card_name: string;
+  card_phone: string;
+  card_email: string;
+  card_intro: string;
+}
 
 function EnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [introduction, setIntroduction] = useState("");
+  const [card_name, setName] = useState("");
+  const [card_phone, setPhone] = useState("");
+  const [card_email, setEmail] = useState("");
+  const [card_intro, setIntro] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    setIsModalOpen(true);
-  };
 
   const MAX_WIDTH = 500;
   const MAX_HEIGHT = 300;
+
+  function sendDataToServer(data: FormData): Promise<AxiosResponse> {
+    const apiUrl = "http://127.0.0.1:8000/api/v1/cards/add/";
+
+    // Assuming your backend API expects a POST request
+    return axios.post(apiUrl, data);
+  }
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsModalOpen(true);
+
+    // Prepare the data to send to the server
+    const formData: FormData = {
+      photo,
+      card_name,
+      card_phone,
+      card_email,
+      card_intro,
+    };
+
+    // Call the function to send the data to the backend
+    sendDataToServer(formData)
+      .then((response: AxiosResponse) => {
+        // Handle success response from the server, if needed
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        // Handle error response from the server, if needed
+        console.error("Error sending data:", error);
+      });
+  };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -31,7 +68,6 @@ function EnrollPage() {
             const canvas = document.createElement("canvas");
             let width = image.width;
             let height = image.height;
-
             // 비율 계산
             if (width > height && width > MAX_WIDTH) {
               height *= MAX_WIDTH / width;
@@ -40,13 +76,10 @@ function EnrollPage() {
               width *= MAX_HEIGHT / height;
               height = MAX_HEIGHT;
             }
-
             canvas.width = width;
             canvas.height = height;
-
             const ctx = canvas.getContext("2d");
             ctx?.drawImage(image, 0, 0, width, height);
-
             // 변경된 크기의 이미지를 미리보기에 설정
             previewImage.src = canvas.toDataURL();
           };
@@ -99,7 +132,7 @@ function EnrollPage() {
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={name}
+                value={card_name}
                 placeholder="홍길동"
                 onChange={(event) => setName(event.target.value)}
               />
@@ -109,7 +142,7 @@ function EnrollPage() {
               <input
                 type="phone"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={phone}
+                value={card_phone}
                 placeholder="010-0000-0000"
                 onChange={(event) => setPhone(event.target.value)}
               />
@@ -121,7 +154,7 @@ function EnrollPage() {
                 name="email"
                 id="email"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={email}
+                value={card_email}
                 placeholder="name@company.com"
                 onChange={(event) => setEmail(event.target.value)}
               />
@@ -130,9 +163,9 @@ function EnrollPage() {
               <label className="label text-[13px]">Introduction</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={introduction}
+                value={card_intro}
                 placeholder="자기 소개"
-                onChange={(event) => setIntroduction(event.target.value)}
+                onChange={(event) => setIntro(event.target.value)}
               ></textarea>
             </div>
           </div>
@@ -203,7 +236,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Name:
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
                     </label>
                   </div>
                   <div>
@@ -212,7 +245,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Phone:
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
                     </label>
                   </div>
                   <div>
@@ -221,7 +254,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Email:
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
                     </label>
                   </div>
                   <div>
@@ -230,10 +263,10 @@ function EnrollPage() {
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Introduction:
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{introduction}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>
                     </label>
                   </div>
-                  <Link to="/second">
+                  <Link to="/main">
                     <button
                       type="submit"
                       className="w-full text-white bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
