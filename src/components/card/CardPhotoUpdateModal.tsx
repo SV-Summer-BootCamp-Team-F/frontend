@@ -70,7 +70,7 @@ export default function CardPhotoUpdateModal({
                 {/*header*/}
                 <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
                   <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Edit Profile
+                    Card Photo
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
