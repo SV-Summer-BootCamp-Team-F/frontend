@@ -13,6 +13,7 @@ interface FormData {
 
 function EnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
+
   const [card_name, setName] = useState("");
   const [card_phone, setPhone] = useState("");
   const [card_email, setEmail] = useState("");
