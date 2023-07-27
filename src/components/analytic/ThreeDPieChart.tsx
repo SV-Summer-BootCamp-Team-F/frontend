@@ -31,7 +31,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       height: 600,
     },
     title: {
-      text: "Number of Subscribers by Occupation",
+      text: "Job distribution ratio",
       align: "center",
     },
     accessibility: {
@@ -64,7 +64,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
   useEffect(() => {
     // Clean up the chart on unmount
     return () => {
-      const chart = Highcharts.charts[0];
+      const chart = Highcharts.charts[1];
       if (chart) {
         chart.destroy();
       }
