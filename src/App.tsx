@@ -9,9 +9,10 @@ import RelationPage from "./pages/Relation/RelationPage";
 import EnrollPage from "./pages/Card/EnrollPage";
 import UserPage from "./pages/User/UserPage";
 import TestPage from "./pages/test/TestPage";
+import NewEnrollPage from "./pages/Card/NewEnrollPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import NewEnrollPage from "./pages/Card/NewEnrollPage";
+
 
 function App() {
 
@@ -29,7 +30,7 @@ return (
         <Route path="/" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/second" element={<IntroPage />} />
+        <Route path="/intro" element={<IntroPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/relation" element={<RelationPage />} />
         <Route path="/enroll" element={<EnrollPage />} />
