@@ -6,14 +6,14 @@ import "../../css/Login.css";
 
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [user_email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // 로그인 요청을 서버로 보내는 코드
-    axios.post("http://0.0.0.0:8000/api/v1/users/login/", { email, password })
+    axios.post("http://0.0.0.0:8000/api/v1/users/login/", { user_email, password })
       .then((response) => {
         // 로그인 성공 시 처리
         console.log('로그인 성공!',response.data);
@@ -45,7 +45,7 @@ function Login() {
             <input
               type="email"
               className="login-input"
-              value={email}
+              value={user_email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>

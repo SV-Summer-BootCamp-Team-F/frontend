@@ -55,7 +55,38 @@ function EnrollPage() {
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // ... (The existing handleFileChange code remains unchanged)
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setPhoto(file); // Save the selected file to the photo state
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const previewImage = document.getElementById("preview-image") as HTMLImageElement;
+        if (previewImage && e.target && e.target.result) {
+          const image = new Image();
+          image.src = e.target.result as string;
+          image.onload = () => {
+            const canvas = document.createElement("canvas");
+            let width = image.width;
+            let height = image.height;
+            // 비율 계산
+            if (width > height && width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            } else if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx?.drawImage(image, 0, 0, width, height);
+            // 변경된 크기의 이미지를 미리보기에 설정
+            previewImage.src = canvas.toDataURL();
+          };
+        }
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const toggleModal = () => {
@@ -235,7 +266,7 @@ function EnrollPage() {
                     <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>
                   </label>
                 </div>
-                <Link to="/second">
+                <Link to="/main">
                   <button
                     type="submit"
                     className="w-full text-white bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
