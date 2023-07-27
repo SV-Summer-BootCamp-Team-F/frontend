@@ -11,18 +11,33 @@ HC_exporting(Highcharts);
 
 const PieChart = () => {
   const options = {
+    colors: [
+      "#E1F5FE",
+      "#03A9F4",
+      "#81D4FA",
+      "#01579B",
+      "#B3E5FC",
+      "#29B6F6",
+      "#4FC3F7",
+      "#039BE5",
+      "#0288D1",
+    ],
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
       type: "pie",
-      styledMode: false, // styledMode 활성화
-      borderRadius: 30,
-      shadow: true,
+      width: 350,
+      height: 350,
+      borderRadius: 12,
+      backgroundColor: "rgb(255, 255, 255, 0.8)",
+    },
+    exporting: {
+      enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
-      text: "Browser market shares in May, 2020",
-      align: "center",
+      text: "Browser market shares, 2022",
+      align: "left",
     },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
@@ -37,9 +52,9 @@ const PieChart = () => {
         allowPointSelect: true,
         cursor: "pointer",
         dataLabels: {
-          enabled: true,
-          format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+          enabled: false,
         },
+        showInLegend: true,
       },
     },
     series: [
@@ -49,41 +64,29 @@ const PieChart = () => {
         data: [
           {
             name: "Chrome",
-            y: 70.67,
+            y: 74.77,
             sliced: true,
             selected: true,
           },
           {
             name: "Edge",
-            y: 14.77,
+            y: 12.82,
           },
           {
             name: "Firefox",
-            y: 4.86,
+            y: 4.63,
           },
           {
             name: "Safari",
-            y: 2.63,
+            y: 2.44,
           },
           {
             name: "Internet Explorer",
-            y: 1.53,
-          },
-          {
-            name: "Opera",
-            y: 1.4,
-          },
-          {
-            name: "Sogou Explorer",
-            y: 0.84,
-          },
-          {
-            name: "QQ",
-            y: 0.51,
+            y: 2.02,
           },
           {
             name: "Other",
-            y: 2.6,
+            y: 3.28,
           },
         ],
       },
@@ -91,7 +94,7 @@ const PieChart = () => {
   };
 
   return (
-    <div>
+    <div className="rounded-lg w-[350px] h-[350px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
