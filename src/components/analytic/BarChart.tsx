@@ -26,11 +26,11 @@ const BarChart = () => {
       enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
-      text: "Corn vs wheat production 2020",
-      align: "left",
+      text: "Daily Statistics",
+      align: "center",
     },
     xAxis: {
-      categories: ["USA", "China", "Brazil", "EU", "India", "Russia"],
+      categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       crosshair: true,
       accessibility: {
         description: "Countries",
@@ -38,8 +38,9 @@ const BarChart = () => {
     },
     yAxis: {
       min: 0,
+      max: 40,
       title: {
-        text: "1000 metric tons (MT)",
+        text: "Counts",
       },
     },
     tooltip: {
@@ -47,18 +48,18 @@ const BarChart = () => {
     },
     plotOptions: {
       column: {
-        pointPadding: 0.2,
+        pointPadding: 0.1,
         borderWidth: 0,
       },
     },
     series: [
       {
-        name: "Corn",
-        data: [406292, 260000, 107000, 68300, 27500, 14500],
+        name: "Added business card count",
+        data: [7, 12, 5, 8, 20, 15],
       },
       {
-        name: "Wheat",
-        data: [51086, 136000, 5500, 141000, 107180, 77000],
+        name: "Users who added my card",
+        data: [10, 20, 17, 6, 20, 15],
       },
     ],
   };

@@ -29,13 +29,13 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedIntro, setUpdatedIntro] = useState(introduction);
-  const [updatedPhoto, setUpdatedPhoto] = useState(photo);
+  const [updatedPhoto, setUpdatedPhoto] = useState("https://i.ibb.co/Vg8KsjJ/image.png");
   const userId = 1;
   useEffect(() => {
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedIntro(introduction);
-    setUpdatedPhoto(photo);
+    setUpdatedPhoto("https://i.ibb.co/Vg8KsjJ/image.png");
   }, [name, email, introduction, photo]);
   const handleSaveChanges = async (updatedCardData: {
     name: string;

@@ -41,7 +41,7 @@ const LineChart: React.FC = () => {
     },
     yAxis: {
       title: {
-        text: "Count",
+        text: "Counts",
       },
     },
     plotOptions: {

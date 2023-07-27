@@ -62,33 +62,33 @@ const PieChart = () => {
     },
     series: [
       {
-        name: "Brands",
+        name: "Relationships",
         colorByPoint: true,
         data: [
           {
-            name: "Chrome",
+            name: "Associate",
             y: 74.77,
             sliced: true,
             selected: true,
           },
           {
-            name: "Edge",
+            name: "Colleague",
             y: 12.82,
           },
           {
-            name: "Firefox",
+            name: "Acquaintance",
             y: 4.63,
           },
           {
-            name: "Safari",
+            name: "Buddy",
             y: 2.44,
           },
           {
-            name: "Internet Explorer",
+            name: "Companion",
             y: 2.02,
           },
           {
-            name: "Other",
+            name: "Friend",
             y: 3.28,
           },
         ],

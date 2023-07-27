@@ -13,18 +13,21 @@ function Login() {
     event.preventDefault();
 
     // 로그인 요청을 서버로 보내는 코드
-    axios.post("http://0.0.0.0:8000/api/v1/users/login/", { user_email, password })
+    axios
+      .post("http://0.0.0.0:8000/api/v1/users/login/", { user_email, password })
       .then((response) => {
         // 로그인 성공 시 처리
-        console.log('로그인 성공!',response.data);
-          alert("환영합니다!")
-          navigate("/main");
+        console.log("로그인 성공!", response.data);
+        //localStrorage에 uuid 저장
+        localStorage.setItem("user_uuid", response.data.result.user_uid);
+        alert("환영합니다!");
+        navigate("/main");
         // 예: 토큰 저장, 로그인 상태 변경 등
       })
       .catch((error) => {
         // 로그인 실패 시 처리
-        console.error('로그인 실패',error);
-          alert("이메일과 비밀번호를 다시 확인해주세요")
+        console.error("로그인 실패", error);
+        alert("이메일과 비밀번호를 다시 확인해주세요");
         // 예: 에러 메시지 표시 등
       });
   };
@@ -58,10 +61,9 @@ function Login() {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-            <button type="submit" className="loginButton">
-              Login
-            </button>
-          
+          <button type="submit" className="loginButton">
+            Login
+          </button>
         </form>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
           <Link to="/Signup">

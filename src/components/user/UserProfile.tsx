@@ -32,13 +32,15 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedPassword, setUpdatedPassword] = useState(passwd);
-  const [updatedPhoto, setUpdatedPhoto] = useState(photo);
+  const [updatedPhoto, setUpdatedPhoto] = useState(
+    "https://cdn-icons-png.flaticon.com/256/6676/6676023.png"
+  );
 
   useEffect(() => {
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedPassword(passwd);
-    setUpdatedPhoto(photo);
+    setUpdatedPhoto("https://cdn-icons-png.flaticon.com/256/6676/6676023.png");
   }, [name, email, passwd, photo]);
 
   const handleSaveChanges = async (updatedUserData: {
@@ -80,7 +82,7 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
   };
 
   return (
-    <div className="w-[270px] max-w-lg mt-10 mb-[34px] bg-white rounded-lg shadow-md p-12 box-border">
+    <div className="w-[270px] max-w-lg mt-10 mb-[40px] bg-white rounded-lg shadow-md p-12 box-border">
       <div className="relative">
         <img
           className="w-[170px] h-[170px] rounded-full mx-auto mb-12 object-cover"
@@ -89,12 +91,10 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
         />
         <UserPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} updatedPhoto={updatedPhoto} />
       </div>
-      <p className="text-center text-[28px] font-semibold mb-8">{updatedName}</p>
+      <p className="text-center text-[28px] font-semibold">{updatedName}</p>
       <div className="flex flex-col items-center w-full">
-        <div>
-          <p className="text-[14px]">Email: {updatedEmail}</p>
-          <p className="text-[14px] mt-[24px]">Phone: {phoneNumber}</p>
-          <p className="text-[14px] mt-[24px]">Passwd: {updatedPassword}</p>
+        <div className="mb-[14px]">
+          <p className="text-[14px] text-gray-500">{updatedEmail}</p>
         </div>
         <UserInfoUpdateModal onSaveChanges={handleSaveChanges} />
       </div>

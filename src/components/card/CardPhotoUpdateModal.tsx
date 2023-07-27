@@ -95,7 +95,11 @@ export default function CardPhotoUpdateModal({
                   </div>
                   {selectedPhotoPreview && (
                     <div className="mb-4">
-                      <img src={selectedPhotoPreview} alt="Selected Preview" className="w-full" />
+                      <img
+                        src={selectedPhotoPreview}
+                        alt="Selected Preview"
+                        className="w-[500px] h-[300px] object-cover"
+                      />
                     </div>
                   )}
                 </div>
