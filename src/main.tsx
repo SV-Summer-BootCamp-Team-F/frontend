@@ -1,8 +1,6 @@
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 // The root element where React will be mounted.
@@ -19,20 +17,16 @@ if (import.meta.env.MODE === "development") {
     .then(() => {
       // Render the application.
       root.render(
-        <BrowserRouter>
-          <StrictMode>
-            <App />
-          </StrictMode>
+        <BrowserRouter> 
+            <App />   
         </BrowserRouter>
       );
     });
 } else {
   // Render the application in production without the MSW.
   root.render(
-    <BrowserRouter>
-      <StrictMode>
-        <App />
-      </StrictMode>
+    <BrowserRouter>  
+        <App />   
     </BrowserRouter>
   );
 }
