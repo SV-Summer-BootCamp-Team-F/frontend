@@ -3,8 +3,10 @@ import { ChartPropsType, DataPointType } from "../../types/types";
 import generateDataPoints from "../../utils/generateDataPoints";
 import ChartContent from "./ChartContent";
 import ZoomableSVG from "./ZoomableSVG";
+import axios from "axios";
 
-const Chart: React.FC<ChartPropsType> = ({ data, n, maxR }) => {
+
+const Chart: React.FC<ChartPropsType> = ({ n, maxR }) => {
   // 차트의 크기를 위한 상태 설정 (창의 넓이와 높이)
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -12,7 +14,7 @@ const Chart: React.FC<ChartPropsType> = ({ data, n, maxR }) => {
   });
 
   // 로컬 데이터를 위한 상태 설정
-  const [localData, setLocalData] = useState<DataPointType[]>(data);
+  const [localData, setLocalData] = useState<DataPointType[]>([]);
 
   // 데이터를 업데이트하는 함수
   const updateData = () => {
@@ -35,6 +37,20 @@ const Chart: React.FC<ChartPropsType> = ({ data, n, maxR }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // 빈 의존성 배열을 사용하여 마운트시에만 이벤트 리스너를 설정
 
+  // Fetch data from Neo4j API using Axios
+  useEffect(() => {
+    const apiUrl = "http://127.0.0.1:8000/api/v1/relations/first/{user_uid}"; // Replace {user_uid} with the actual user UID from Neo4j
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        // Assuming the API response contains the data in the desired format
+        setLocalData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data from Neo4j API:", error);
+      });
+  }, []);
+
   return (
     // 차트를 그리는 SVG와 그 내용을 ZoomableSVG 컴포넌트와 ChartContent 컴포넌트로 분리
     <ZoomableSVG width={dimensions.width} height={dimensions.height} updateData={updateData}>
@@ -42,5 +58,3 @@ const Chart: React.FC<ChartPropsType> = ({ data, n, maxR }) => {
     </ZoomableSVG>
   );
 };
-
-export default Chart;
