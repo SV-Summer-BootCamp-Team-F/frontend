@@ -221,7 +221,7 @@ function EnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-gray-900">
-                  Check Your Card
+                  명함 확인
                 </h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -242,7 +242,7 @@ function EnrollPage() {
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Name:
+                      이름
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
                     </label>
                   </div>
@@ -251,7 +251,7 @@ function EnrollPage() {
                       htmlFor="phone"
                       className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Phone:
+                      전화번호
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
                     </label>
                   </div>
@@ -260,7 +260,7 @@ function EnrollPage() {
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Email:
+                      Email
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
                     </label>
                   </div>
@@ -269,7 +269,7 @@ function EnrollPage() {
                       htmlFor="indroduction"
                       className="block mb-4 text-sm font-medium text-gray-900 "
                     >
-                      Introduction:
+                      소개
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>
                     </label>
                   </div>

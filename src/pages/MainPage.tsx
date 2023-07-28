@@ -48,7 +48,7 @@ const MainPage: React.FC = () => {
             transform: "translate(-50%, -50%)",
             color: "black",
             fontWeight: "bolder",
-            fontSize: "4rem",
+            fontSize: "3.7rem",
           }}
         >
           명함 <span style={{ color: "skyblue" }}>등록</span>

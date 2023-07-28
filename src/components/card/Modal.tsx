@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ModalProps {
   isModalOpen: boolean;
@@ -19,7 +19,9 @@ const Modal: React.FC<ModalProps> = ({
   card_email,
   card_intro,
 }) => {
-  if (!isModalOpen) return null;
+  if (!isModalOpen) {
+    return null; // If the modal is not open, don't render anything
+  }
 
   return (
     <div
@@ -34,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
           <button
             type="button"
             className="absolute top-3 right-2.5"
-            onClick={toggleModal}
+            onClick={toggleModal} // close 버튼을 누르면 Modal을 닫도록 설정
           >
             <svg
               className="w-3 h-3"
@@ -54,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({
             <span className="sr-only">Close modal</span>
           </button>
           <div className="px-6 py-6 lg:px-8">
-            <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+            <h3 className="mb-4 text-xl font-medium text-gray-900">
               Check Your Card
             </h3>
             <form className="space-y-6" action="#">
@@ -70,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({
               <div>
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Name:
                   <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
@@ -79,7 +81,7 @@ const Modal: React.FC<ModalProps> = ({
               <div>
                 <label
                   htmlFor="phone"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Phone:
                   <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
@@ -88,7 +90,7 @@ const Modal: React.FC<ModalProps> = ({
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Email:
                   <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
@@ -96,8 +98,8 @@ const Modal: React.FC<ModalProps> = ({
               </div>
               <div>
                 <label
-                  htmlFor="introduction"
-                  className="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="indroduction"
+                  className="block mb-4 text-sm font-medium text-gray-900 "
                 >
                   Introduction:
                   <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>

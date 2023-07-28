@@ -189,7 +189,7 @@ function EnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">
-                  Check new card
+                  명함 등록 확인
                 </h4>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -210,7 +210,7 @@ function EnrollPage() {
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Name:
+                      이름
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
                     </label>
                   </div>
@@ -219,7 +219,7 @@ function EnrollPage() {
                       htmlFor="phone"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Phone:
+                      Phone
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
                     </label>
                   </div>
@@ -228,7 +228,7 @@ function EnrollPage() {
                       htmlFor="relation"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Relation:
+                      관계
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{relation}</div>
                     </label>
                   </div>
@@ -237,7 +237,7 @@ function EnrollPage() {
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Email:
+                      Email
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
                     </label>
                   </div>
@@ -246,7 +246,7 @@ function EnrollPage() {
                       htmlFor="indroduction"
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Memo:
+                      메모
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
                     </label>
                   </div>
