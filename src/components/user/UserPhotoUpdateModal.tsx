@@ -2,7 +2,7 @@ import React from "react";
 import { FaCamera } from "react-icons/fa";
 
 type UserPhotoUpdateModalPropsType = {
-  onSaveChanges: (data: { user_id: number; photo: string }) => void;
+  onSaveChanges: (data: { photo: string }) => void;
   updatedPhoto: string;
 };
 // SVG icon for the close button
@@ -24,7 +24,7 @@ export default function UserPhotoUpdateModal({
   const [showModal, setShowModal] = React.useState(false);
   const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
   const handleSaveChanges = () => {
-    onSaveChanges({ user_id: 0, photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
+    onSaveChanges({ photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
     setShowModal(false);
   };
   const handleEditProfile = () => {

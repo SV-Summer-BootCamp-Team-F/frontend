@@ -32,15 +32,13 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedPassword, setUpdatedPassword] = useState(passwd);
-  const [updatedPhoto, setUpdatedPhoto] = useState(
-    "https://cdn-icons-png.flaticon.com/256/6676/6676023.png"
-  );
+  const [updatedPhoto, setUpdatedPhoto] = useState(photo);
 
   useEffect(() => {
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedPassword(passwd);
-    setUpdatedPhoto("https://cdn-icons-png.flaticon.com/256/6676/6676023.png");
+    setUpdatedPhoto(photo);
   }, [name, email, passwd, photo]);
 
   const handleSaveChanges = async (updatedUserData: {
@@ -67,10 +65,13 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
     }
   };
 
-  const handlePhotoSaveChanges = async (updatedUserData: { user_id: number; photo: string }) => {
+  const handlePhotoSaveChanges = async (updatedUserData: { photo: string }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
-      const response = await axios.put("/api/v1/cards/update/", updatedUserData);
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`,
+        updatedUserData
+      );
 
       if (response.status === 202) {
         setUpdatedPhoto(updatedUserData.photo);
