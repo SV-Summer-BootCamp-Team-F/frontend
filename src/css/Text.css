@@ -1,17 +1,14 @@
 .TextContainer {
-  margin-top: 237px;
-  
-  
+  margin-top: 20rem;
 }
 
 
 .animate-on-scroll-1{
-  margin-top: 237px;
-  
+  margin-top: 14.8rem;
 }
 
 .secondText{
-  margin-top: -350px;
+  margin-top: -28rem;
 }
 
 .Text1 {
@@ -19,11 +16,10 @@
   font-size: 3.2rem;
   margin-left: 20%;
   margin-right: 20%;
-  margin-top: -532px;
+  margin-top: -35rem;
   margin-bottom: 30%;
   font-weight: 750;
   text-align: center;
-
 }
 
 
@@ -67,16 +63,17 @@ will-change: opacity, transform; /* Add will-change property */
 
 .animate-on-scroll-2 {
   margin-top: 10rem;
-  margin-bottom: 50px;
+  margin-bottom: 4rem;
   background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255));
-  height: 110vh;
+  height: 60vh;
 }
 .animate-on-scroll-3 {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 120vh; /* Set the height of the container to the full viewport height */
-  background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(67, 71, 75));
+  background-color: black;
+  /* background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(67, 71, 75)); */
 
 }
 
@@ -84,14 +81,21 @@ will-change: opacity, transform; /* Add will-change property */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 125vh; /* Set the height of the container to the full viewport height */
+  height: 110vh; /* Set the height of the container to the full viewport height */
+}
+
+.animate-on-scroll-5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120vh; /* Set the height of the container to the full viewport height */
   background-image: linear-gradient(to bottom, rgb(67, 71, 75), rgb(0, 0, 0));
 }
 
 .Text3 {
   color: white;
   font-size: 5.8rem;
-  margin-top: 45px; 
+  margin-top: 3.5rem; 
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 0%;
@@ -120,3 +124,6 @@ will-change: opacity, transform; /* Add will-change property */
   animation: fade-in 0.8s ease-in-out;
   will-change: opacity, transform; /* Add will-change property */
 }
+
+
+
