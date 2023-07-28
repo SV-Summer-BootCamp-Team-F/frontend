@@ -41,6 +41,7 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/relation" element={<RelationPage />} />
         <Route path="/enroll" element={<EnrollPage />} />
+        <Route path="/newenroll" element={<NewEnrollPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/Test" element={<TestPage />} />
       </Routes>
