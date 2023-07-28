@@ -25,7 +25,7 @@ export type UserPhotoUpdatePropsType = {
   photo: string;
 };
 
-const userId = 1;
+const user_uuid = localStorage.getItem("user_uuid");
 
 const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd, photo }) => {
   // State to store updated user data
@@ -44,23 +44,23 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
   }, [name, email, passwd, photo]);
 
   const handleSaveChanges = async (updatedUserData: {
-    user_id: number;
-    name: string;
-    email: string;
+    user_name: string;
+    user_email: string;
     password: string;
-    update_at: string;
   }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
-      updatedUserData.user_id = userId;
-      updatedUserData.update_at = new Date().toISOString().slice(0, 10);
-      const response = await axios.put("/api/v1/users/update/", updatedUserData);
+      const response = await axios.put(
+        `http://127.0.0.1:8000//api/v1/users/update/${user_uuid}/`,
+        updatedUserData
+      );
 
       if (response.status === 202) {
         // Update the state with the new data
-        setUpdatedName(updatedUserData.name);
-        setUpdatedEmail(updatedUserData.email);
+        setUpdatedName(updatedUserData.user_name);
+        setUpdatedEmail(updatedUserData.user_email);
         setUpdatedPassword(updatedUserData.password);
+        console.log("유저 정보 수정 성공!", updatedUserData);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -70,7 +70,6 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
   const handlePhotoSaveChanges = async (updatedUserData: { user_id: number; photo: string }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
-      updatedUserData.user_id = userId;
       const response = await axios.put("/api/v1/cards/update/", updatedUserData);
 
       if (response.status === 202) {

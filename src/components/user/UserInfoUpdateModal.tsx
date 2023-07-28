@@ -1,13 +1,7 @@
 import React from "react";
 
 type UserInfoUpdateModalPropsType = {
-  onSaveChanges: (data: {
-    user_id: number;
-    name: string;
-    email: string;
-    password: string;
-    update_at: string;
-  }) => void;
+  onSaveChanges: (data: { user_name: string; user_email: string; password: string }) => void;
 };
 
 // SVG icon for the close button
@@ -25,15 +19,13 @@ const CloseIcon = () => (
 
 export default function UserInfoUpdateModal({ onSaveChanges }: UserInfoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
-  const user_id = 1;
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [user_name, setName] = React.useState("");
+  const [user_email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const update_at = new Date().toISOString().slice(0, 10);
 
   const handleSaveChanges = () => {
     // Add your logic here to save the changes (e.g., send data to the server)
-    onSaveChanges({ user_id, name, email, password, update_at });
+    onSaveChanges({ user_name, user_email, password });
     setShowModal(false);
   };
 
@@ -79,7 +71,7 @@ export default function UserInfoUpdateModal({ onSaveChanges }: UserInfoUpdateMod
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
                       id="name"
                       type="text"
-                      value={name}
+                      value={user_name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
@@ -91,7 +83,7 @@ export default function UserInfoUpdateModal({ onSaveChanges }: UserInfoUpdateMod
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
                       id="email"
                       type="email"
-                      value={email}
+                      value={user_email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>

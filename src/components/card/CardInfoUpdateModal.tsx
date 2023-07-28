@@ -1,7 +1,11 @@
 import React from "react";
 
 export type CardInfoUpdateModalPropsType = {
-  onSaveChanges: (data: { name: string; email: string; introduction: string }) => void;
+  onSaveChanges: (data: {
+    card_name: string;
+    card_email: string;
+    card_intro: string;
+  }) => Promise<void>;
   updatedPhoto: string;
 };
 
@@ -20,13 +24,13 @@ const CloseIcon = () => (
 
 export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [introduction, setIntro] = React.useState("");
+  const [card_name, setName] = React.useState("");
+  const [card_email, setEmail] = React.useState("");
+  const [card_intro, setIntro] = React.useState("");
 
   const handleSaveChanges = () => {
     // Add your logic here to save the changes (e.g., send data to the server)
-    onSaveChanges({ name, email, introduction });
+    onSaveChanges({ card_name, card_email, card_intro });
     setShowModal(false);
   };
 
@@ -72,7 +76,7 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
                       id="name"
                       type="text"
-                      value={name}
+                      value={card_name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
@@ -84,7 +88,7 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
                       id="email"
                       type="email"
-                      value={email}
+                      value={card_email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
@@ -99,7 +103,7 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
                       id="introduction"
                       type="introduction"
-                      value={introduction}
+                      value={card_intro}
                       onChange={(e) => setIntro(e.target.value)}
                     />
                   </div>
