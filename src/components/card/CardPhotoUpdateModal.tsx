@@ -1,11 +1,6 @@
 import React from "react";
 import { FaCamera } from "react-icons/fa";
 
-type CardPhotoUpdateModalPropsType = {
-  onSaveChanges: (data: { user_id: number; photo: string }) => void;
-  updatedPhoto: string;
-};
-
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -18,46 +13,42 @@ const CloseIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
-export default function CardPhotoUpdateModal({
-  onSaveChanges,
-  updatedPhoto,
-}: CardPhotoUpdateModalPropsType) {
+
+export default function CardPhotoUpdateModal({ onSaveChanges, updatedPhoto }) {
   const [showModal, setShowModal] = React.useState(false);
-  const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
+  const [selectedPhoto, setSelectedPhoto] = React.useState(null); // New state for the selected photo file
+
   const handleSaveChanges = () => {
-    onSaveChanges({ user_id: 0, photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
+    onSaveChanges({ photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
     setShowModal(false);
   };
+
   const handleEditProfile = () => {
     setShowModal(true);
   };
+
   // Function to handle the photo file selection
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
     setSelectedPhoto(file);
+
     // Optional: You can also show a preview of the selected photo
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         // Set the image preview URL
-        const result = reader.result as string | null;
-        setSelectedPhotoPreview(result); // Explicitly cast to string | null
+        setSelectedPhotoPreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
-  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
 
-  // Function to reset the selected photo
-  const handleResetPhoto = () => {
-    setSelectedPhoto(null);
-    setSelectedPhotoPreview(null);
-  };
+  const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState(null);
 
   return (
     <>
       <button
-        className="flex justify-center items-center w-[500px] h-[80px] absolute bottom-0 z-10 p-2.5 bg-black/30 focus:outline-none shadow-md"
+        className="flex justify-center items-center w-[600px] h-[80px] absolute bottom-0 z-10 p-2.5 bg-black/30 focus:outline-none shadow-md"
         onClick={handleEditProfile} // Replace this with your desired action
       >
         <FaCamera size={45} color={"white"} />
@@ -70,7 +61,7 @@ export default function CardPhotoUpdateModal({
                 {/*header*/}
                 <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
                   <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Card Photo
+                    Edit Profile
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
@@ -95,11 +86,7 @@ export default function CardPhotoUpdateModal({
                   </div>
                   {selectedPhotoPreview && (
                     <div className="mb-4">
-                      <img
-                        src={selectedPhotoPreview}
-                        alt="Selected Preview"
-                        className="w-[500px] h-[300px] object-cover"
-                      />
+                      <img src={selectedPhotoPreview} alt="Selected Preview" className="w-full" />
                     </div>
                   )}
                 </div>

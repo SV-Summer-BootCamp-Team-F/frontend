@@ -1,8 +1,10 @@
+import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
-
+import HC_styled from "highcharts/css/highcharts.css";
 
 HC_more(Highcharts);
 HC_exporting(Highcharts);
@@ -17,18 +19,15 @@ const BarChart = () => {
       borderRadius: 12,
       backgroundColor: "rgb(255, 255, 255, 0.8)",
     },
-    credits: {
-      enabled: false,
-    },
     exporting: {
       enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
-      text: "Daily Statistics",
-      align: "center",
+      text: "Corn vs wheat production 2020",
+      align: "left",
     },
     xAxis: {
-      categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      categories: ["USA", "China", "Brazil", "EU", "India", "Russia"],
       crosshair: true,
       accessibility: {
         description: "Countries",
@@ -36,9 +35,8 @@ const BarChart = () => {
     },
     yAxis: {
       min: 0,
-      max: 40,
       title: {
-        text: "Counts",
+        text: "1000 metric tons (MT)",
       },
     },
     tooltip: {
@@ -46,24 +44,24 @@ const BarChart = () => {
     },
     plotOptions: {
       column: {
-        pointPadding: 0.1,
+        pointPadding: 0.2,
         borderWidth: 0,
       },
     },
     series: [
       {
-        name: "Added business card count",
-        data: [7, 12, 5, 8, 20, 15],
+        name: "Corn",
+        data: [406292, 260000, 107000, 68300, 27500, 14500],
       },
       {
-        name: "Users who added my card",
-        data: [10, 20, 17, 6, 20, 15],
+        name: "Wheat",
+        data: [51086, 136000, 5500, 141000, 107180, 77000],
       },
     ],
   };
 
   return (
-    <div className="rounded-lg w-[350px] h-[250px] bg-rgb(255, 255, 255, 1) shadow-md ">
+    <div className="rounded-lg w-[350px] h-[250px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

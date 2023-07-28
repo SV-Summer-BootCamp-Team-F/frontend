@@ -1,59 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
-
-// Define an interface to represent the shape of the form data
-interface FormData {
-  photo: File | null;
-  card_name: string;
-  card_phone: string;
-  card_email: string;
-  card_intro: string;
-}
 
 function EnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
-
-  const [card_name, setName] = useState("");
-  const [card_phone, setPhone] = useState("");
-  const [card_email, setEmail] = useState("");
-  const [card_intro, setIntro] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [introduction, setIntroduction] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    setIsModalOpen(true);
+  };
 
   const MAX_WIDTH = 500;
   const MAX_HEIGHT = 300;
-
-  function sendDataToServer(data: FormData): Promise<AxiosResponse> {
-    const apiUrl = "http://127.0.0.1:8000/api/v1/cards/add/";
-
-    // Assuming your backend API expects a POST request
-    return axios.post(apiUrl, data);
-  }
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsModalOpen(true);
-
-    // Prepare the data to send to the server
-    const formData: FormData = {
-      photo,
-      card_name,
-      card_phone,
-      card_email,
-      card_intro,
-    };
-
-    // Call the function to send the data to the backend
-    sendDataToServer(formData)
-      .then((response: AxiosResponse) => {
-        // Handle success response from the server, if needed
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        // Handle error response from the server, if needed
-        console.error("Error sending data:", error);
-      });
-  };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -69,6 +31,7 @@ function EnrollPage() {
             const canvas = document.createElement("canvas");
             let width = image.width;
             let height = image.height;
+
             // 비율 계산
             if (width > height && width > MAX_WIDTH) {
               height *= MAX_WIDTH / width;
@@ -77,10 +40,13 @@ function EnrollPage() {
               width *= MAX_HEIGHT / height;
               height = MAX_HEIGHT;
             }
+
             canvas.width = width;
             canvas.height = height;
+
             const ctx = canvas.getContext("2d");
             ctx?.drawImage(image, 0, 0, width, height);
+
             // 변경된 크기의 이미지를 미리보기에 설정
             previewImage.src = canvas.toDataURL();
           };
@@ -97,8 +63,8 @@ function EnrollPage() {
   return (
     <div className="flex justify-center items-center ml-10rem h-60vh">
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
-        <h2 className="font-bold text-[40px] mb-4">
-          명함 <span className="plus">등록</span>
+        <h2 className="font-extrabold text-[30px] mb-4">
+          My Business <span className="plus">Card</span>
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
@@ -117,28 +83,28 @@ function EnrollPage() {
             />
             <label
               htmlFor="file"
-              className="opacity-0 absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-15"
+              className="opacity-0 absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-20"
             >
-              <span className="text-2xl">+</span>
+              <span className="text-4xl">+</span>
             </label>
           </div>
           <div className="enroll-form-group mt-3">
             <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[18px] font-medium">이름*</label>
+              <label className="label text-[18px] font-medium">Name*</label>
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_name}
+                value={name}
                 placeholder="홍길동"
                 onChange={(event) => setName(event.target.value)}
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">전화번호*</label>
+              <label className="label text-[18px]">Phone*</label>
               <input
                 type="phone"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_phone}
+                value={phone}
                 placeholder="010-0000-0000"
                 onChange={(event) => setPhone(event.target.value)}
               />
@@ -150,34 +116,36 @@ function EnrollPage() {
                 name="email"
                 id="email"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_email}
+                value={email}
                 placeholder="name@company.com"
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">소개</label>
+              <label className="label text-[18px]">Introduction</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_intro}
+                value={introduction}
                 placeholder="자기 소개"
-                onChange={(event) => setIntro(event.target.value)}
+                onChange={(event) => setIntroduction(event.target.value)}
               ></textarea>
             </div>
           </div>
-          <button
-            type="submit"
-            onClick={toggleModal}
-            className="text-rememberBlueActive text-[18px] font-extrabold"
-          >
-            명함 등록
-          </button>
+          <div className="enroll-form-group">
+            <button
+              type="submit"
+              onClick={toggleModal}
+              className="text-rememberBlueActive text-[14px] border-gray-200"
+            >
+              명함 등록
+            </button>
+          </div>
           <div className="mt-4 enroll-form-group">
             <Link to="/newenroll">
               <button
                 type="submit"
                 onClick={toggleModal}
-                className="text-rememberBlueActive text-[18px] font-extrabold"
+                className="text-rememberBlueActive text-[14px] border-gray-200"
               >
                 새로운 명함 등록
               </button>
@@ -203,7 +171,7 @@ function EnrollPage() {
                 onClick={toggleModal} // close 버튼을 누르면 Modal을 닫도록 설정
               >
                 <svg
-                  className="w-3 h-3"
+                  className="w-2 h-2"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -220,8 +188,8 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-medium text-gray-900">
-                  명함 확인
+                <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-900">
+                  Check Your Card
                 </h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -232,7 +200,7 @@ function EnrollPage() {
                       src={
                         photo
                           ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/Vg8KsjJ/image.png"
+                          : "https://i.ibb.co/jTVf7yn/business-Card4.jpg"
                       }
                       alt="Example"
                     />
@@ -240,37 +208,37 @@ function EnrollPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      이름
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
+                      Name
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      전화번호
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
+                      Phone
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       Email
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="indroduction"
-                      className="block mb-4 text-sm font-medium text-gray-900 "
+                      className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      소개
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>
+                      Introduction
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{introduction}</div>
                     </label>
                   </div>
                   <Link to="/main">

@@ -64,8 +64,8 @@ function EnrollPage() {
   return (
     <div className="flex justify-center items-center ml-10rem h-40vh">
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
-        <h2 className="font-extrabold text-[40px] mb-4">
-          상대 명함 <span className="plus">등록</span>
+        <h2 className="font-extrabold text-[30px] mb-4">
+          Other's Business <span className="plus">Card</span>
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
@@ -91,7 +91,7 @@ function EnrollPage() {
           </div>
           <div className="enroll-form-group mt-3 font-medium">
             <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[18px]">이름*</label>
+              <label className="label text-[18px]">Name*</label>
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -101,7 +101,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">전화번호*</label>
+              <label className="label text-[18px]">Phone*</label>
               <input
                 type="phone"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -111,7 +111,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">관계*</label>
+              <label className="label text-[18px]">Relation*</label>
               <input
                 type="relation"
                 name="relation"
@@ -147,7 +147,7 @@ function EnrollPage() {
           <button
             type="submit"
             onClick={toggleModal}
-            className="text-rememberBlueActive text-[18px] font-extrabold"
+            className="text-rememberBlueActive text-[18px] border-gray-200"
           >
             명함 등록
           </button>
@@ -188,8 +188,8 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">
-                  명함 등록 확인
+                <h4 className="mb-4 text-xl font-extrabold text-gray-900 dark:text-gray-900">
+                  Check new card
                 </h4>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -200,7 +200,7 @@ function EnrollPage() {
                       src={
                         photo
                           ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/Vg8KsjJ/image.png"
+                          : "https://i.ibb.co/jTVf7yn/business-Card4.jpg"
                       }
                       alt="Example"
                     />
@@ -210,7 +210,7 @@ function EnrollPage() {
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      이름
+                      Name:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
                     </label>
                   </div>
@@ -219,7 +219,7 @@ function EnrollPage() {
                       htmlFor="phone"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Phone
+                      Phone:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
                     </label>
                   </div>
@@ -228,7 +228,7 @@ function EnrollPage() {
                       htmlFor="relation"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      관계
+                      Relation:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{relation}</div>
                     </label>
                   </div>
@@ -237,7 +237,7 @@ function EnrollPage() {
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      Email
+                      Email:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
                     </label>
                   </div>
@@ -246,7 +246,7 @@ function EnrollPage() {
                       htmlFor="indroduction"
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
-                      메모
+                      Memo:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
                     </label>
                   </div>

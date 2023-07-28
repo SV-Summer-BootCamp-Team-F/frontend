@@ -5,6 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 // Initialize the 3D module for Highcharts
 Highcharts3D(Highcharts);
 
+
 type PieChartPropsType = {
   data: [string, number][];
 };
@@ -29,13 +30,14 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
         alpha: 45,
         beta: 0,
       },
-      width: 800,
+       width: 800,
       height: 600,
     },
     title: {
-      text: "직종 비율",
+      text: "Job distribution ratio",
       align: "center",
     },
+
     accessibility: {
       point: {
         valueSuffix: "%",
@@ -48,7 +50,8 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       pie: {
         allowPointSelect: true,
         cursor: "pointer",
-        depth: 85,
+
+        depth: 35,
         dataLabels: {
           enabled: true,
           format: "{point.name}",
@@ -64,6 +67,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
     ],
   };
 
+
   useEffect(() => {
     // Clean up the chart on unmount
     return () => {
@@ -77,3 +81,4 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
 export default ThreeDPieChart;
+
