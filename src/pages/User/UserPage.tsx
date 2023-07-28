@@ -4,7 +4,7 @@ import LineChart from "../../components/analytic/LineChart";
 import PieChart from "../../components/analytic/PieChart";
 import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
-import StatisticsBox from "../../components/analytic/StatisticsBox";
+
 
 type UserType = {
   user_name: string;
