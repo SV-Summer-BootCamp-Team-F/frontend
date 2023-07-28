@@ -62,6 +62,11 @@ function EnrollPage() {
 
   return (
     <div className="flex justify-center items-center ml-10rem h-60vh">
+      <Link to="/">
+        <div className="absolute top-4 left-20 transform -translate-x-1/2 -translate-y-1/2 text-rememberBlack font-bold text-lg cursor-pointer">
+          Remember <span className="text-rememberBlue">plus+</span>
+        </div>
+      </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
         <h2 className="font-extrabold text-[30px] mb-4">
           My Business <span className="plus">Card</span>
@@ -171,7 +176,7 @@ function EnrollPage() {
                 onClick={toggleModal} // close 버튼을 누르면 Modal을 닫도록 설정
               >
                 <svg
-                  className="w-2 h-2"
+                  className="w-3 h-3"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -188,7 +193,7 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-900">
+                <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                   Check Your Card
                 </h3>
                 <form className="space-y-6" action="#">
@@ -208,40 +213,40 @@ function EnrollPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Name
+                      Name:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Phone
+                      Phone:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Email
+                      Email:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="indroduction"
-                      className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
+                      className="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Introduction
+                      Introduction:
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{introduction}</div>
                     </label>
                   </div>
-                  <Link to="/main">
+                  <Link to="/second">
                     <button
                       type="submit"
                       className="w-full text-white bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -258,5 +263,4 @@ function EnrollPage() {
     </div>
   );
 }
-
 export default EnrollPage;
