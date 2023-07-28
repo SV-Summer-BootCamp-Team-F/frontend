@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
-import HC_styled from "highcharts/css/highcharts.css";
 
 HC_more(Highcharts);
 HC_exporting(Highcharts);
@@ -97,7 +94,7 @@ const PieChart = () => {
   };
 
   return (
-    <div className="rounded-lg w-[350px] h-[330px] bg-rgb(255, 255, 255, 1) shadow-md rounded-xl">
+    <div className="rounded-lg w-[350px] h-[330px] bg-rgb(255, 255, 255, 1) shadow-md ">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

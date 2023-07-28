@@ -33,7 +33,7 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       height: 600,
     },
     title: {
-      text: "Job distribution ratio",
+      text: "직종 비율",
       align: "center",
     },
     accessibility: {

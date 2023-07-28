@@ -98,15 +98,15 @@ function EnrollPage() {
   return (
     <div className="flex justify-center items-center ml-10rem h-60vh">
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
-        <h2 className="font-bold text-[25px] mb-4">
-          My Business <span className="plus">Card</span>
+        <h2 className="font-bold text-[40px] mb-4">
+          명함 <span className="plus">등록</span>
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="enroll-form-group relative">
             <img
               id="preview-image"
               className="example-picture max-w-full max-h-80"
-              src="https://i.ibb.co/jTVf7yn/business-Card4.jpg"
+              src="https://i.ibb.co/Vg8KsjJ/image.png"
               alt="Example"
             />
             <input
@@ -118,14 +118,14 @@ function EnrollPage() {
             />
             <label
               htmlFor="file"
-              className="absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-15"
+              className="opacity-0 absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-15"
             >
               <span className="text-2xl">+</span>
             </label>
           </div>
           <div className="enroll-form-group mt-3">
             <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[13px] font-medium">Name*</label>
+              <label className="label text-[18px] font-medium">이름*</label>
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -135,7 +135,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[13px]">Phone*</label>
+              <label className="label text-[18px]">전화번호*</label>
               <input
                 type="phone"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
@@ -145,7 +145,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[13px]">Email</label>
+              <label className="label text-[18px]">Email</label>
               <input
                 type="email"
                 name="email"
@@ -157,7 +157,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[13px]">Introduction</label>
+              <label className="label text-[18px]">소개</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
                 value={card_intro}
@@ -169,10 +169,21 @@ function EnrollPage() {
           <button
             type="submit"
             onClick={toggleModal}
-            className="text-rememberBlueActive text-[14px] border-gray-200"
+            className="text-rememberBlueActive text-[18px] font-extrabold"
           >
             명함 등록
           </button>
+          <div className="mt-4 enroll-form-group">
+            <Link to="/newenroll">
+              <button
+                type="submit"
+                onClick={toggleModal}
+                className="text-rememberBlueActive text-[18px] font-extrabold"
+              >
+                새로운 명함 등록
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
 
@@ -210,8 +221,8 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                  Check Your Card
+                <h3 className="mb-4 text-xl font-medium text-gray-900">
+                  명함 확인
                 </h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
@@ -222,7 +233,7 @@ function EnrollPage() {
                       src={
                         photo
                           ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/jTVf7yn/business-Card4.jpg"
+                          : "https://i.ibb.co/Vg8KsjJ/image.png"
                       }
                       alt="Example"
                     />
@@ -230,36 +241,36 @@ function EnrollPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Name:
+                      이름
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Phone:
+                      전화번호
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-medium text-gray-900 "
                     >
-                      Email:
+                      Email
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
                     </label>
                   </div>
                   <div>
                     <label
                       htmlFor="indroduction"
-                      className="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-4 text-sm font-medium text-gray-900 "
                     >
-                      Introduction:
+                      소개
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_intro}</div>
                     </label>
                   </div>

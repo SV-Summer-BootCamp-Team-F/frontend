@@ -4,21 +4,20 @@ import LineChart from "../../components/analytic/LineChart";
 import PieChart from "../../components/analytic/PieChart";
 import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
-import StatisticsBox from "../../components/analytic/StatisticsBox";
-import axios from "axios";
+
 
 type UserType = {
   user_name: string;
   user_email: string;
   password: string;
-  user_phone: string;
+  phone_num: string;
   user_photo: string;
 };
 
 type CardType = {
   card_name: string;
   card_email: string;
-  card_phone: string;
+  phone_num: string;
   card_intro: string;
   card_photo: string;
 };
@@ -31,49 +30,40 @@ const UserPage: React.FC = () => {
     user_name: "",
     user_email: "",
     password: "",
-    user_phone: "",
+    phone_num: "",
     user_photo: "",
   });
 
   const [cardData, setCardData] = useState<CardType>({
     card_name: "",
     card_email: "",
-    card_phone: "",
+    phone_num: "",
     card_intro: "",
     card_photo: "",
   });
 
-  useEffect(() => {
-    const user_uuid = localStorage.getItem("user_uuid");
-    axios
-      .get(`http://127.0.0.1:8000/api/v1/users/info/${user_uuid}/`)
-      .then((response) => {
-        // 로그인 성공 시 처리
-        console.log("유저 정보 불러오기 성공!", response.data);
-        const userData: { result: UserType } = response.data;
-        console.log("userData", userData.result);
-        setUserData(userData.result);
-      })
-      .catch((error) => {
-        // 로그인 실패 시 처리
-        console.error("유저 정보 불러오기 실패", error);
-        // 예: 에러 메시지 표시 등
-      });
+  const userId = 1;
 
-    axios
-      .get(`http://127.0.0.1:8000/api/v1/cards/info/${user_uuid}/`)
-      .then((response) => {
-        // 로그인 성공 시 처리
-        console.log("카드 정보 불러오기 성공!", response.data);
-        const cardData: { result: CardType } = response.data;
-        console.log(cardData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userResponse = await fetch("/api/v1/users/info/" + userId);
+        const cardResponse = await fetch("/api/v1/cards/info/" + userId);
+
+        if (!userResponse.ok || !cardResponse.ok) {
+          throw new Error("Network response was not ok.");
+        }
+
+        const userData: { message: string; result: UserType } = await userResponse.json();
+        const cardData: { message: string; result: CardType } = await cardResponse.json();
+
+        setUserData(userData.result);
         setCardData(cardData.result);
-      })
-      .catch((error) => {
-        // 로그인 실패 시 처리
-        console.error("카드 정보 불러오기 실패", error);
-        // 예: 에러 메시지 표시 등
-      });
+      } catch (error) {
+        console.error("데이터를 불러오는데 오류가 발생했습니다:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const handleButtonClick = (component: string) => {
@@ -87,7 +77,7 @@ const UserPage: React.FC = () => {
         <UserProfile
           name={userData.user_name}
           email={userData.user_email}
-          phoneNumber={userData.user_phone}
+          phoneNumber={userData.phone_num}
           passwd={userData.password}
           photo={userData.user_photo}
         />
@@ -95,14 +85,14 @@ const UserPage: React.FC = () => {
           <button
             onClick={() => handleButtonClick("cardInfo")}
             type="button"
-            className="shadow-sm w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
+            className="w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
           >
             Card
           </button>
           <button
             onClick={() => handleButtonClick("chart")}
             type="button"
-            className="shadow-sm w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
+            className="w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
           >
             Analytic
           </button>
@@ -113,7 +103,7 @@ const UserPage: React.FC = () => {
           <CardInfo
             name={cardData.card_name}
             email={cardData.card_email}
-            phoneNumber={cardData.card_phone}
+            phoneNumber={cardData.phone_num}
             introduction={cardData.card_intro}
             photo={cardData.card_photo}
           />
@@ -130,7 +120,7 @@ const UserPage: React.FC = () => {
                   Today's Views
                 </div>
                 <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
-                  20
+                  300
                 </div>
               </div>
               <div
@@ -140,7 +130,7 @@ const UserPage: React.FC = () => {
                   Total Views
                 </div>
                 <div className="text-black text-[25px] flex justify-center items-center font-semibold">
-                  127
+                  200
                 </div>
               </div>
               <div
@@ -150,7 +140,7 @@ const UserPage: React.FC = () => {
                   Today's Added Cards
                 </div>
                 <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
-                  7
+                  100
                 </div>
               </div>
               <div
@@ -160,7 +150,7 @@ const UserPage: React.FC = () => {
                   Total Number of Cards Added
                 </div>
                 <div className="text-black text-[25px] flex justify-center items-center font-semibold">
-                  104
+                  400
                 </div>
               </div>
             </div>
