@@ -1,7 +1,6 @@
 import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
 type ChartDataItemType = {
   name: string;
   data: (number | null)[];
@@ -15,9 +14,7 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
   const options: Highcharts.Options = {
     colors: ["#01579B"],
     title: {
-
-      text: "Number of Subscribers Status",
-
+      text: "Number of Users Trend on our site",
       align: "center",
     },
     // subtitle: {
@@ -27,7 +24,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
     yAxis: {
       title: {
         text: "Number of Users Trend on our site",
-
       },
     },
     xAxis: {
@@ -51,9 +47,7 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
     series: [
       {
         type: "line",
-
         name: "User",
-
         data: chartData[0].data,
       },
     ],
@@ -73,7 +67,6 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
         },
       ],
     },
-
     chart: {
       type: "line", // Specify the chart type (you can change this to other types if needed)
       width: 800, // Set the width of the chart
@@ -83,4 +76,3 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 export default IntroLineChart;
-
