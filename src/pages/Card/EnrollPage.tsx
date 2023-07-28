@@ -24,7 +24,8 @@ function EnrollPage() {
   const MAX_HEIGHT = 300;
 
   function sendDataToServer(data: FormData): Promise<AxiosResponse> {
-    const apiUrl = "http://127.0.0.1:8000/api/v1/cards/add/";
+    const user_uuid = localStorage.getItem("user_uuid");
+    const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
 
     // Assuming your backend API expects a POST request
     return axios.post(apiUrl, data);
@@ -96,11 +97,6 @@ function EnrollPage() {
 
   return (
     <div className="flex justify-center items-center ml-10rem h-60vh">
-      <Link to="/">
-        <div className="absolute top-4 left-20 transform -translate-x-1/2 -translate-y-1/2 text-rememberBlack font-bold text-lg cursor-pointer">
-          Remember <span className="text-rememberBlue">plus+</span>
-        </div>
-      </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
         <h2 className="font-bold text-[25px] mb-4">
           My Business <span className="plus">Card</span>

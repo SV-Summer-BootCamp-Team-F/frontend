@@ -29,13 +29,19 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedIntro, setUpdatedIntro] = useState(introduction);
-  const [updatedPhoto, setUpdatedPhoto] = useState("https://i.ibb.co/Vg8KsjJ/image.png");
-  const userId = 1;
+  const [updatedPhoto, setUpdatedPhoto] = useState(
+    "https://marketplace.canva.com/EAFLvVGpoYg/1/0/1600w/canva-white-and-blue-minimalist-modern-real-estate-property-business-card-xyziYOYDNjo.jpg"
+  );
+
+  const user_uuid = localStorage.getItem("user_uuid");
+
   useEffect(() => {
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedIntro(introduction);
-    setUpdatedPhoto("https://i.ibb.co/Vg8KsjJ/image.png");
+    setUpdatedPhoto(
+      "https://marketplace.canva.com/EAFLvVGpoYg/1/0/1600w/canva-white-and-blue-minimalist-modern-real-estate-property-business-card-xyziYOYDNjo.jpg"
+    );
   }, [name, email, introduction, photo]);
   const handleSaveChanges = async (updatedCardData: {
     name: string;
@@ -44,8 +50,9 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
   }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
+
       const response = await axios.put("/api/v1/cards/update/", {
-        user_id: userId,
+        user_id: user_uuid,
         ...updatedCardData,
       });
 
@@ -62,7 +69,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
   const handlePhotoSaveChanges = async (updatedCardData: { user_id: number; photo: string }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
-      updatedCardData.user_id = userId;
+      updatedCardData.user_id = user_uuid;
       const response = await axios.put("/api/v1/cards/update/", updatedCardData);
       if (response.status === 202) {
         setUpdatedPhoto(updatedCardData.photo);
