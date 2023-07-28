@@ -14,7 +14,7 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
   const options: Highcharts.Options = {
     colors: ["#01579B"],
     title: {
-      text: "Number of Users Trend on our site",
+      text: "사이트 유저 사용자 수",
       align: "center",
     },
     // subtitle: {
@@ -23,7 +23,7 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
     // },
     yAxis: {
       title: {
-        text: "Number of Users Trend on our site",
+        text: "사이트 유저 추이",
       },
     },
     xAxis: {

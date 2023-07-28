@@ -3,6 +3,7 @@ import CardInfoUpdateModal from "./CardInfoUpdateModal";
 import CardPhotoUpdateModal from "./CardPhotoUpdateModal";
 import axios from "axios";
 import { FaCamera } from "react-icons/fa";
+
 export type CardPropsType = {
   name: string;
   email: string;
