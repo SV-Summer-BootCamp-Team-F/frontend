@@ -41,7 +41,7 @@ function Login() {
         <h2 className="remember">
           Remember <span className="plus">plus+</span>
         </h2>
-        <h1 className="login">LOGIN</h1>
+        <h1 className="login">로그인</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="label">Email</label>
@@ -53,7 +53,7 @@ function Login() {
             />
           </div>
           <div className="form-group">
-            <label className="label">Password</label>
+            <label className="label">비밀번호</label>
             <input
               type="password"
               className="login-input"
@@ -62,7 +62,7 @@ function Login() {
             />
           </div>
           <button type="submit" className="loginButton">
-            Login
+            로그인
           </button>
         </form>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>

@@ -48,10 +48,10 @@ const MainPage: React.FC = () => {
             transform: "translate(-50%, -50%)",
             color: "black",
             fontWeight: "bolder",
-            fontSize: "2.5rem",
+            fontSize: "4.5rem",
           }}
         >
-          BuisnessCard <span style={{ color: "skyblue" }}>registration</span>
+          명함 <span style={{ color: "skyblue" }}>등록</span>
         </div>
         <div
           style={{
@@ -64,7 +64,7 @@ const MainPage: React.FC = () => {
             fontSize: "3.6rem",
           }}
         >
-          My <span style={{ color: "black" }}>Connection</span>
+          나의 <span style={{ color: "black" }}>Connection</span>
         </div>
         <div className="main-container"></div>
         <Card />
