@@ -23,8 +23,10 @@ function EnrollPage() {
   const MAX_WIDTH = 500;
   const MAX_HEIGHT = 300;
 
+  const user_uuid = localStorage.getItem("user_uuid");
+
   function sendDataToServer(data: FormData): Promise<AxiosResponse> {
-    const apiUrl = "http://127.0.0.1:8000/api/v1/cards/add/";
+    const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
 
     // Assuming your backend API expects a POST request
     return axios.post(apiUrl, data);
