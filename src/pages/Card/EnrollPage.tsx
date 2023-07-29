@@ -23,8 +23,10 @@ function EnrollPage() {
   const MAX_WIDTH = 500;
   const MAX_HEIGHT = 300;
 
+  const user_uuid = localStorage.getItem("user_uuid");
+
   function sendDataToServer(data: FormData): Promise<AxiosResponse> {
-    const apiUrl = "http://127.0.0.1:8000/api/v1/cards/add/";
+    const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
 
     // Assuming your backend API expects a POST request
     return axios.post(apiUrl, data);
@@ -220,9 +222,7 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-medium text-gray-900">
-                  명함 확인
-                </h3>
+                <h3 className="mb-4 text-xl font-medium text-gray-900">명함 확인</h3>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
@@ -230,18 +230,13 @@ function EnrollPage() {
                       id="preview-image-modal"
                       className="example-picture max-w-full max-h-80"
                       src={
-                        photo
-                          ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/Vg8KsjJ/image.png"
+                        photo ? URL.createObjectURL(photo) : "https://i.ibb.co/Vg8KsjJ/image.png"
                       }
                       alt="Example"
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
+                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">
                       이름
                       <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
                     </label>

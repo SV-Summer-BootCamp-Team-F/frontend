@@ -1,18 +1,50 @@
+import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function EnrollPage() {
+interface FormData {
+  photo: File | null;
+  card_name: string;
+  card_phone: string;
+  card_email: string;
+  card_relation: string;
+  card_memo: string;
+}
+
+function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [memo, setMemo] = useState("");
-  const [relation, setRelation] = useState("");
+  const [card_name, setName] = useState("");
+  const [card_phone, setPhone] = useState("");
+  const [card_email, setEmail] = useState("");
+  const [card_relation, setRelation] = useState("");
+  const [card_memo, setMemo] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setIsModalOpen(true);
+
+    // API를 사용하여 전화번호가 등록된 회원인지 확인합니다.
+    try {
+      const apiUrl = "http://127.0.0.1:8000/api/v1/relations/phone/";
+      const response: AxiosResponse = await axios.get(apiUrl + card_phone);
+
+      if (response.data === "번호 조회 성공") {
+        // 전화번호가 등록된 회원일 경우, 등록된 회원용 API를 호출하거나 원하는 작업을 수행합니다.
+        console.log("전화번호가 등록된 회원입니다!");
+      } else if (response.data === "번호 조회 실패") {
+        // 전화번호가 등록되지 않은 경우, 미등록 회원용 API를 호출하거나 원하는 작업을 수행합니다.
+        console.log("전화번호가 등록되지 않은 회원입니다!");
+      } else {
+        // 필요한 경우 기타 응답 처리를 합니다.
+        console.log("API에서 예상치 못한 응답을 받았습니다.");
+      }
+
+      // API 호출이 완료되면 모달을 표시합니다.
+      setIsModalOpen(true);
+    } catch (error) {
+      // API 호출 오류를 처리합니다.
+      console.error("전화번호 확인 중 오류가 발생했습니다:", error);
+    }
   };
 
   const MAX_WIDTH = 500;
@@ -95,7 +127,7 @@ function EnrollPage() {
               <input
                 type="name"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={name}
+                value={card_name}
                 placeholder="홍길동"
                 onChange={(event) => setName(event.target.value)}
               />
@@ -105,7 +137,7 @@ function EnrollPage() {
               <input
                 type="phone"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={phone}
+                value={card_phone}
                 placeholder="010-0000-0000"
                 onChange={(event) => setPhone(event.target.value)}
               />
@@ -117,7 +149,7 @@ function EnrollPage() {
                 name="relation"
                 id="relation"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={relation}
+                value={card_relation}
                 placeholder="Relation"
                 onChange={(event) => setRelation(event.target.value)}
               />
@@ -129,7 +161,7 @@ function EnrollPage() {
                 name="email"
                 id="email"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={email}
+                value={card_email}
                 placeholder="name@company.com"
                 onChange={(event) => setEmail(event.target.value)}
               />
@@ -138,7 +170,7 @@ function EnrollPage() {
               <label className="label text-[18px]">Memo</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={memo}
+                value={card_memo}
                 placeholder="비고"
                 onChange={(event) => setMemo(event.target.value)}
               ></textarea>
@@ -188,9 +220,7 @@ function EnrollPage() {
                 <span className="sr-only">Close modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">
-                  명함 등록 확인
-                </h4>
+                <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">명함 등록 확인</h4>
                 <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
@@ -198,9 +228,7 @@ function EnrollPage() {
                       id="preview-image-modal"
                       className="example-picture max-w-full max-h-80"
                       src={
-                        photo
-                          ? URL.createObjectURL(photo)
-                          : "https://i.ibb.co/Vg8KsjJ/image.png"
+                        photo ? URL.createObjectURL(photo) : "https://i.ibb.co/Vg8KsjJ/image.png"
                       }
                       alt="Example"
                     />
@@ -211,7 +239,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       이름
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{name}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_name}</div>
                     </label>
                   </div>
                   <div>
@@ -220,7 +248,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       Phone
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{phone}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_phone}</div>
                     </label>
                   </div>
                   <div>
@@ -229,7 +257,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       관계
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{relation}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_relation}</div>
                     </label>
                   </div>
                   <div>
@@ -238,7 +266,7 @@ function EnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       Email
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{email}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_email}</div>
                     </label>
                   </div>
                   <div>
@@ -247,7 +275,7 @@ function EnrollPage() {
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       메모
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_memo}</div>
                     </label>
                   </div>
                   <Link to="/main">
@@ -268,4 +296,4 @@ function EnrollPage() {
   );
 }
 
-export default EnrollPage;
+export default NewEnrollPage;
