@@ -174,17 +174,6 @@ function EnrollPage() {
           >
             명함 등록
           </button>
-          <div className="mt-4 enroll-form-group">
-            <Link to="/newenroll">
-              <button
-                type="submit"
-                onClick={toggleModal}
-                className="text-rememberBlueActive text-[18px] font-extrabold"
-              >
-                새로운 명함 등록
-              </button>
-            </Link>
-          </div>
         </form>
       </div>
 
