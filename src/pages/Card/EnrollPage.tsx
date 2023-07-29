@@ -96,11 +96,6 @@ function EnrollPage() {
 
   return (
     <div className="flex justify-center items-center ml-10rem h-60vh">
-      <Link to="/">
-        <div className="absolute top-4 left-20 transform -translate-x-1/2 -translate-y-1/2 text-rememberBlack font-bold text-lg cursor-pointer">
-          Remember <span className="text-rememberBlue">plus+</span>
-        </div>
-      </Link>
       <div className="bg-white p-40 pt-20 pb-20 w-50rem rounded-15 text-center mt-20 mb-40 shadow-md rounded-md border border-gray-300 my-2rem">
         <h2 className="font-bold text-[40px] mb-4">
           명함 <span className="plus">등록</span>
@@ -110,7 +105,7 @@ function EnrollPage() {
             <img
               id="preview-image"
               className="example-picture max-w-full max-h-80"
-              src="https://i.ibb.co/jTVf7yn/business-Card4.jpg"
+              src="https://i.ibb.co/Vg8KsjJ/image.png"
               alt="Example"
             />
             <input
@@ -149,7 +144,7 @@ function EnrollPage() {
               />
             </div>
             <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[13px]">Email</label>
+              <label className="label text-[18px]">Email</label>
               <input
                 type="email"
                 name="email"
