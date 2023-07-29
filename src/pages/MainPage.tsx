@@ -1,44 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Card from "../components/main/Card";
-import Phone from "../components/main/Phone";
-import Button from "../components/main/Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Card from '../components/main/Card';
+import Phone from '../components/main/Phone';
+import Button from '../components/main/Button';
+
 
 const MainPage: React.FC = () => {
   return (
     <div>
       <div>
         <Link to="/">
-          <div
-            style={{
-              position: "fixed",
-              top: "5%",
-              right: "10%",
-              transform: "translate(50%, -50%)",
-              color: "black",
-              fontWeight: "bolder",
-              fontSize: "1.3rem",
-              cursor: "pointer",
-            }}
-          >
-            LOG<span style={{ color: "skyblue" }}>OUT</span>
-          </div>
+          <div style={{ position: 'fixed', top: '5%', right: '10%', transform: 'translate(50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1.3rem', cursor: 'pointer' }}>LOG<span style={{ color: 'skyblue' }}>OUT</span></div>
         </Link>
         <Link to="/user">
-          <div
-            style={{
-              position: "fixed",
-              top: "5%",
-              right: "18%",
-              transform: "translate(50%, -50%)",
-              color: "black",
-              fontWeight: "bolder",
-              fontSize: "1.3rem",
-              cursor: "pointer",
-            }}
-          >
-            MY<span style={{ color: "skyblue" }}>PAGE</span>
-          </div>
+          <div style={{ position: 'fixed', top: '5%', right: '18%', transform: 'translate(50%, -50%)', color: 'black', fontWeight: 'bolder', fontSize: '1.3rem', cursor: 'pointer' }}>MY<span style={{ color: 'skyblue' }}>PAGE</span></div>
         </Link>
         <div
           style={{
@@ -48,10 +23,10 @@ const MainPage: React.FC = () => {
             transform: "translate(-50%, -50%)",
             color: "black",
             fontWeight: "bolder",
-            fontSize: "3.7rem",
+            fontSize: "2.5rem",
           }}
         >
-          명함 <span style={{ color: "skyblue" }}>등록</span>
+          BuisnessCard <span style={{ color: "skyblue" }}>registration</span>
         </div>
         <div
           style={{
@@ -64,11 +39,13 @@ const MainPage: React.FC = () => {
             fontSize: "3.6rem",
           }}
         >
-          나의 <span style={{ color: "black" }}>Connection</span>
+          My <span style={{ color: "black" }}>Connection</span>
         </div>
         <div className="main-container"></div>
         <Card />
-        <div style={{ position: "absolute", top: "35rem", left: "15rem" }}>
+
+        <div style={{ position: 'absolute', top: '35rem', left: '15rem' }}>
+
           <Link to="/enroll">
             <Button />
           </Link>

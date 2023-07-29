@@ -31,7 +31,7 @@ return (
           cursor: 'pointer',
         }}
       >
-        시작하기
+        START
       </button>
     </div>
   );

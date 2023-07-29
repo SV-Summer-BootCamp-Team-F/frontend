@@ -15,15 +15,14 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
   };
 
   useEffect(() => {
-    const zoomHandler = zoom<SVGSVGElement, unknown>().on(
-      "zoom",
-      (event: D3ZoomEvent<SVGSVGElement, unknown>) => {
+    const zoomHandler = zoom<SVGSVGElement, unknown>()
+      .scaleExtent([1, 10])
+      .on("zoom", (event: D3ZoomEvent<SVGSVGElement, unknown>) => {
         const { x, y, k } = event.transform;
         setK(k);
         setX(x);
         setY(y);
-      }
-    );
+      });
 
     if (svgRef.current) {
       select(svgRef.current).call(zoomHandler);
@@ -35,7 +34,7 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
       <defs>
         <linearGradient id="gradient" gradientTransform="rotate(70)">
           <stop offset="0%" stopColor="#3F4E74" />
-          <stop offset="100%" stopColor={`rgba(0, 0, 0, ${k-4})`} /> {/* Update the stopColor */}
+          <stop offset="100%" stopColor={`rgba(0, 0, 0, ${k - 4})`} /> {/* Update the stopColor */}
         </linearGradient>
       </defs>
 
@@ -54,7 +53,7 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
         </button>
       </foreignObject>
       <text x="6rem" y="7rem" fill="Skyblue" fontWeight={800} fontSize={40}>
-        My 
+        My
       </text>
       <text x="10rem" y="7rem" fill="white" fontWeight={700} fontSize={30}>
         Connection
