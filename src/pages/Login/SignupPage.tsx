@@ -39,10 +39,10 @@ const Signup = () => {
         <h2 className='remember'>
           Remember <span className='plus'>plus+</span>
         </h2>
-        <h1 className='signup'>SIGNUP</h1>
+        <h1 className='signup'>회원가입</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="label">Your name</label>
+            <label className="label">이름</label>
             <input type="text" className="signup-input" value={user_name} onChange={(event) => setName(event.target.value)} />
           </div>
           <div className="form-group">
@@ -50,14 +50,14 @@ const Signup = () => {
             <input type="email" className="signup-input" value={user_email} onChange={(event) => setEmail(event.target.value)} />
           </div>
           <div className="form-group">
-            <label className="label">Password</label>
+            <label className="label">비밀번호</label>
             <input type="password" className="signup-input" value={password} onChange={(event) => setPassword(event.target.value)} />
           </div>
           <div className="form-group">
             <label className="label">Phone</label>
             <input type="tel" className="signup-input" value={user_phone} onChange={(event) => setPhone(event.target.value)} />
           </div>
-          <button className="button" type="submit">Signup</button>
+          <button className="button" type="submit">회원가입</button>
         </form>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
         </div>

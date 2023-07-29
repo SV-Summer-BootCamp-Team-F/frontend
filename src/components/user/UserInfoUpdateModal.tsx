@@ -1,5 +1,15 @@
 import React from "react";
 
+type UserInfoUpdateModalPropsType = {
+  onSaveChanges: (data: {
+    user_id: number;
+    name: string;
+    email: string;
+    password: string;
+    update_at: string;
+  }) => void;
+};
+
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -13,15 +23,17 @@ const CloseIcon = () => (
   </svg>
 );
 
-export default function UserInfoUpdateModal({ onSaveChanges }) {
+export default function UserInfoUpdateModal({ onSaveChanges }: UserInfoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
+  const user_id = 1;
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const update_at = new Date().toISOString().slice(0, 10);
 
   const handleSaveChanges = () => {
     // Add your logic here to save the changes (e.g., send data to the server)
-    onSaveChanges({ name, email, password });
+    onSaveChanges({ user_id, name, email, password, update_at });
     setShowModal(false);
   };
 
@@ -34,11 +46,12 @@ export default function UserInfoUpdateModal({ onSaveChanges }) {
     <>
       <button
         type="button"
-        className="mt-8 w-[200px] h-[55px] text-[13px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-[10px] dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+        className="mt-8 w-[200px] h-[55px] text-[13px] text-white bg-rememberBlue hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-[10px] dark:bg-rememberBlue dark:hover:bg-rememberBlueHover dark:focus:ring-gray-700"
         onClick={handleEditProfile}
       >
         Edit Profile
       </button>
+
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
