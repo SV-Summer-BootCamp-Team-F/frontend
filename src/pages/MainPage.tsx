@@ -69,9 +69,7 @@ const MainPage: React.FC = () => {
         <div className="main-container"></div>
         <Card />
         <div style={{ position: "absolute", top: "35rem", left: "15rem" }}>
-          <Link to="/enroll">
-            <Button />
-          </Link>
+          <Button />
         </div>
         <div style={{ position: "absolute", top: "93.5rem", left: "82rem" }}>
           <Link to="/relation">
