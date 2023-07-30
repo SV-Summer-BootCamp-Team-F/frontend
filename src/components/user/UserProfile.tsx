@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserInfoUpdateModal from "./UserInfoUpdateModal";
-import { FaCamera } from "react-icons/fa";
 import UserPhotoUpdateModal from "./UserPhotoUpdateModal";
-
 export type UserPropsType = {
   name: string;
   email: string;
@@ -11,7 +9,6 @@ export type UserPropsType = {
   passwd: string;
   photo: string;
 };
-
 export type UserUpdatePropsType = {
   user_id: number;
   name: string;
@@ -19,28 +16,23 @@ export type UserUpdatePropsType = {
   passwd: string;
   update_at: string;
 };
-
 export type UserPhotoUpdatePropsType = {
   user_id: number;
   photo: string;
 };
-
 const user_uuid = localStorage.getItem("user_uuid");
-
 const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd, photo }) => {
   // State to store updated user data
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedPassword, setUpdatedPassword] = useState(passwd);
   const [updatedPhoto, setUpdatedPhoto] = useState(photo);
-
   useEffect(() => {
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedPassword(passwd);
     setUpdatedPhoto(photo);
   }, [name, email, passwd, photo]);
-
   const handleSaveChanges = async (updatedUserData: {
     user_name: string;
     user_email: string;
@@ -52,7 +44,6 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
         `http://127.0.0.1:8000//api/v1/users/update/${user_uuid}/`,
         updatedUserData
       );
-
       if (response.status === 202) {
         // Update the state with the new data
         setUpdatedName(updatedUserData.user_name);
@@ -64,23 +55,9 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
       console.error("Error updating profile:", error);
     }
   };
-
   const handlePhotoSaveChanges = async (updatedUserData: { photo: string }) => {
-    try {
-      // Send the PUT request to the API endpoint with the updated data
-      const response = await axios.put(
-        `http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`,
-        updatedUserData
-      );
-
-      if (response.status === 202) {
-        setUpdatedPhoto(updatedUserData.photo);
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
+    setUpdatedPhoto(updatedUserData.photo);
   };
-
   return (
     <div className="w-[270px] max-w-lg mt-10 mb-[40px] bg-white rounded-lg shadow-md p-12 box-border">
       <div className="relative">
@@ -101,5 +78,4 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
     </div>
   );
 };
-
 export default UserProfile;
