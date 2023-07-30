@@ -32,6 +32,22 @@ function EnrollPage() {
     return axios.post(apiUrl, data);
   }
 
+  function sendPhotoToServer(photo: File | null): Promise<AxiosResponse> {
+    const apiUrl = `http://0.0.0.0:8000/api/v1/cards/photo/${user_uuid}/`;
+    let formData = new FormData();
+
+    if (photo) {
+      formData.append("photo", photo);
+    }
+
+    // send photo with form data
+    return axios.post(apiUrl, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  }
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setIsModalOpen(true);
@@ -54,6 +70,14 @@ function EnrollPage() {
       .catch((error) => {
         // Handle error response from the server, if needed
         console.error("Error sending data:", error);
+      });
+
+    sendPhotoToServer(photo)
+      .then((response: AxiosResponse) => {
+        console.log("Photo sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending photo:", error);
       });
   };
 

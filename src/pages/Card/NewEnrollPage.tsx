@@ -13,6 +13,7 @@ interface FormData {
 
 function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
+
   const [card_name, setName] = useState("");
   const [card_phone, setPhone] = useState("");
   const [card_email, setEmail] = useState("");
@@ -20,22 +21,25 @@ function NewEnrollPage() {
   const [card_memo, setMemo] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const MAX_WIDTH = 500;
+  const MAX_HEIGHT = 300;
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // API를 사용하여 전화번호가 등록된 회원인지 확인합니다.
+    const apiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
+
     try {
-      const apiUrl = "http://127.0.0.1:8000/api/v1/relations/phone/";
-      const response: AxiosResponse = await axios.get(apiUrl + card_phone);
+      const response: AxiosResponse = await axios.get(apiUrl);
 
       if (response.data === "번호 조회 성공") {
-        // 전화번호가 등록된 회원일 경우, 등록된 회원용 API를 호출하거나 원하는 작업을 수행합니다.
-        console.log("전화번호가 등록된 회원입니다!");
+        // 회원인 경우
+        console.log("전화번호가 등록된 회원입니다.");
       } else if (response.data === "번호 조회 실패") {
-        // 전화번호가 등록되지 않은 경우, 미등록 회원용 API를 호출하거나 원하는 작업을 수행합니다.
-        console.log("전화번호가 등록되지 않은 회원입니다!");
+        // 비회원인 경우
+        console.log("전화번호가 등록되지 않은 회원입니다.");
       } else {
-        // 필요한 경우 기타 응답 처리를 합니다.
+        // 기타 응답 처리
         console.log("API에서 예상치 못한 응답을 받았습니다.");
       }
 
@@ -46,9 +50,6 @@ function NewEnrollPage() {
       console.error("전화번호 확인 중 오류가 발생했습니다:", error);
     }
   };
-
-  const MAX_WIDTH = 500;
-  const MAX_HEIGHT = 300;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -221,7 +222,7 @@ function NewEnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">명함 등록 확인</h4>
-                <form className="space-y-6" action="#">
+                <form className="space-y-6" action={handleSubmit}>
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
                     <img
