@@ -30,9 +30,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
   const [updatedIntro, setUpdatedIntro] = useState(introduction);
-  const [updatedPhoto, setUpdatedPhoto] = useState(
-    "https://marketplace.canva.com/EAFLvVGpoYg/1/0/1600w/canva-white-and-blue-minimalist-modern-real-estate-property-business-card-xyziYOYDNjo.jpg"
-  );
+  const [updatedPhoto, setUpdatedPhoto] = useState(photo);
 
   const user_uuid = localStorage.getItem("user_uuid");
 
@@ -40,9 +38,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
     setUpdatedName(name);
     setUpdatedEmail(email);
     setUpdatedIntro(introduction);
-    setUpdatedPhoto(
-      "https://marketplace.canva.com/EAFLvVGpoYg/1/0/1600w/canva-white-and-blue-minimalist-modern-real-estate-property-business-card-xyziYOYDNjo.jpg"
-    );
+    setUpdatedPhoto(photo);
   }, [name, email, introduction, photo]);
 
   const handleSaveChanges = async (updatedCardData: {
@@ -68,18 +64,11 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
       console.error("Error updating profile:", error);
     }
   };
-  const handlePhotoSaveChanges = async (updatedCardData: { user_uuid: string; photo: string }) => {
-    try {
-      // Send the PUT request to the API endpoint with the updated data
 
-      const response = await axios.put("/api/v1/cards/update/", updatedCardData);
-      if (response.status === 202) {
-        setUpdatedPhoto(updatedCardData.photo);
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
+  const handlePhotoSaveChanges = async (updatedCardData: { photo_url: string }) => {
+    setUpdatedPhoto(updatedCardData.photo_url);
   };
+
   return (
     <div className="rounded-lg shadow-md flex flex-col justify-around items-center w-[600px] h-[600px]">
       <div className="relative">

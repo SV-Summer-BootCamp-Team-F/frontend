@@ -16,7 +16,7 @@ const CloseIcon = () => (
 );
 
 type UserPhotoUpdateModalProps = {
-  onSaveChanges: (updatedUserData: { photo: string }) => Promise<void>;
+  onSaveChanges: (updatedUserData: { photo: string }) => void;
   updatedPhoto: string;
 };
 
