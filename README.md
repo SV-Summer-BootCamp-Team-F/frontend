@@ -1,8 +1,8 @@
-![](https://capsule-render.vercel.app/api?type=waving&height=200&text=Waving!&fontAlign=80&fontAlignY=40&color=gradient)
+![](https://capsule-render.vercel.app/api?type=''&height=200&text=Waving!&fontAlign=80&fontAlignY=40&color=gradient)
 
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">Remember plus+</h2>
+ <h1 align="center">Remember plus+</h1>
  <p align="center">명함을 등록하면 자동으로 관계도를 보여주는 서비스</p>
 </p>
 
