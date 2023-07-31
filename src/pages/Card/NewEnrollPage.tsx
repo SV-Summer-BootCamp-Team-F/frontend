@@ -192,7 +192,7 @@ function NewEnrollPage() {
             </div>
           </div>
           <button
-            type="submit"
+            type="button"
             onClick={toggleModal}
             className="text-rememberBlueActive text-[18px] font-extrabold"
           >
