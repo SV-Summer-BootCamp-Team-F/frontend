@@ -1,36 +1,9 @@
 import ThreeDPieChart from "../../components/analytic/ThreeDPieChart";
 import IntroLineChart from "../../components/analytic/IntroLineChart";
 const TestPage = () => {
-  const data: [string, number][] = [
-    ["Teacher", 11.1],
-    ["Engineer", 18.1],
-    ["Doctor", 13.6],
-    ["Accountant", 9.2],
-    ["Lawyer", 12.8],
-    ["Salesperson", 7.5],
-    ["Artist", 8.4],
-    ["Chef", 7.0],
-    ["Other", 12.3],
-  ];
-  const chartData: {
-    name: string;
-    data: number[] | null[];
-  }[] = [
-    {
-      name: "Subscriber",
-      data: [21908, 25000, 24000, 32000, 35000, 32500, 42000, 35000, 50000, 53000, 57000],
-    },
-  ];
   // return tailwindcss example component here
   return (
     <>
-      <div>
-        <ThreeDPieChart data={data} />
-      </div>
-      <div>
-        {/* <h1>U.S Solar Employment Growth Chart</h1> */}
-        <IntroLineChart chartData={chartData} />
-      </div>
       {/* <section className="bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
     <div className="container">
      <div
