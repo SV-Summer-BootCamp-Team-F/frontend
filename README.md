@@ -1,6 +1,5 @@
 # Remember Plus에 오신 것을 환영합니다!
 <div>
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0b779eb5-5de7-4bcc-93ab-259da112bc9e/Untitled.png)
   <h1>Tech Stack</h1>
   <div>
     <h3>Frontend</h3>
