@@ -18,7 +18,7 @@
   <div>
     <h3>DevOps</h3>
     <img src="https://img.shields.io/badge/NGINX-092E20?style=flat-square&logo=NGINX&logoColor=white" />
-    <img src="https://img.shields.io/badge/Docker-009639?style=flat-square&logo=Docker&logoColor=white" />
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white" />
     <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=flat-square&logo=Amazon%20EC2&logoColor=white" />
   </div>
   <div>
