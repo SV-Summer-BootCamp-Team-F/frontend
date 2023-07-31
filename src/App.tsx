@@ -12,6 +12,7 @@ import TestPage from "./pages/test/TestPage";
 import NewEnrollPage from "./pages/Card/NewEnrollPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import "./App.css";
 
 function App() {
   return (

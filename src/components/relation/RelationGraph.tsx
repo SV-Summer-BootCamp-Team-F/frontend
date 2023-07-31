@@ -10,7 +10,7 @@ const RelationGraph: React.FC = () => {
 
   // 초기 데이터를 생성하고, 이를 state로 관리합니다.
   // generateDataPoints는 n개의 무작위 데이터 포인트를 생성하는 함수입니다.
-  const [data, setData] = useState<DataPointType[]>(generateDataPoints(n, maxR));
+  const [data, _] = useState<DataPointType[]>(generateDataPoints(n, maxR));
 
   return (
     <div>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CardInfoUpdateModal from "./CardInfoUpdateModal";
 import CardPhotoUpdateModal from "./CardPhotoUpdateModal";
 import axios from "axios";
-import { FaCamera } from "react-icons/fa";
 
 export type CardPropsType = {
   name: string;
@@ -11,20 +10,7 @@ export type CardPropsType = {
   introduction: string;
   photo: string;
 };
-export type CardUpdatePropsType = {
-  user_uuid: string;
-  card_name: string;
-  card_email: string;
-  card_intro: string;
-  card_photo: string;
-  update_at: string;
-};
-export type CardPhotoUpdatePropsType = {
-  user_id: number;
-  card_photo: string;
-};
-const BUTTON_CLASSNAME =
-  "h-[80px] w-[180px] text-[14px] text-black bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-xl text-4xl dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700";
+
 const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduction, photo }) => {
   // State to store updated user data
   const [updatedName, setUpdatedName] = useState(name);
@@ -74,19 +60,19 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
       <div className="relative">
         <img className="w-[500px] h-[300px] object-cover" src={updatedPhoto} alt="Card Photo" />
         {/* onSaveChanges 함수를 handlePhotoSaveChanges로 변경 */}
-        <CardPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} updatedPhoto={updatedPhoto} />
+        <CardPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} />
       </div>
       <div className="flex justify-around items-center w-full">
         <div>
           <h2 className="text-[26px] mb-[14px] font-semibold">{updatedName}</h2>
           <p className=" text-gray-600 mt-8 text-[13px] underline underline-offset-[15px] decoration-gray-300">
-            Email: {updatedEmail}
+            이메일: {updatedEmail}
           </p>
           <p className=" text-gray-600 mt-8 text-[13px] underline underline-offset-[15px] decoration-gray-300">
-            Phone: {phoneNumber}
+            전화번호: {phoneNumber}
           </p>
           <p className=" text-gray-600 mt-8 text-[13px] underline underline-offset-[15px] decoration-gray-300">
-            Introduction: {updatedIntro}
+            소개: {updatedIntro}
           </p>
         </div>
         <CardInfoUpdateModal onSaveChanges={handleSaveChanges} updatedPhoto={""} />

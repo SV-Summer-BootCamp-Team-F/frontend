@@ -1,5 +1,3 @@
-import ThreeDPieChart from "../../components/analytic/ThreeDPieChart";
-import IntroLineChart from "../../components/analytic/IntroLineChart";
 const TestPage = () => {
   // return tailwindcss example component here
   return (

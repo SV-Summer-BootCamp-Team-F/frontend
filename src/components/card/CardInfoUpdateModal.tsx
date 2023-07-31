@@ -46,18 +46,18 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
         className="mt-8 w-[200px] h-[55px] text-[13px] text-white bg-rememberBlue hover:bg-rememberBlueHover focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-[10px] dark:bg-rememberBlue dark:hover:bg-rememberBlueHover dark:focus:ring-gray-700"
         onClick={handleEditProfile}
       >
-        Edit Card Info
+        명함 정보 변경
       </button>
 
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-[450px] my-6 mx-auto max-w-3xl">
+            <div className="relative w-[430px] my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full h-full justify-center bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
-                  <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Edit Card Info
+                <div className="w-full h-14 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
+                  <div className="text-[20px] font-semibold flex items-center w-full h-full px-8 pt-[8px]">
+                    명함 정보 변경
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
@@ -67,10 +67,10 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative px-12 py-8 flex-auto">
+                <div className="relative px-8 py-4 flex-auto">
                   <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                      Name:
+                      이름
                     </label>
                     <input
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
@@ -82,7 +82,7 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                   </div>
                   <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                      Email:
+                      이메일
                     </label>
                     <input
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
@@ -92,12 +92,12 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="password"
                     >
-                      Introduction:
+                      소개
                     </label>
                     <input
                       className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
@@ -109,13 +109,13 @@ export default function CardInfoUpdateModal({ onSaveChanges }: CardInfoUpdateMod
                   </div>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b">
+                <div className="flex items-center justify-center p-3 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="bg-rememberBlue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-rememberBlue text-white active:bg-rememberBlueActive font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={handleSaveChanges}
                   >
-                    Save Changes
+                    저장하기
                   </button>
                 </div>
               </div>
