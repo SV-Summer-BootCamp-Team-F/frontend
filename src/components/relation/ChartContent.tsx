@@ -14,7 +14,7 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) 
         "link",
         forceLink(data.links).id((d: any) => d.user_uid)
       )
-      .force("charge", forceManyBody().strength(-500))
+      .force("charge", forceManyBody().strength(-600))
       .force("center", forceCenter(width / 2, height / 2));
 
     // 먼저 link를 그립니다.
@@ -27,11 +27,14 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) 
 
     // 그 다음에 node를 그립니다.
     const node = svg
-      .selectAll("circle")
+      .selectAll("image")
       .data(data.nodes)
-      .join("circle")
-      .attr("r", 10)
-      .attr("fill", "#69b3a2")
+      .join("image")
+      .attr("href", (d: any) => d.user_photo)
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("x", (d: any) => d.x - 20)
+      .attr("y", (d: any) => d.y - 20)
       .call((node: any) => node.append("title").text((d: any) => d.user_uid));
 
     const label = svg
@@ -39,26 +42,27 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) 
       .data(data.nodes)
       .join("text")
       .attr("class", "label")
-      .text((d: any) => d.user_uid)
       .style("text-anchor", "middle")
       .style("fill", "#555")
       .style("font-family", "Arial")
       .style("font-size", 12);
 
     simulation.on("tick", () => {
-      link
-        .attr("x1", (d: any) => d.source.x)
-        .attr("y1", (d: any) => d.source.y)
-        .attr("x2", (d: any) => d.target.x)
-        .attr("y2", (d: any) => d.target.y);
+      simulation.on("tick", () => {
+        link
+          .attr("x1", (d: any) => d.source.x)
+          .attr("y1", (d: any) => d.source.y)
+          .attr("x2", (d: any) => d.target.x)
+          .attr("y2", (d: any) => d.target.y);
 
-      node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
+        node.attr("x", (d: any) => d.x - 20).attr("y", (d: any) => d.y - 20);
+      });
 
       label.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y + 4); // labels' y position is adjusted to situate labels in the middle of nodes
     });
   }, [data, width, height]);
 
-  return <svg ref={ref} style={{ width, height }} />;
+  return <svg ref={ref} style={{ width, height }} viewBox={`0 0 ${width} ${height}`} />;
 };
 
 export default ChartContent;

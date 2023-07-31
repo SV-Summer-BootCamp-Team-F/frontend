@@ -4,87 +4,22 @@ import { NodeType, LinkType, RelationType } from "../types/types";
 
 // Mock 데이터 정의
 const mockData = {
-  nodes: [
-    {
-      user_uid: "100",
-      friend_uid: "1",
-      card_name: "동열",
-      user_photo: "photo_link",
-      relation_name: "지인",
-    },
-    {
-      user_uid: "1",
-      friend_uid: "4",
-      card_name: "아정",
-      user_photo: "photo_link",
-      relation_name: "친구",
-    },
-    {
-      user_uid: "4",
-      friend_uid: "5",
-      card_name: "민수",
-      user_photo: "photo_link",
-      relation_name: "가족",
-    },
-    {
-      user_uid: "5",
-      friend_uid: "6",
-      card_name: "수지",
-      user_photo: "photo_link",
-      relation_name: "친구",
-    },
-    {
-      user_uid: "6",
-      friend_uid: "7",
-      card_name: "윤성",
-      user_photo: "photo_link",
-      relation_name: "친구",
-    },
-    {
-      user_uid: "7",
-      friend_uid: "8",
-      card_name: "석진",
-      user_photo: "photo_link",
-      relation_name: "직장 동료",
-    },
-    {
-      user_uid: "8",
-      friend_uid: "100",
-      card_name: "경수",
-      user_photo: "photo_link",
-      relation_name: "직장 동료",
-    },
-  ],
-  links: [
-    {
+  nodes: Array.from({ length: 20 }, (_, i) => ({
+    user_uid: i === 0 ? "100" : String(i + 1),
+    friend_uid: i === 19 ? "100" : String(i + 2),
+    card_name: `사용자${i + 1}`,
+    user_photo: `https://picsum.photos/200/200?random=${i + 1}`, // add random images
+    relation_name: ["친구", "가족", "직장 동료", "지인"][Math.floor(Math.random() * 4)],
+  })),
+  links: Array.from({ length: 19 }, (_, i) => ({
+    source: i === 0 ? "100" : String(i + 1),
+    target: i === 18 ? "100" : String(i + 2),
+  })).concat(
+    Array.from({ length: 10 }, () => ({
       source: "100",
-      target: "1",
-    },
-    {
-      source: "100",
-      target: "4",
-    },
-    {
-      source: "100",
-      target: "5",
-    },
-    {
-      source: "100",
-      target: "6",
-    },
-    {
-      source: "100",
-      target: "7",
-    },
-    {
-      source: "7",
-      target: "8",
-    },
-    {
-      source: "8",
-      target: "100",
-    },
-  ],
+      target: String(Math.ceil(Math.random() * 19) + 1),
+    }))
+  ),
 };
 
 export const fetchRelations = async (): Promise<RelationType> => {
