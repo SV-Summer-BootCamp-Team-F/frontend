@@ -1,5 +1,7 @@
-
-
+## 🛠️ Tech Stack
+| Frontend | Backend | DevOps | Monitoring |  ETC |
+|:--------:|:-------:|:------:|:----------:|:----:|
+|
 <div>
   <h1>Tech Stack</h1>
   <div>
@@ -30,5 +32,6 @@
     <img src="https://img.shields.io/badge/Swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=white" />
   </div>
 </div>
+<br>|
 
 
