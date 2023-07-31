@@ -1,5 +1,5 @@
 # Remember Plus에 오신 것을 환영합니다!
-
+<div>
 <div>
 <h3>Frontend</h3>
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/>
@@ -18,5 +18,6 @@
 <img src="https://img.shields.io/badge/NGINX-092E20?style=flat-square&logo=NGINX&logoColor=white"/>
 <img src="https://img.shields.io/badge/Docker-009639?style=flat-square&logo=Docker&logoColor=white"/>
 <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat-square&logo=Amazon EC2&logoColor=white"/>
+</div>
 </div>
 
