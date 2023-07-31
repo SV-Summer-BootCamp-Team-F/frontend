@@ -2,15 +2,6 @@ import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-interface FormData {
-  photo: File | null;
-  card_name: string;
-  card_phone: string;
-  card_email: string;
-  card_relation: string;
-  card_memo: string;
-}
-
 function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
   const [card_name, setName] = useState("");

@@ -3,13 +3,12 @@ import HighchartsReact from "highcharts-react-official";
 import HC_more from "highcharts/highcharts-more";
 import HC_exporting from "highcharts/modules/exporting";
 
-
 HC_more(Highcharts);
 HC_exporting(Highcharts);
 
 const BarChart = () => {
   const options = {
-    colors: ["#7CC7E8", "#01579B"],
+    colors: ["rgba(41, 182, 246, 0.6)", "rgba(1, 87, 155, 0.9)"],
     chart: {
       type: "column",
       width: 350,
@@ -24,11 +23,14 @@ const BarChart = () => {
       enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
-      text: "Daily Statistics",
+      text: "주간별 통계",
       align: "center",
+      style: {
+        fontWeight: "semibold",
+      },
     },
     xAxis: {
-      categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      categories: ["일", "월", "화", "수", "목", "금", "토"],
       crosshair: true,
       accessibility: {
         description: "Countries",
@@ -38,7 +40,7 @@ const BarChart = () => {
       min: 0,
       max: 40,
       title: {
-        text: "Counts",
+        text: "사용자 수",
       },
     },
     tooltip: {
@@ -52,12 +54,12 @@ const BarChart = () => {
     },
     series: [
       {
-        name: "Added business card count",
-        data: [7, 12, 5, 8, 20, 15],
+        name: "나를 추가한 사용자 수",
+        data: [10, 20, 17, 6, 20, 15, 20],
       },
       {
-        name: "Users who added my card",
-        data: [10, 20, 17, 6, 20, 15],
+        name: "내가 추가한 사용자 수",
+        data: [7, 12, 5, 8, 20, 15, 17],
       },
     ],
   };

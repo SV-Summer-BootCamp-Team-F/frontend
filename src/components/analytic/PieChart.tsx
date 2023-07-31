@@ -9,15 +9,15 @@ HC_exporting(Highcharts);
 const PieChart = () => {
   const options = {
     colors: [
-      "#81D4FA",
-      "#03A9F4",
-      "#E1F5FE",
-      "#01579B",
-      "#B3E5FC",
-      "#29B6F6",
-      "#4FC3F7",
-      "#039BE5",
-      "#0288D1",
+      "rgba(147, 197, 253, 0.8)",
+      "rgba(3, 169, 244, 0.8)",
+      "rgba(225, 245, 254, 0.8)",
+      "rgba(1, 87, 155, 0.8)",
+      "rgba(179, 229, 252, 0.8)",
+      "rgba(41, 182, 246, 0.8)",
+      "rgba(79, 195, 247, 0.8)",
+      "rgba(3, 155, 229, 0.8)",
+      "rgba(2, 136, 209, 0.8)",
     ],
     chart: {
       plotBackgroundColor: null,
@@ -36,8 +36,11 @@ const PieChart = () => {
       enabled: false, // 내보내기 버튼 활성화 여부
     },
     title: {
-      text: "Statistics by relationship category",
+      text: "내 관계별 통계",
       align: "center",
+      style: {
+        fontWeight: "semibold",
+      },
     },
     tooltip: {
       pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
@@ -63,29 +66,29 @@ const PieChart = () => {
         colorByPoint: true,
         data: [
           {
-            name: "Associate",
+            name: "직장 동료",
             y: 74.77,
             sliced: true,
             selected: true,
           },
           {
-            name: "Colleague",
+            name: "대학 동기",
             y: 12.82,
           },
           {
-            name: "Acquaintance",
+            name: "지인",
             y: 4.63,
           },
           {
-            name: "Buddy",
+            name: "팀장님",
             y: 2.44,
           },
           {
-            name: "Companion",
+            name: "대표님",
             y: 2.02,
           },
           {
-            name: "Friend",
+            name: "친구",
             y: 3.28,
           },
         ],
