@@ -1,5 +1,6 @@
 # Remember Plus에 오신 것을 환영합니다!
 <div>
+  <h1>Tech Stack</h1>
   <div>
     <h3>Frontend</h3>
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white" />
