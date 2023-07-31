@@ -1,7 +1,7 @@
 # Remember Plus에 오신 것을 환영합니다!
 
 <div>
-<h1>frontend</h1>
+<h3>frontend</h3>
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/>
 <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"/>
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
