@@ -14,7 +14,7 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) 
         "link",
         forceLink(data.links).id((d: any) => d.user_uid)
       )
-      .force("charge", forceManyBody().strength(-50))
+      .force("charge", forceManyBody().strength(-500))
       .force("center", forceCenter(width / 2, height / 2));
 
     // 먼저 link를 그립니다.
