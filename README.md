@@ -11,7 +11,7 @@
 </div>
 <div>
 <h3>Backend</h3>
-<img src="https://img.shields.io/badge/Django-61DAFB?style=flat-square&logo=Django&logoColor=white"/>
-<img src="https://img.shields.io/badge/Neo4j-646CFF?style=flat-square&logo=Neo&logoColor=white"/>
+<img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/>
+<img src="https://img.shields.io/badge/Neo4j-4581C3?style=flat-square&logo=Neo4j&logoColor=white"/>
 </div>
 
