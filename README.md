@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white" />
     <img src="https://img.shields.io/badge/D3.js-F9A03C?style=flat-square&logo=D3.js&logoColor=white" />
     <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=Three.js&logoColor=white" />
-    ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+    <img src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" />
   </div>
   <div>
     <h3>Backend</h3>
