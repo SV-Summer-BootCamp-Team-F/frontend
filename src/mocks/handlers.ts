@@ -46,7 +46,63 @@ const cardsData = [
   },
 ];
 
+const relationsData = [
+  {
+    message: "관계 전체 로드 성공",
+    result: [
+      {
+        user_uid: "100", //관계를 시작하는 사람 user_uid
+        friend_uid: "1", //관계 직접적인 연결이 되어 있는 1촌의 user_uid
+        card_name: "동열",
+        user_photo:
+          "jigeumbuteo_amumarina_haebodorok_hagessseupnida_ama_ige_siljerodo_jom_gilge_naol_geos_gataseo_gilge_hanbeon_sseoboassseupnida",
+        relation_name: "지인",
+      },
+      {
+        user_uid: "1", //관계 시작하는 사람과 관계 직접적인 연결이 되어 있는 1촌의 user_uid
+        card_uid: "4", //1촌과 연결되어 있는 2촌의 card_uid						"card_name": "아정",
+        user_photo:
+          "jigeumbuteo_amumarina_haebodorok_hagessseupnida_ama_ige_siljerodo_jom_gilge_naol_geos_gataseo_gilge_hanbeon_sseoboassseupnida",
+        relation_name: "",
+      },
+    ],
+  },
+];
+
 const handlers = [
+  // rest.get("/api/v1/relations/all/:userUid", (req, res, ctx) => {
+  //   const { userUid } = req.params;
+  //   const relations = relationsData.find((relation) => relation.user_uid === userUid);
+
+  //   if (!relations) {
+  //     return res(ctx.status(404));
+  //   }
+
+  //   return res(
+  //     ctx.status(201),
+  //     ctx.json({
+  //       message: "관계 전체 로드 성공",
+  //       result: [
+  //         {
+  //           user_uid: "100", //관계를 시작하는 사람 user_uid
+  //           friend_uid: "1", //관계 직접적인 연결이 되어 있는 1촌의 user_uid
+  //           card_name: "동열",
+  //           user_photo:
+  //             "jigeumbuteo_amumarina_haebodorok_hagessseupnida_ama_ige_siljerodo_jom_gilge_naol_geos_gataseo_gilge_hanbeon_sseoboassseupnida",
+  //           relation_name: "지인",
+  //         },
+  //         {
+  //           user_uid: "1", //관계 시작하는 사람과 관계 직접적인 연결이 되어 있는 1촌의 user_uid
+  //           card_uid: "4", //1촌과 연결되어 있는 2촌의 card_uid						"card_name": "아정",
+  //           user_photo:
+  //             "jigeumbuteo_amumarina_haebodorok_hagessseupnida_ama_ige_siljerodo_jom_gilge_naol_geos_gataseo_gilge_hanbeon_sseoboassseupnida",
+  //           relation_name: "",
+  //         },
+  //       ],
+  //     })
+  //   );
+  // }),
+
   rest.get("/api/v1/users/info/:userId", (req, res, ctx) => {
     const { userId } = req.params;
     const user = usersData.find((user) => user.user_id === Number(userId));

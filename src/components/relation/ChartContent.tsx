@@ -1,21 +1,68 @@
+import React, { useRef, useEffect } from "react";
+import { forceSimulation, forceLink, forceManyBody, forceCenter } from "d3-force";
+import { select } from "d3-selection";
 import { ChartContentPropsType } from "../../types/types";
 
-// ChartContent는 width, height, data를 props로 받아 차트의 내용을 그려주는 컴포넌트입니다.
-const ChartContent: React.FC<ChartContentPropsType> = ({ width, height, data }) => {
-  // translate를 통해 차트의 중심을 SVG의 중심으로 이동합니다.
-  return (
-    <g transform={`translate(${width / 2}, ${height / 2})`}>
-      {/* 
-        data 배열을 맵핑하여 각 데이터 포인트를 원으로 표현합니다.
-        각 원의 중심점은 (x, y)이며, 반지름은 5, 색깔은 skyblue입니다.
-      */}
-      {data.map(({ x, y }, i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r={5} fill="white" stroke="black" stroke-width="0.8" />
-        </g>
-      ))}
-    </g>
-  );
+const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) => {
+  const ref = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    const svg = select(ref.current);
+
+    const simulation = forceSimulation(data.nodes)
+      .force(
+        "link",
+        forceLink(data.links).id((d: any) => d.user_uid)
+      )
+      .force("charge", forceManyBody().strength(-600))
+      .force("center", forceCenter(width / 2, height / 2));
+
+    // 먼저 link를 그립니다.
+    const link = svg
+      .selectAll("line")
+      .data(data.links)
+      .join("line")
+      .attr("stroke", "black")
+      .attr("stroke-width", 2);
+
+    // 그 다음에 node를 그립니다.
+    const node = svg
+      .selectAll("image")
+      .data(data.nodes)
+      .join("image")
+      .attr("href", (d: any) => d.user_photo)
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("x", (d: any) => d.x - 20)
+      .attr("y", (d: any) => d.y - 20)
+      .call((node: any) => node.append("title").text((d: any) => d.user_uid));
+
+    const label = svg
+      .selectAll(".label")
+      .data(data.nodes)
+      .join("text")
+      .attr("class", "label")
+      .style("text-anchor", "middle")
+      .style("fill", "#555")
+      .style("font-family", "Arial")
+      .style("font-size", 12);
+
+    simulation.on("tick", () => {
+      simulation.on("tick", () => {
+        link
+          .attr("x1", (d: any) => d.source.x)
+          .attr("y1", (d: any) => d.source.y)
+          .attr("x2", (d: any) => d.target.x)
+          .attr("y2", (d: any) => d.target.y);
+
+        node.attr("x", (d: any) => d.x - 20).attr("y", (d: any) => d.y - 20);
+      });
+
+      label.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y + 4); // labels' y position is adjusted to situate labels in the middle of nodes
+    });
+  }, [data, width, height]);
+
+  return <svg ref={ref} style={{ width, height }} viewBox={`0 0 ${width} ${height}`} />;
 };
 
 export default ChartContent;
