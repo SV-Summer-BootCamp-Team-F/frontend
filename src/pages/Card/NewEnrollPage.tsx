@@ -2,20 +2,14 @@ import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-interface FormData {
-  card_phone: string;
-  card_relation: string;
-  card_memo: string;
-}
-
 function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
 
   const [card_name, setName] = useState("");
   const [card_phone, setPhone] = useState("");
   const [card_email, setEmail] = useState("");
-  const [card_relation, setRelation] = useState("");
-  const [card_memo, setMemo] = useState("");
+  const [relation_name, setRelation] = useState("");
+  const [memo, setMemo] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const MAX_WIDTH = 500;
@@ -23,23 +17,21 @@ function NewEnrollPage() {
 
   const user_uuid = localStorage.getItem("user_uuid");
 
-  function sendDataToServer(data: FormData): Promise<AxiosResponse> {
+  function sendDataToServer(): Promise<AxiosResponse> {
     const userapiUrl = `http://127.0.0.1:8000/api/v1/relations/user/${user_uuid}/`;
-
-    // Assuming your backend API expects a POST request
+    const data = {
+      card_phone,
+      relation_name,
+      memo,
+    };
     return axios.post(userapiUrl, data);
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsModalOpen(true);
 
     const phoneapiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
-
-    const formData: FormData = {
-      card_phone,
-      card_relation,
-      card_memo,
-    };
 
     try {
       const response: AxiosResponse = await axios.get(phoneapiUrl);
@@ -48,7 +40,7 @@ function NewEnrollPage() {
         // 회원인 경우
         console.log("전화번호가 등록된 회원입니다.");
 
-        sendDataToServer(formData)
+        sendDataToServer()
           .then((response: AxiosResponse) => {
             // Handle success response from the server, if needed
             console.log("데이터 전송 성공!", response.data);
@@ -172,7 +164,7 @@ function NewEnrollPage() {
                 name="relation"
                 id="relation"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_relation}
+                value={relation_name}
                 placeholder="Relation"
                 onChange={(event) => setRelation(event.target.value)}
               />
@@ -193,7 +185,7 @@ function NewEnrollPage() {
               <label className="label text-[18px]">Memo</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_memo}
+                value={memo}
                 placeholder="비고"
                 onChange={(event) => setMemo(event.target.value)}
               ></textarea>
@@ -280,7 +272,7 @@ function NewEnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       관계
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_relation}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{relation_name}</div>
                     </label>
                   </div>
                   <div>
@@ -298,7 +290,7 @@ function NewEnrollPage() {
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       메모
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_memo}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
                     </label>
                   </div>
                   <Link to="/main">

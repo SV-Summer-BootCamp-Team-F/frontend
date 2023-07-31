@@ -17,41 +17,12 @@ function EnrollPage() {
 
   function sendDataToServer(): Promise<AxiosResponse> {
     const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
-
-    // Assuming your backend API expects a POST request
-    return axios.post(apiUrl, data);
-  }
-
-  function sendPhotoToServer(photo: File | null): Promise<AxiosResponse> {
-    const apiUrl = `http://0.0.0.0:8000/api/v1/cards/photo/${user_uuid}/`;
-    let formData = new FormData();
-
-    if (photo) {
-      formData.append("photo", photo);
-    }
-
-    // send photo with form data
-    return axios.post(apiUrl, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsModalOpen(true);
-
-    // Prepare the data to send to the server
-    const formData: FormData = {
-      photo,
     const data = {
       card_name,
       card_phone,
       card_email,
       card_intro,
     };
-
     return axios.post(apiUrl, data);
   }
 
@@ -62,7 +33,6 @@ function EnrollPage() {
     if (photo) {
       formData.append("card_photo", photo); // Change the form data key to "card_photo" to match the backend API
     }
-
     return axios.put(apiUrl, formData, {
       // Use PUT request as backend expects a PUT request for photo update
       headers: {
@@ -74,7 +44,6 @@ function EnrollPage() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setIsModalOpen(true);
-
     sendDataToServer()
       .then((response: AxiosResponse) => {
         console.log("Data sent successfully:", response.data);
@@ -89,16 +58,7 @@ function EnrollPage() {
       .catch((error) => {
         console.error("Error sending data:", error);
       });
-
-    sendPhotoToServer(photo)
-      .then((response: AxiosResponse) => {
-        console.log("Photo sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending photo:", error);
-      });
   };
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -133,7 +93,6 @@ function EnrollPage() {
       reader.readAsDataURL(file);
     }
   };
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -210,7 +169,7 @@ function EnrollPage() {
             </div>
           </div>
           <button
-            type="submit"
+            type="button"
             onClick={toggleModal}
             className="text-rememberBlueActive text-[18px] font-extrabold"
           >
@@ -218,7 +177,6 @@ function EnrollPage() {
           </button>
         </form>
       </div>
-
       {/* 아래부터 modal */}
       {isModalOpen && (
         <div
@@ -316,5 +274,4 @@ function EnrollPage() {
     </div>
   );
 }
-
 export default EnrollPage;
