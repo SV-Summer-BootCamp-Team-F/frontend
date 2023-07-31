@@ -1,8 +1,9 @@
+import axios from "axios";
 import React from "react";
 import { FaCamera } from "react-icons/fa";
 
 type CardPhotoUpdateModalPropsType = {
-  onSaveChanges: (data: { user_id: number; photo: string }) => void;
+  onSaveChanges: (data: { photo_url: string }) => void;
   updatedPhoto: string;
 };
 
@@ -24,8 +25,28 @@ export default function CardPhotoUpdateModal({
 }: CardPhotoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
   const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
+  const user_uuid = localStorage.getItem("user_uuid");
+
   const handleSaveChanges = () => {
-    onSaveChanges({ user_id: 0, photo: selectedPhotoPreview || updatedPhoto }); // Pass the selected photo or the current photo to the onSaveChanges function
+    if (selectedPhoto) {
+      let formData = new FormData();
+      formData.append("card_photo", selectedPhoto); // "photo"에서 "user_photo"로 변경
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      // Using axios API to send the form data to the server
+      axios
+        .put(`http://127.0.0.1:8000/api/v1/cards/photo/${user_uuid}/`, formData, config)
+        .then((response) => {
+          console.log("Success:", response.data);
+          onSaveChanges({ photo_url: response.data.photo_url }); // "user_photo"에서 "photo_url"로 변경
+        })
+        .catch((error) => console.error("Error:", error));
+    }
     setShowModal(false);
   };
   const handleEditProfile = () => {
@@ -46,6 +67,7 @@ export default function CardPhotoUpdateModal({
       reader.readAsDataURL(file);
     }
   };
+
   const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
 
   // Function to reset the selected photo

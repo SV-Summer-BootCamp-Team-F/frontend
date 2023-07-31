@@ -2,18 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 
-// Define an interface to represent the shape of the form data
-interface FormData {
-  photo: File | null;
-  card_name: string;
-  card_phone: string;
-  card_email: string;
-  card_intro: string;
-}
-
 function EnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
-
   const [card_name, setName] = useState("");
   const [card_phone, setPhone] = useState("");
   const [card_email, setEmail] = useState("");
@@ -25,34 +15,51 @@ function EnrollPage() {
 
   const user_uuid = localStorage.getItem("user_uuid");
 
-  function sendDataToServer(data: FormData): Promise<AxiosResponse> {
+  function sendDataToServer(): Promise<AxiosResponse> {
     const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
 
-    // Assuming your backend API expects a POST request
-    return axios.post(apiUrl, data);
-  }
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsModalOpen(true);
-
-    // Prepare the data to send to the server
-    const formData: FormData = {
-      photo,
+    const data = {
       card_name,
       card_phone,
       card_email,
       card_intro,
     };
 
-    // Call the function to send the data to the backend
-    sendDataToServer(formData)
+    return axios.post(apiUrl, data);
+  }
+
+  function sendPhotoToServer(photo: File | null): Promise<AxiosResponse> {
+    const apiUrl = `http://0.0.0.0:8000/api/v1/cards/photo/${user_uuid}/`;
+    let formData = new FormData();
+
+    if (photo) {
+      formData.append("card_photo", photo); // Change the form data key to "card_photo" to match the backend API
+    }
+
+    return axios.put(apiUrl, formData, {
+      // Use PUT request as backend expects a PUT request for photo update
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  }
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsModalOpen(true);
+
+    sendDataToServer()
       .then((response: AxiosResponse) => {
-        // Handle success response from the server, if needed
         console.log("Data sent successfully:", response.data);
+        sendPhotoToServer(photo) // Call sendPhotoToServer after successfully sending the data
+          .then((response: AxiosResponse) => {
+            console.log("Photo sent successfully:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error sending photo:", error);
+          });
       })
       .catch((error) => {
-        // Handle error response from the server, if needed
         console.error("Error sending data:", error);
       });
   };
@@ -174,17 +181,6 @@ function EnrollPage() {
           >
             명함 등록
           </button>
-          <div className="mt-4 enroll-form-group">
-            <Link to="/newenroll">
-              <button
-                type="submit"
-                onClick={toggleModal}
-                className="text-rememberBlueActive text-[18px] font-extrabold"
-              >
-                새로운 명함 등록
-              </button>
-            </Link>
-          </div>
         </form>
       </div>
 
