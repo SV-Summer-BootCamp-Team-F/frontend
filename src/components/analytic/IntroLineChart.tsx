@@ -67,6 +67,12 @@ const IntroLineChart: React.FC<IntroChartPropsType> = ({ chartData }) => {
         },
       ],
     },
+    credits: {
+      enabled: false,
+    },
+    exporting: {
+      enabled: false, // 내보내기 버튼 활성화 여부
+    },
     chart: {
       type: "line", // Specify the chart type (you can change this to other types if needed)
       width: 800, // Set the width of the chart

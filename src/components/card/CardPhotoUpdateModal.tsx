@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
+import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
 
 type CardPhotoUpdateModalPropsType = {
   onSaveChanges: (data: { photo_url: string }) => void;
-  updatedPhoto: string;
 };
 
 // SVG icon for the close button
@@ -19,10 +19,7 @@ const CloseIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
-export default function CardPhotoUpdateModal({
-  onSaveChanges,
-  updatedPhoto,
-}: CardPhotoUpdateModalPropsType) {
+export default function CardPhotoUpdateModal({ onSaveChanges }: CardPhotoUpdateModalPropsType) {
   const [showModal, setShowModal] = React.useState(false);
   const [selectedPhoto, setSelectedPhoto] = React.useState<File | null>(null); // New state for the selected photo file
   const user_uuid = localStorage.getItem("user_uuid");
@@ -70,12 +67,6 @@ export default function CardPhotoUpdateModal({
 
   const [selectedPhotoPreview, setSelectedPhotoPreview] = React.useState<string | null>(null);
 
-  // Function to reset the selected photo
-  const handleResetPhoto = () => {
-    setSelectedPhoto(null);
-    setSelectedPhotoPreview(null);
-  };
-
   return (
     <>
       <button
@@ -87,12 +78,12 @@ export default function CardPhotoUpdateModal({
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-[450px] my-6 mx-auto max-w-3xl">
+            <div className="relative w-[430px] my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full h-full justify-center bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="w-full h-28 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
-                  <div className="text-[28px] font-semibold flex items-center w-full h-full px-[45px] py-[20px]">
-                    Card Photo
+                <div className="w-full h-14 flex items-start justify-between border-b border-solid border-slate-200 rounded-t">
+                  <div className="text-[20px] font-semibold flex items-center w-full h-full px-8 pt-[8px]">
+                    명함 사진
                   </div>
                   <button
                     className="p-3 ml-auto bg-transparent border-0 text-black text-2xl leading-none font-semibold outline-none focus:outline-none transition-colors duration-300 hover:text-white hover:bg-red-500 rounded-full"
@@ -102,13 +93,17 @@ export default function CardPhotoUpdateModal({
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative px-12 py-8 flex-auto">
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photo">
-                      Upload Photo:
+                <div className="relative items-center justify-center px-4 flex-auto">
+                  <div className="my-8">
+                    <label
+                      htmlFor="photo"
+                      className="cursor-pointer bg-rememberBlue text-white active:bg-rememberBlueActive font-bold uppercase text-sm px-[130px] py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex items-center justify-center"
+                    >
+                      <FiUpload className="mr-2" />
+                      사진 업로드
                     </label>
                     <input
-                      className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white"
+                      className="hidden"
                       id="photo"
                       type="file"
                       accept="image/*" // Only allow image files to be selected
@@ -116,23 +111,23 @@ export default function CardPhotoUpdateModal({
                     />
                   </div>
                   {selectedPhotoPreview && (
-                    <div className="mb-4">
+                    <div className="mb-8">
                       <img
                         src={selectedPhotoPreview}
                         alt="Selected Preview"
-                        className="w-[500px] h-[300px] object-cover"
+                        className="w-full object-contain"
                       />
                     </div>
                   )}
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b">
+                <div className="flex items-center justify-center p-3 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="bg-rememberBlue text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-rememberBlue text-white active:bg-rememberBlueActive font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={handleSaveChanges}
                   >
-                    Save Changes
+                    저장하기
                   </button>
                 </div>
               </div>

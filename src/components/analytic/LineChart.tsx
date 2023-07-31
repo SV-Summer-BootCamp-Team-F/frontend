@@ -22,26 +22,31 @@ const LineChart: React.FC = () => {
     exporting: {
       enabled: false,
     },
-    title: { text: "Monthly Statistics" },
+    title: {
+      text: "월별 통계",
+      style: {
+        fontWeight: "semibold",
+      },
+    },
     xAxis: {
       categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+        "1월",
+        "2월",
+        "3월",
+        "4월",
+        "5월",
+        "6월",
+        "7월",
+        "8월",
+        "9월",
+        "10월",
+        "11월",
+        "12월",
       ],
     },
     yAxis: {
       title: {
-        text: "Counts",
+        text: "사용자 수",
       },
     },
     plotOptions: {
@@ -55,12 +60,12 @@ const LineChart: React.FC = () => {
     series: [
       {
         type: "line",
-        name: "Added business card count",
+        name: "나를 추가한 사용자 수",
         data: [16.0, 18, 16, 20, 18, 25, 30, 23, 34, 25, 27, 20],
       },
       {
         type: "line",
-        name: "Users who added my card",
+        name: "내가 추가한 사용자 수",
         data: [0, 5, 7, 4, 10, 14, 19, 16, 15, 20, 21, 23],
       },
     ],

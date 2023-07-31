@@ -22,6 +22,12 @@ const ThreeDPieChart: React.FC<PieChartPropsType> = ({ data }) => {
       "#039BE5",
       "#0288D1",
     ],
+    credits: {
+      enabled: false,
+    },
+    exporting: {
+      enabled: false, // 내보내기 버튼 활성화 여부
+    },
     chart: {
       type: "pie",
       options3d: {

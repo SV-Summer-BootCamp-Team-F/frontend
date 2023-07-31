@@ -4,10 +4,10 @@ import LineChart from "../../components/analytic/LineChart";
 import PieChart from "../../components/analytic/PieChart";
 import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
-import StatisticsBox from "../../components/analytic/StatisticsBox";
 import axios from "axios";
+import "../../App.css";
 
-type UserType = {
+export type UserType = {
   user_name: string;
   user_email: string;
   password: string;
@@ -82,34 +82,28 @@ const UserPage: React.FC = () => {
   };
 
   return (
-    <div className="flex w-screen h-screen bg-rememberWhiteHover">
+    <div className="font-['GmarketSansMedium'] flex w-screen h-screen bg-rememberWhiteHover">
       <div className="ml-12 mr-12">
-        <UserProfile
-          name={userData.user_name}
-          email={userData.user_email}
-          phoneNumber={userData.user_phone}
-          passwd={userData.password}
-          photo={userData.user_photo}
-        />
+        <UserProfile userData={userData} setUserData={setUserData} />
         <div className="flex justify-between items-center w-[270px]">
           <button
             onClick={() => handleButtonClick("cardInfo")}
             type="button"
             className="shadow-sm w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
           >
-            Card
+            내 명함
           </button>
           <button
             onClick={() => handleButtonClick("chart")}
             type="button"
             className="shadow-sm w-[130px] h-[50px] flex justify-center items-center text-[13px] text-rememberBlack hover:text-white border border-blue-700 hover:bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-rememberBlue dark:focus:ring-rememberBlueActive"
           >
-            Analytic
+            통계
           </button>
         </div>
       </div>
       {showCardInfo && cardData && (
-        <div className="flex flex-col my-10">
+        <div className="flex mt-12">
           <CardInfo
             name={cardData.card_name}
             email={cardData.card_email}
@@ -117,50 +111,69 @@ const UserPage: React.FC = () => {
             introduction={cardData.card_intro}
             photo={cardData.card_photo}
           />
+          <img
+            src="https://github.com/SV-Summer-BootCamp-Team-F/frontend/blob/design/update-design-highchart-and-user-information-page-40/src/pages/User/ad.png?raw=true"
+            alt="ad"
+            className="ml-12 w-[230px] h-[603px] rounded-xl shadow-md"
+          />
         </div>
       )}
       {showChart && (
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-12">
           <div className="flex flex-col">
             <div className="w-full h-[150px] mb-[20px] flex">
               <div
-                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
+                className={`shadow-md py-4 px- flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
               >
-                <div className="text-gray-600 text-center text-[13px] flex justify-center items-center font-semibold">
-                  Today's Views
+                <div className="text-gray-600 text-center text-[12px] flex justify-center items-center font-semibold">
+                  오늘 나를 조회한
+                  <br />
+                  사용자
                 </div>
-                <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
-                  20
+                <div className="flex items-end">
+                  <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                    20
+                  </div>
+                  <div className="text-[15px] pb-1 ml-[2px]">명</div>
                 </div>
               </div>
               <div
-                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
+                className={`shadow-md py-4 px-3 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
               >
-                <div className="text-black text-center text-[13px] flex justify-center items-center font-semibold">
-                  Total Views
+                <div className="text-black text-center text-[12px] flex justify-center items-center font-semibold">
+                  지금까지 내 명함을 본 사용자
                 </div>
-                <div className="text-black text-[25px] flex justify-center items-center font-semibold">
-                  127
+                <div className="flex items-end">
+                  <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                    127
+                  </div>
+                  <div className="text-[15px] pb-1 ml-[2px]">명</div>
                 </div>
               </div>
               <div
-                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
+                className={`shadow-md py-4 px-3 flex flex-col items-center justify-around w-[150px] h-[150px] bg-white/50 rounded-xl mr-[20px]`}
               >
-                <div className="text-gray-600 text-center text-[13px] flex justify-center items-center font-semibold">
-                  Today's Added Cards
+                <div className="text-gray-600 text-center text-[12px] flex justify-center items-center font-semibold">
+                  오늘 추가한 명함
                 </div>
-                <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
-                  7
+                <div className="flex items-end">
+                  <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                    7
+                  </div>
+                  <div className="text-[15px] pb-1 ml-[2px]">개</div>
                 </div>
               </div>
               <div
-                className={`shadow-md p-4 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
+                className={`shadow-md py-4 px-2 flex flex-col items-center justify-around w-[150px] h-[150px] bg-blue-300/50 rounded-xl mr-[20px]`}
               >
-                <div className="text-black text-center text-[13px] flex justify-center items-center font-semibold">
-                  Total Number of Cards Added
+                <div className="text-black text-center text-[12px] flex justify-center items-center font-semibold">
+                  지금까지 추가한 명함
                 </div>
-                <div className="text-black text-[25px] flex justify-center items-center font-semibold">
-                  104
+                <div className="flex items-end">
+                  <div className="text-gray-800 text-[25px] flex justify-center items-center font-semibold">
+                    104
+                  </div>
+                  <div className="text-[15px] pb-1 ml-[2px]">개</div>
                 </div>
               </div>
             </div>

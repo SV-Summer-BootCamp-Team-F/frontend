@@ -27,24 +27,24 @@ module.exports = {
   // ---- 규칙 설정 ----
   // 코드에 적용할 규칙을 설정합니다. 각 규칙은 문자열 또는 배열로 설정할 수 있으며, 규칙의 심각도와 추가적인 옵션을 제어합니다.
   rules: {
-    "semi": ["error", "always"], // 세미콜론을 항상 사용하도록 강제합니다. 이 규칙을 위반하면 에러를 반환합니다.
+    semi: ["error", "always"], // 세미콜론을 항상 사용하도록 강제합니다. 이 규칙을 위반하면 에러를 반환합니다.
     "no-console": "warn", // 콘솔 사용을 경고합니다. 이 규칙을 위반하면 경고를 반환합니다.
-    "quotes": ["error", "double"], // 큰 따옴표를 사용하도록 강제
+    quotes: ["error", "double"], // 큰 따옴표를 사용하도록 강제
     "no-console": "warn", // 콘솔 사용에 대한 경고
     "no-unused-vars": "error", // 사용하지 않는 변수에 대한 오류
     "no-irregular-whitespace": "error", // 비정상적인 공백에 대한 오류
     "no-mixed-spaces-and-tabs": "error", // 스페이스와 탭 혼합 사용에 대한 오류
-    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }], // 연속적인 여러 빈 줄에 대한 오류
+    "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 0 }], // 연속적인 여러 빈 줄에 대한 오류
     "prefer-const": "warn", // 가능하면 const를 사용하도록 경고
     "no-var": "error", // var 키워드 사용에 대한 오류
-    "eqeqeq": ["error", "always"], // 항상 ===와 !==를 사용하도록 강제
-    "indent": ["error", 2], // 강제로 2칸 들여쓰기를 사용
+    eqeqeq: ["error", "always"], // 항상 ===와 !==를 사용하도록 강제
+    indent: ["error", 2], // 강제로 2칸 들여쓰기를 사용
     "block-spacing": "error", // 중괄호 사이에 공백을 필요로 함
     "comma-dangle": ["error", "never"], // 객체나 배열의 마지막 항목 뒤에 콤마를 사용하지 않도록 강제
     "brace-style": ["error", "1tbs"], // 중괄호 스타일을 강제 (1tbs: One True Brace Style)
-    "camelcase": ["error", {properties: "always"}], // 카멜 케이스를 강제
+    camelcase: ["error", { properties: "always" }], // 카멜 케이스를 강제
     "func-call-spacing": ["error", "never"], // 함수 이름과 괄호 사이에 공백을 두지 않도록 강제
-    "key-spacing": ["error", { "afterColon": true }], // 객체 리터럴에서 키와 값 사이에 공백을 강제
+    "key-spacing": ["error", { afterColon: true }], // 객체 리터럴에서 키와 값 사이에 공백을 강제
     "no-trailing-spaces": "error", // 행 끝의 공백을 금지
     "object-curly-spacing": ["error", "always"], // 객체 리터럴의 중괄호 사이에 공백을 강제
     "spaced-comment": ["error", "always"], // 주석 앞에 공백을 강제
@@ -52,7 +52,7 @@ module.exports = {
 
   // ---- 설정 확장 ----
   // 다른 ESLint 설정을 확장하여 재사용합니다.
-  extends: [], 
+  extends: [],
 
   // ---- Glob 패턴을 기반으로 한 설정 ----
   // Glob 패턴을 사용해 특정 파일에 대한 규칙을 재정의할 수 있습니다.

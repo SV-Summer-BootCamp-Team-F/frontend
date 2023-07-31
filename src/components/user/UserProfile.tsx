@@ -1,13 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import UserInfoUpdateModal from "./UserInfoUpdateModal";
 import UserPhotoUpdateModal from "./UserPhotoUpdateModal";
+import { UserType } from "../../pages/User/UserPage";
 export type UserPropsType = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  passwd: string;
-  photo: string;
+  userData: UserType;
+  setUserData: React.Dispatch<React.SetStateAction<UserType>>;
 };
 export type UserUpdatePropsType = {
   user_id: number;
@@ -21,18 +18,9 @@ export type UserPhotoUpdatePropsType = {
   photo: string;
 };
 const user_uuid = localStorage.getItem("user_uuid");
-const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd, photo }) => {
+const UserProfile: React.FC<UserPropsType> = ({ userData, setUserData }) => {
   // State to store updated user data
-  const [updatedName, setUpdatedName] = useState(name);
-  const [updatedEmail, setUpdatedEmail] = useState(email);
-  const [updatedPassword, setUpdatedPassword] = useState(passwd);
-  const [updatedPhoto, setUpdatedPhoto] = useState(photo);
-  useEffect(() => {
-    setUpdatedName(name);
-    setUpdatedEmail(email);
-    setUpdatedPassword(passwd);
-    setUpdatedPhoto(photo);
-  }, [name, email, passwd, photo]);
+
   const handleSaveChanges = async (updatedUserData: {
     user_name: string;
     user_email: string;
@@ -46,32 +34,34 @@ const UserProfile: React.FC<UserPropsType> = ({ name, email, phoneNumber, passwd
       );
       if (response.status === 202) {
         // Update the state with the new data
-        setUpdatedName(updatedUserData.user_name);
-        setUpdatedEmail(updatedUserData.user_email);
-        setUpdatedPassword(updatedUserData.password);
+        setUserData((prev) => {
+          return { ...prev, ...updatedUserData };
+        });
         console.log("유저 정보 수정 성공!", updatedUserData);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   };
-  const handlePhotoSaveChanges = async (updatedUserData: { photo: string }) => {
-    setUpdatedPhoto(updatedUserData.photo);
+  const handlePhotoSaveChanges = async (user_photo: string) => {
+    setUserData((prev) => {
+      return { ...prev, user_photo };
+    });
   };
   return (
-    <div className="w-[270px] max-w-lg mt-10 mb-[40px] bg-white rounded-lg shadow-md p-12 box-border">
+    <div className="w-[270px] max-w-lg mt-12 mb-[40px] bg-white rounded-lg shadow-md p-12 box-border">
       <div className="relative">
         <img
           className="w-[170px] h-[170px] rounded-full mx-auto mb-12 object-cover"
-          src={updatedPhoto}
+          src={userData.user_photo}
           alt="Profile picture"
         />
-        <UserPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} updatedPhoto={updatedPhoto} />
+        <UserPhotoUpdateModal onSaveChanges={handlePhotoSaveChanges} />
       </div>
-      <p className="text-center text-[28px] font-semibold">{updatedName}</p>
+      <p className="text-center text-[28px]">{userData.user_name}</p>
       <div className="flex flex-col items-center w-full">
         <div className="mb-[14px]">
-          <p className="text-[14px] text-gray-500">{updatedEmail}</p>
+          <p className="text-[14px] text-gray-500">{userData.user_email}</p>
         </div>
         <UserInfoUpdateModal onSaveChanges={handleSaveChanges} />
       </div>
