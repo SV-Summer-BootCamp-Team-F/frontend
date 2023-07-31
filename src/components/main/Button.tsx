@@ -16,7 +16,7 @@ const Button: React.FC = () => {
         onClick={toggleModal}
       >
         <div className="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-        <span className="relative text-black group-hover:text-white">ENTER</span>
+        <span className="relative text-black group-hover:text-white">입장</span>
       </button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>

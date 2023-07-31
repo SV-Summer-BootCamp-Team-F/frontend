@@ -15,8 +15,8 @@ const Profile = () => {
             <h1 className="animate-word-delay-4 col-span-full row-span-full">Firefox</h1>
           </div>
         </h1>
-        <h3 className="text-white font-extralight" >
-          Our service is Everywhere, Enjoy us
+        <h3 className="text-white font-normal" >
+        우리의 서비스를 어디에서나 즐길 수 있습니다
         </h3>
       </div>
     </div>

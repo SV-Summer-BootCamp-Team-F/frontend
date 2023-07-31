@@ -8,7 +8,7 @@ const MainPage: React.FC = () => {
   return (
     <div>
       <div>
-        <Link to="/">
+        <Link to="/login">
           <div
             style={{
               position: "fixed",
@@ -21,7 +21,7 @@ const MainPage: React.FC = () => {
               cursor: "pointer",
             }}
           >
-            LOG<span style={{ color: "skyblue" }}>OUT</span>
+            로그<span style={{ color: "skyblue" }}>아웃</span>
           </div>
         </Link>
         <Link to="/user">
@@ -37,7 +37,7 @@ const MainPage: React.FC = () => {
               cursor: "pointer",
             }}
           >
-            MY<span style={{ color: "skyblue" }}>PAGE</span>
+            마이<span style={{ color: "skyblue" }}>페이지</span>
           </div>
         </Link>
         <div
