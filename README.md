@@ -14,4 +14,9 @@
 <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/>
 <img src="https://img.shields.io/badge/Neo4j-4581C3?style=flat-square&logo=Neo4j&logoColor=white"/>
 </div>
+<h3>DevOps</h3>
+<img src="https://img.shields.io/badge/NGINX-092E20?style=flat-square&logo=NGINX&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-009639?style=flat-square&logo=Docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=flat-square&logo=Amazon EC2&logoColor=white"/>
+</div>
 
