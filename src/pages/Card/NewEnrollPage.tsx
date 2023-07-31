@@ -3,10 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface FormData {
-  photo: File | null;
-  card_name: string;
   card_phone: string;
-  card_email: string;
   card_relation: string;
   card_memo: string;
 }
@@ -24,18 +21,43 @@ function NewEnrollPage() {
   const MAX_WIDTH = 500;
   const MAX_HEIGHT = 300;
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const user_uuid = localStorage.getItem("user_uuid");
+
+  function sendDataToServer(data: FormData): Promise<AxiosResponse> {
+    const userapiUrl = `http://127.0.0.1:8000/api/v1/relations/user/${user_uuid}/`;
+
+    // Assuming your backend API expects a POST request
+    return axios.post(userapiUrl, data);
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const apiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
+    const phoneapiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
+
+    const formData: FormData = {
+      card_phone,
+      card_relation,
+      card_memo,
+    };
 
     try {
-      const response: AxiosResponse = await axios.get(apiUrl);
+      const response: AxiosResponse = await axios.get(phoneapiUrl);
 
-      if (response.data === "번호 조회 성공") {
+      if (response.data.message === "번호 조회 성공") {
         // 회원인 경우
         console.log("전화번호가 등록된 회원입니다.");
-      } else if (response.data === "번호 조회 실패") {
+
+        sendDataToServer(formData)
+          .then((response: AxiosResponse) => {
+            // Handle success response from the server, if needed
+            console.log("데이터 전송 성공!", response.data);
+          })
+          .catch((error) => {
+            // Handle error response from the server, if needed
+            console.error("데이터 전송 실패!", error);
+          });
+      } else if (response.data.message === "번호 조회 실패") {
         // 비회원인 경우
         console.log("전화번호가 등록되지 않은 회원입니다.");
       } else {
@@ -222,7 +244,7 @@ function NewEnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">명함 등록 확인</h4>
-                <form className="space-y-6" action={handleSubmit}>
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
                     <img
