@@ -3,3 +3,5 @@
 <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"/>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/>
 <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=Three.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/D3.js-#F9A03C?style=flat-square&logo=D3.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript.js-#3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
