@@ -112,7 +112,7 @@ const UserPage: React.FC = () => {
             photo={cardData.card_photo}
           />
           <img
-            src="https://github.com/SV-Summer-BootCamp-Team-F/frontend/blob/design/update-design-highchart-and-user-information-page-40/src/pages/User/ad.png?raw=true"
+            src="https://github.com/SV-Summer-BootCamp-Team-F/frontend/blob/feature/relation-page-api-integration-51/src/pages/User/techeer_ad.png?raw=true"
             alt="ad"
             className="ml-12 w-[230px] h-[603px] rounded-xl shadow-md"
           />
