@@ -13,18 +13,37 @@ export type ZoomableSVGPropsType = {
   updateData: () => void; // 데이터를 업데이트하는 함수
 };
 
+// NodeType과 LinkType을 아래와 같이 선언합니다.
+export type NodeType = {
+  user_uid: string;
+  friend_uid: string;
+  card_name: string;
+  user_photo: string;
+  relation_name: string;
+  // D3 simulation을 위한 필드 추가
+  x?: number;
+  y?: number;
+  vx?: number;
+  vy?: number;
+  fx?: number | null;
+  fy?: number | null;
+  index?: number;
+};
+
+export type LinkType = {
+  source: string;
+  target: string;
+};
+
+export type RelationType = {
+  nodes: NodeType[];
+  links: LinkType[];
+};
+
 // ChartContent 컴포넌트의 속성 타입입니다. Chart의 가로, 세로 크기,
 // 그리고 데이터를 props로 받습니다.
 export type ChartContentPropsType = {
-  width: number; // Chart의 가로 크기
-  height: number; // Chart의 세로 크기
-  data: DataPointType[]; // 데이터 포인트들의 배열
-};
-
-// Chart 컴포넌트의 속성 타입입니다. 데이터, n(생성할 데이터 포인트의 수),
-// maxR(데이터 포인트 생성에 사용되는 최대 반지름)를 props로 받습니다.
-export type ChartPropsType = {
-  data: DataPointType[]; // 데이터 포인트들의 배열
-  n: number; // 생성할 데이터 포인트의 수
-  maxR: number; // 데이터 포인트 생성에 사용되는 최대 반지름
+  width: number;
+  height: number;
+  data: RelationType;
 };
