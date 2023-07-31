@@ -37,7 +37,7 @@ const MainPage: React.FC = () => {
               cursor: "pointer",
             }}
           >
-            마이<span style={{ color: "skyblue" }}>페이지</span>
+            내 <span style={{ color: "skyblue" }}>정보</span>
           </div>
         </Link>
         <div
