@@ -53,8 +53,8 @@ const ZoomableSVG: React.FC<ZoomableSVGPropsType> = ({ children, width, height, 
           ↺
         </button>
       </foreignObject>
-      <text x="6rem" y="7rem" fill="Skyblue" fontWeight={800} fontSize={40}>
-        My 
+      <text x="5.5rem" y="7rem" fill="Skyblue" fontWeight={800} fontSize={40}>
+        나의
       </text>
       <text x="10rem" y="7rem" fill="white" fontWeight={700} fontSize={30}>
         Connection

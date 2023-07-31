@@ -274,7 +274,7 @@ function NewEnrollPage() {
                       type="submit"
                       className="w-full text-white bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      Enroll Your Card
+                      명함 등록
                     </button>
                   </Link>
                 </form>
