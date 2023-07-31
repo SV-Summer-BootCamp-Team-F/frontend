@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
 
