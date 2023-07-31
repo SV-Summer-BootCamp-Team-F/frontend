@@ -1,3 +1,10 @@
+
+<p align="center">
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
+ <h1 align="center">Remember plus+</h1>
+ <p align="center">명함을 등록하면 자동으로 관계도를 보여주는 서비스</p>
+</p>
+
 ## 🛠️ Tech Stack
 | Frontend | Backend | DevOps | Monitoring |  ETC |
 |:--------:|:-------:|:------:|:----------:|:----:|
