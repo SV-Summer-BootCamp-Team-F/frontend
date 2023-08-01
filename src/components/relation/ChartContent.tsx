@@ -8,11 +8,14 @@ const ChartContent: React.FC<ChartContentPropsType> = ({ data, width, height }) 
 
   useEffect(() => {
     const svg = select(ref.current);
-
+    console.log("ChartContent.tsx");
+    console.log(data);
+    console.log(data.nodes[0].user_uid);
+    console.log(data.links[0].source);
     const simulation = forceSimulation(data.nodes)
       .force(
         "link",
-        forceLink(data.links).id((d: any) => d.user_uid)
+        forceLink(data.links).id((d: any) => d.friend_uid)
       )
       .force("charge", forceManyBody().strength(-600))
       .force("center", forceCenter(width / 2, height / 2));

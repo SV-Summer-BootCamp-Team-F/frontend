@@ -1,5 +1,28 @@
+import axios from "axios";
+import { useEffect } from "react";
+
 const TestPage = () => {
   // return tailwindcss example component here
+
+  useEffect(() => {
+    const user_uuid = localStorage.getItem("user_uuid");
+    axios
+      .get(`http://127.0.0.1:8000/api/v1/relations/all/${user_uuid}/`)
+      .then((response) => {
+        // 로그인 성공 시 처리
+        console.log(response.data.message);
+        console.log(response.data.result);
+        const relations = response.data.result;
+        console.log(relations[0]);
+        console.log(relations[0].user_uid);
+        console.log(relations[0].user_photo);
+      })
+      .catch((error) => {
+        // 로그인 실패 시 처리
+        console.error("유저 정보 불러오기 실패", error);
+        // 예: 에러 메시지 표시 등
+      });
+  }, []);
   return (
     <>
       {/* <section className="bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">

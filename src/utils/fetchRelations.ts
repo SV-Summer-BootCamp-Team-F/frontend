@@ -41,6 +41,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
         user_photo: relation.user_photo,
         relation_name: relation.relation_name,
       };
+      console.log(node);
       nodes.push(node);
 
       // 관계를 링크로 변환
