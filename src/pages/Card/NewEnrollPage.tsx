@@ -4,29 +4,56 @@ import { Link } from "react-router-dom";
 
 function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
+
   const [card_name, setName] = useState("");
   const [card_phone, setPhone] = useState("");
   const [card_email, setEmail] = useState("");
-  const [card_relation, setRelation] = useState("");
-  const [card_memo, setMemo] = useState("");
+  const [relation_name, setRelation] = useState("");
+  const [memo, setMemo] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const MAX_WIDTH = 500;
+  const MAX_HEIGHT = 300;
+
+  const user_uuid = localStorage.getItem("user_uuid");
+
+  function sendDataToServer(): Promise<AxiosResponse> {
+    const userapiUrl = `http://127.0.0.1:8000/api/v1/relations/user/${user_uuid}/`;
+    const data = {
+      card_phone,
+      relation_name,
+      memo,
+    };
+    return axios.post(userapiUrl, data);
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsModalOpen(true);
 
-    // API를 사용하여 전화번호가 등록된 회원인지 확인합니다.
+    const phoneapiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
+
     try {
-      const apiUrl = "http://127.0.0.1:8000/api/v1/relations/phone/";
-      const response: AxiosResponse = await axios.get(apiUrl + card_phone);
+      const response: AxiosResponse = await axios.get(phoneapiUrl);
 
-      if (response.data === "번호 조회 성공") {
-        // 전화번호가 등록된 회원일 경우, 등록된 회원용 API를 호출하거나 원하는 작업을 수행합니다.
-        console.log("전화번호가 등록된 회원입니다!");
-      } else if (response.data === "번호 조회 실패") {
-        // 전화번호가 등록되지 않은 경우, 미등록 회원용 API를 호출하거나 원하는 작업을 수행합니다.
-        console.log("전화번호가 등록되지 않은 회원입니다!");
+      if (response.data.message === "번호 조회 성공") {
+        // 회원인 경우
+        console.log("전화번호가 등록된 회원입니다.");
+
+        sendDataToServer()
+          .then((response: AxiosResponse) => {
+            // Handle success response from the server, if needed
+            console.log("데이터 전송 성공!", response.data);
+          })
+          .catch((error) => {
+            // Handle error response from the server, if needed
+            console.error("데이터 전송 실패!", error);
+          });
+      } else if (response.data.message === "번호 조회 실패") {
+        // 비회원인 경우
+        console.log("전화번호가 등록되지 않은 회원입니다.");
       } else {
-        // 필요한 경우 기타 응답 처리를 합니다.
+        // 기타 응답 처리
         console.log("API에서 예상치 못한 응답을 받았습니다.");
       }
 
@@ -37,9 +64,6 @@ function NewEnrollPage() {
       console.error("전화번호 확인 중 오류가 발생했습니다:", error);
     }
   };
-
-  const MAX_WIDTH = 500;
-  const MAX_HEIGHT = 300;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -140,7 +164,7 @@ function NewEnrollPage() {
                 name="relation"
                 id="relation"
                 className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_relation}
+                value={relation_name}
                 placeholder="Relation"
                 onChange={(event) => setRelation(event.target.value)}
               />
@@ -161,7 +185,7 @@ function NewEnrollPage() {
               <label className="label text-[18px]">Memo</label>
               <textarea
                 className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_memo}
+                value={memo}
                 placeholder="비고"
                 onChange={(event) => setMemo(event.target.value)}
               ></textarea>
@@ -212,7 +236,7 @@ function NewEnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">명함 등록 확인</h4>
-                <form className="space-y-6" action="#">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
                     <img
@@ -248,7 +272,7 @@ function NewEnrollPage() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       관계
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_relation}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{relation_name}</div>
                     </label>
                   </div>
                   <div>
@@ -266,7 +290,7 @@ function NewEnrollPage() {
                       className="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-900"
                     >
                       메모
-                      <div className="bg-gray-100 px-2 py-1 rounded-md">{card_memo}</div>
+                      <div className="bg-gray-100 px-2 py-1 rounded-md">{memo}</div>
                     </label>
                   </div>
                   <Link to="/main">

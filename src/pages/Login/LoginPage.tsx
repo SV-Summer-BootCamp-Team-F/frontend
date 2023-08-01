@@ -20,6 +20,7 @@ function Login() {
         console.log("로그인 성공!", response.data);
         //localStrorage에 uuid 저장
         localStorage.setItem("user_uuid", response.data.result.user_uid);
+
         alert("환영합니다!");
         navigate("/main");
         // 예: 토큰 저장, 로그인 상태 변경 등
