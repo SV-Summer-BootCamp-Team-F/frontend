@@ -27,10 +27,7 @@ function NewEnrollPage() {
     return axios.post(userapiUrl, data);
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsModalOpen(true);
-
+  const handleSubmitModal = async () => {
     const phoneapiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
 
     try {
@@ -114,91 +111,89 @@ function NewEnrollPage() {
         <h2 className="font-extrabold text-[40px] mb-4">
           상대 명함 <span className="plus">등록</span>
         </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="enroll-form-group relative">
-            <img
-              id="preview-image"
-              className="example-picture max-w-full max-h-80"
-              src="https://i.ibb.co/Vg8KsjJ/image.png"
-              alt="Example"
-            />
-            <input
-              type="file"
-              id="file"
-              name="file"
-              className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-              onChange={handleFileChange}
-            />
-            <label
-              htmlFor="file"
-              className="opacity-0 absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-15"
-            >
-              <span className="text-4xl text-white">+</span>
-            </label>
-          </div>
-          <div className="enroll-form-group mt-3 font-medium">
-            <div className="enroll-form-group text-left mb-3">
-              <label className="label text-[18px]">이름*</label>
-              <input
-                type="name"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_name}
-                placeholder="홍길동"
-                onChange={(event) => setName(event.target.value)}
-              />
-            </div>
-            <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">전화번호*</label>
-              <input
-                type="phone"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_phone}
-                placeholder="010-0000-0000"
-                onChange={(event) => setPhone(event.target.value)}
-              />
-            </div>
-            <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">관계*</label>
-              <input
-                type="relation"
-                name="relation"
-                id="relation"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={relation_name}
-                placeholder="Relation"
-                onChange={(event) => setRelation(event.target.value)}
-              />
-            </div>
-            <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={card_email}
-                placeholder="name@company.com"
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </div>
-            <div className="enroll-form-group text-left mb-3 font-medium">
-              <label className="label text-[18px]">Memo</label>
-              <textarea
-                className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
-                value={memo}
-                placeholder="비고"
-                onChange={(event) => setMemo(event.target.value)}
-              ></textarea>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={toggleModal}
-            className="text-rememberBlueActive text-[18px] font-extrabold"
+        <div className="enroll-form-group relative">
+          <img
+            id="preview-image"
+            className="example-picture max-w-full max-h-80"
+            src="https://i.ibb.co/Vg8KsjJ/image.png"
+            alt="Example"
+          />
+          <input
+            type="file"
+            id="file"
+            name="file"
+            className="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor="file"
+            className="opacity-0 absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer text-white bg-gray-800 bg-opacity-70 rounded-15"
           >
-            명함 등록
-          </button>
-        </form>
+            <span className="text-4xl text-white">+</span>
+          </label>
+        </div>
+        <div className="enroll-form-group mt-3 font-medium">
+          <div className="enroll-form-group text-left mb-3">
+            <label className="label text-[18px]">이름*</label>
+            <input
+              type="name"
+              className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+              value={card_name}
+              placeholder="홍길동"
+              onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+          <div className="enroll-form-group text-left mb-3 font-medium">
+            <label className="label text-[18px]">전화번호*</label>
+            <input
+              type="phone"
+              className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+              value={card_phone}
+              placeholder="010-0000-0000"
+              onChange={(event) => setPhone(event.target.value)}
+            />
+          </div>
+          <div className="enroll-form-group text-left mb-3 font-medium">
+            <label className="label text-[18px]">관계*</label>
+            <input
+              type="relation"
+              name="relation"
+              id="relation"
+              className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+              value={relation_name}
+              placeholder="Relation"
+              onChange={(event) => setRelation(event.target.value)}
+            />
+          </div>
+          <div className="enroll-form-group text-left mb-3 font-medium">
+            <label className="label text-[18px]">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="enroll-input w-100 h-10 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+              value={card_email}
+              placeholder="name@company.com"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className="enroll-form-group text-left mb-3 font-medium">
+            <label className="label text-[18px]">Memo</label>
+            <textarea
+              className="enroll-input w-100 h-20 border border-gray-300 shadow-md rounded-md text-sm pl-4"
+              value={memo}
+              placeholder="비고"
+              onChange={(event) => setMemo(event.target.value)}
+            ></textarea>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={toggleModal}
+          className="text-rememberBlueActive text-[18px] font-extrabold"
+        >
+          명함 등록
+        </button>
       </div>
 
       {/* 아래부터 modal */}
@@ -236,7 +231,7 @@ function NewEnrollPage() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h4 className="mb-4 text-xl  text-gray-900 dark:text-gray-900">명함 등록 확인</h4>
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-6" action="#">
                   {/* Modal 내부의 Form과 Input 요소 */}
                   <div className="enroll-form-group relative flex justify-center items-center mb-6">
                     <img
@@ -297,8 +292,9 @@ function NewEnrollPage() {
                     <button
                       type="submit"
                       className="w-full text-white bg-rememberBlue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      onClick={handleSubmitModal}
                     >
-                      명함 등록
+                      Enroll Your Card
                     </button>
                   </Link>
                 </form>
