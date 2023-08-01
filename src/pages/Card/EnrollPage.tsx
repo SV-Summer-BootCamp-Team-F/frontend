@@ -17,14 +17,12 @@ function EnrollPage() {
 
   function sendDataToServer(): Promise<AxiosResponse> {
     const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
-
     const data = {
       card_name,
       card_phone,
       card_email,
       card_intro,
     };
-
     return axios.post(apiUrl, data);
   }
 
@@ -35,7 +33,6 @@ function EnrollPage() {
     if (photo) {
       formData.append("card_photo", photo); // Change the form data key to "card_photo" to match the backend API
     }
-
     return axios.put(apiUrl, formData, {
       // Use PUT request as backend expects a PUT request for photo update
       headers: {
@@ -47,7 +44,6 @@ function EnrollPage() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setIsModalOpen(true);
-
     sendDataToServer()
       .then((response: AxiosResponse) => {
         console.log("Data sent successfully:", response.data);
@@ -63,7 +59,6 @@ function EnrollPage() {
         console.error("Error sending data:", error);
       });
   };
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -98,7 +93,6 @@ function EnrollPage() {
       reader.readAsDataURL(file);
     }
   };
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -175,7 +169,7 @@ function EnrollPage() {
             </div>
           </div>
           <button
-            type="submit"
+            type="button"
             onClick={toggleModal}
             className="text-rememberBlueActive text-[18px] font-extrabold"
           >
@@ -183,7 +177,6 @@ function EnrollPage() {
           </button>
         </form>
       </div>
-
       {/* 아래부터 modal */}
       {isModalOpen && (
         <div
@@ -281,5 +274,4 @@ function EnrollPage() {
     </div>
   );
 }
-
 export default EnrollPage;
