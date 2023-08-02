@@ -1,6 +1,7 @@
 import React from "react";
 import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
+import { domain } from "../../domain/domain";
 
 // SVG icon for the close button
 const CloseIcon = () => (
@@ -30,8 +31,8 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       let formData = new FormData();
       formData.append("photo", selectedPhoto);
       // Using fetch API to send the form data to the server
-      fetch(`http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`, {
-        method: 'PUT', // or 'POST'
+      fetch(`http://${domain}:8000/api/v1/users/photo/${user_uuid}/`, {
+        method: "PUT", // or 'POST'
         body: formData,
       })
         .then((response) => response.json())
@@ -129,4 +130,4 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       ) : null}
     </>
   );
-                  }
+}
