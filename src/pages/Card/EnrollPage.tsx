@@ -30,7 +30,7 @@ function EnrollPage() {
   }
 
   function sendPhotoToServer(photo: File | null): Promise<AxiosResponse> {
-    const apiUrl = `http://0.0.0.0:8000/api/v1/cards/photo/${user_uuid}/`;
+    const apiUrl = `${domain}:8000/api/v1/cards/photo/${user_uuid}/`;
     let formData = new FormData();
 
     if (photo) {

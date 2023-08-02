@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import "../../css/Login.css";
+import { domain } from "../../domain/domain";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Login() {
 
     // 로그인 요청을 서버로 보내는 코드
     axios
-      .post("http://0.0.0.0:8000/api/v1/users/login/", { user_email, password })
+      .post(`${domain}:8000/api/v1/users/login/`, { user_email, password })
       .then((response) => {
         // 로그인 성공 시 처리
         console.log("로그인 성공!", response.data);
