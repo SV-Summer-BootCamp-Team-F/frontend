@@ -31,7 +31,7 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       formData.append("photo", selectedPhoto);
       // Using fetch API to send the form data to the server
       fetch(`http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`, {
-        method: 'PUT', // or 'POST'
+        method: "PUT", // or 'POST'
         body: formData,
       })
         .then((response) => response.json())
@@ -129,4 +129,4 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       ) : null}
     </>
   );
-                  }
+}

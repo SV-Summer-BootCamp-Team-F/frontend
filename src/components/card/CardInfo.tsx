@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CardInfoUpdateModal from "./CardInfoUpdateModal";
 import CardPhotoUpdateModal from "./CardPhotoUpdateModal";
 import axios from "axios";
+import { domain } from "../../domain/domain";
 
 export type CardPropsType = {
   name: string;
@@ -35,7 +36,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
     try {
       // Send the PUT request to the API endpoint with the updated data
 
-      const response = await axios.put(`http://127.0.0.1:8000/api/v1/cards/update/${user_uuid}/`, {
+      const response = await axios.put(`${domain}:8000/api/v1/cards/update/${user_uuid}/`, {
         ...updatedCardData,
       });
 

@@ -23,10 +23,10 @@ const mockData = {
 };
 
 export const fetchRelations = async (): Promise<RelationType> => {
-  const user_uid = localStorage.getItem("user_uuid"); // localStorage에서 user_uuid를 가져옵니다.
+  const user_uuid = localStorage.getItem("user_uuid"); // localStorage에서 user_uuid를 가져옵니다.
 
   try {
-    const response = await axios.get(`http://localhost:8000/api/v1/relations/all/${user_uid}`);
+    const response = await axios.get(`http://127.0.0.1:8000/api/v1/relations/all/${user_uuid}/`);
     const result = response.data.result;
 
     const nodes: NodeType[] = [];
@@ -41,6 +41,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
         user_photo: relation.user_photo,
         relation_name: relation.relation_name,
       };
+      console.log("node", node);
       nodes.push(node);
 
       // 관계를 링크로 변환
@@ -53,7 +54,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
 
     return { nodes, links };
   } catch (error) {
-    console.error(`Error fetching relations for user ${user_uid}: ${error}`);
+    console.error(`Error fetching relations for user ${user_uuid}: ${error}`);
     console.log("Mock data will be used instead.");
     console.log(mockData);
     return mockData;
