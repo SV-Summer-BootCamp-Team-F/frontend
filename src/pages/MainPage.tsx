@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "../components/main/Card";
 import Phone from "../components/main/Phone";
 import Button from "../components/main/Button";
+import Modal from "../components/relation/RelationModal";
 
 const MainPage: React.FC = () => {
   return (
@@ -77,6 +78,7 @@ const MainPage: React.FC = () => {
           </Link>
         </div>
         <Phone />
+        <Modal/>
       </div>
     </div>
   );
