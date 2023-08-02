@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { domain } from "../../domain/domain";
 
 function NewEnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
@@ -18,7 +19,7 @@ function NewEnrollPage() {
   const user_uuid = localStorage.getItem("user_uuid");
 
   function sendDataToServer(): Promise<AxiosResponse> {
-    const userapiUrl = `http://127.0.0.1:8000/api/v1/relations/user/${user_uuid}/`;
+    const userapiUrl = `${domain}:8000/api/v1/relations/user/${user_uuid}/`;
     const data = {
       card_phone,
       relation_name,
@@ -28,7 +29,7 @@ function NewEnrollPage() {
   }
 
   const handleSubmitModal = async () => {
-    const phoneapiUrl = `http://127.0.0.1:8000/api/v1/relations/phone/${card_phone}/`;
+    const phoneapiUrl = `${domain}:8000/api/v1/relations/phone/${card_phone}/`;
 
     try {
       const response: AxiosResponse = await axios.get(phoneapiUrl);

@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
+import { domain } from "../../domain/domain";
 
 type CardPhotoUpdateModalPropsType = {
   onSaveChanges: (data: { photo_url: string }) => void;
@@ -37,7 +38,7 @@ export default function CardPhotoUpdateModal({ onSaveChanges }: CardPhotoUpdateM
 
       // Using axios API to send the form data to the server
       axios
-        .put(`http://127.0.0.1:8000/api/v1/cards/photo/${user_uuid}/`, formData, config)
+        .put(`${domain}:8000/api/v1/cards/photo/${user_uuid}/`, formData, config)
         .then((response) => {
           console.log("Success:", response.data);
           onSaveChanges({ photo_url: response.data.photo_url }); // "user_photo"에서 "photo_url"로 변경

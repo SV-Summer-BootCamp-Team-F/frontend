@@ -2,6 +2,7 @@ import axios from "axios";
 import UserInfoUpdateModal from "./UserInfoUpdateModal";
 import UserPhotoUpdateModal from "./UserPhotoUpdateModal";
 import { UserType } from "../../pages/User/UserPage";
+
 export type UserPropsType = {
   userData: UserType;
   setUserData: React.Dispatch<React.SetStateAction<UserType>>;

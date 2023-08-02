@@ -6,6 +6,7 @@ import UserProfile from "../../components/user/UserProfile";
 import BarChart from "../../components/analytic/BarChart";
 import axios from "axios";
 import "../../App.css";
+import { domain } from "../../domain/domain";
 
 export type UserType = {
   user_name: string;
@@ -46,7 +47,7 @@ const UserPage: React.FC = () => {
   useEffect(() => {
     const user_uuid = localStorage.getItem("user_uuid");
     axios
-      .get(`http://127.0.0.1:8000/api/v1/users/info/${user_uuid}/`)
+      .get(`${domain}:8000/api/v1/users/info/${user_uuid}/`)
       .then((response) => {
         // 로그인 성공 시 처리
         console.log("유저 정보 불러오기 성공!", response.data);
@@ -61,7 +62,7 @@ const UserPage: React.FC = () => {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/api/v1/cards/info/${user_uuid}/`)
+      .get(`${domain}:8000/api/v1/cards/info/${user_uuid}/`)
       .then((response) => {
         // 로그인 성공 시 처리
         console.log("카드 정보 불러오기 성공!", response.data);
