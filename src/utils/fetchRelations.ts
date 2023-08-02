@@ -27,7 +27,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
   const user_uid = localStorage.getItem("user_uuid"); // localStorage에서 user_uuid를 가져옵니다.
 
   try {
-    const response = await axios.get(`http://${domain}:8000/api/v1/relations/all/${user_uid}`);
+    const response = await axios.get(`${domain}:8000/api/v1/relations/all/${user_uid}`);
     const result = response.data.result;
 
     const nodes: NodeType[] = [];

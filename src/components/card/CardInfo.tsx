@@ -36,7 +36,7 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
     try {
       // Send the PUT request to the API endpoint with the updated data
 
-      const response = await axios.put(`http://${domain}:8000/api/v1/cards/update/${user_uuid}/`, {
+      const response = await axios.put(`${domain}:8000/api/v1/cards/update/${user_uuid}/`, {
         ...updatedCardData,
       });
 

@@ -31,7 +31,7 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       let formData = new FormData();
       formData.append("photo", selectedPhoto);
       // Using fetch API to send the form data to the server
-      fetch(`http://${domain}:8000/api/v1/users/photo/${user_uuid}/`, {
+      fetch(`${domain}:8000/api/v1/users/photo/${user_uuid}/`, {
         method: "PUT", // or 'POST'
         body: formData,
       })

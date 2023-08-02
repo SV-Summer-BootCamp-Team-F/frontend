@@ -17,7 +17,7 @@ function EnrollPage() {
   const user_uuid = localStorage.getItem("user_uuid");
 
   function sendDataToServer(): Promise<AxiosResponse> {
-    const apiUrl = `http://${domain}:8000/api/v1/cards/add/${user_uuid}/`;
+    const apiUrl = `${domain}:8000/api/v1/cards/add/${user_uuid}/`;
 
     const data = {
       card_name,

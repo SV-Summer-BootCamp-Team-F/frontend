@@ -11,7 +11,7 @@ const Signup = () => {
   const [user_name, setName] = useState("");
   const [user_phone, setPhone] = useState("");
 
-  const SignupAPI = `http://${domain}:8000/api/v1/users/register/`;
+  const SignupAPI = `${domain}:8000/api/v1/users/register/`;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

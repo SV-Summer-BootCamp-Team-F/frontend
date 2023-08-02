@@ -30,7 +30,7 @@ const UserProfile: React.FC<UserPropsType> = ({ userData, setUserData }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
       const response = await axios.put(
-        `http://${domain}:8000//api/v1/users/update/${user_uuid}/`,
+        `${domain}:8000//api/v1/users/update/${user_uuid}/`,
         updatedUserData
       );
       if (response.status === 202) {
