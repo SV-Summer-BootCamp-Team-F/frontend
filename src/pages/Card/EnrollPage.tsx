@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
+import { domain } from "../../domain/domain";
 
 function EnrollPage() {
   const [photo, setPhoto] = useState<File | null>(null);
@@ -16,7 +17,7 @@ function EnrollPage() {
   const user_uuid = localStorage.getItem("user_uuid");
 
   function sendDataToServer(): Promise<AxiosResponse> {
-    const apiUrl = `http://127.0.0.1:8000/api/v1/cards/add/${user_uuid}/`;
+    const apiUrl = `${domain}:8000/api/v1/cards/add/${user_uuid}/`;
 
     const data = {
       card_name,
@@ -29,7 +30,7 @@ function EnrollPage() {
   }
 
   function sendPhotoToServer(photo: File | null): Promise<AxiosResponse> {
-    const apiUrl = `http://0.0.0.0:8000/api/v1/cards/photo/${user_uuid}/`;
+    const apiUrl = `${domain}:8000/api/v1/cards/photo/${user_uuid}/`;
     let formData = new FormData();
 
     if (photo) {
