@@ -2,8 +2,6 @@ import axios from "axios";
 import UserInfoUpdateModal from "./UserInfoUpdateModal";
 import UserPhotoUpdateModal from "./UserPhotoUpdateModal";
 import { UserType } from "../../pages/User/UserPage";
-import { domain } from "../../domain/domain";
-
 export type UserPropsType = {
   userData: UserType;
   setUserData: React.Dispatch<React.SetStateAction<UserType>>;
@@ -31,7 +29,7 @@ const UserProfile: React.FC<UserPropsType> = ({ userData, setUserData }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
       const response = await axios.put(
-        `${domain}:8000/api/v1/users/update/${user_uuid}/`,
+        `http://127.0.0.1:8000//api/v1/users/update/${user_uuid}/`,
         updatedUserData
       );
       if (response.status === 202) {
