@@ -36,7 +36,7 @@ function NewEnrollPage() {
 
       if (response.data.message === "번호 조회 성공") {
         // 회원인 경우
-        console.log("전화번호가 등록된 회원입니다.");
+        // console.log("전화번호가 등록된 회원입니다.");
 
         sendDataToServer()
           .then((response: AxiosResponse) => {

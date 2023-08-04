@@ -49,6 +49,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
         source: relation.user_uid,
         target: relation.friend_uid,
       };
+      console.log("link", link);
       links.push(link);
     });
 

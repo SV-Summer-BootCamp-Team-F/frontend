@@ -40,10 +40,11 @@ export default function CardPhotoUpdateModal({ onSaveChanges }: CardPhotoUpdateM
       axios
         .put(`${domain}:8000/api/v1/cards/photo/${user_uuid}/`, formData, config)
         .then((response) => {
-          console.log("Success:", response.data);
           onSaveChanges({ photo_url: response.data.photo_url }); // "user_photo"에서 "photo_url"로 변경
         })
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => {
+          console.log(error);
+        });
     }
     setShowModal(false);
   };

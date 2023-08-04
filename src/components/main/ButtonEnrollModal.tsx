@@ -11,9 +11,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (isOpen && event.target instanceof Element) {
-        // Check if the click occurred outside the modal (not within its content)
-        const modalContent = document.querySelector(".modal-content");
-        if (modalContent && !modalContent.contains(event.target)) {
+        // Check if the click occurred outside the modal (not within its contents)
+        const modalcontents = document.querySelector(".modal-contents");
+        if (modalcontents && !modalcontents.contains(event.target)) {
           onClose();
         }
       }
@@ -33,8 +33,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           aria-hidden="true"
           className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-gray-700 bg-opacity-60 z-50"
         >
-          <div className="bg-white p-10 rounded-3xl relative modal-content" style={{ height: "186px" ,width:"320px"  }}>
-
+          <div
+            className="bg-white p-10 rounded-3xl relative modal-contents"
+            style={{ height: "186px", width: "320px" }}
+          >
             <h2 className="font-bold text-center text-[27px] mt-2 mb-4">
               명함 <span className="plus">등록</span>
             </h2>

@@ -50,9 +50,7 @@ const UserPage: React.FC = () => {
       .get(`${domain}:8000/api/v1/users/info/${user_uuid}/`)
       .then((response) => {
         // 로그인 성공 시 처리
-        console.log("유저 정보 불러오기 성공!", response.data);
         const userData: { result: UserType } = response.data;
-        console.log("userData", userData.result);
         setUserData(userData.result);
       })
       .catch((error) => {
@@ -65,9 +63,7 @@ const UserPage: React.FC = () => {
       .get(`${domain}:8000/api/v1/cards/info/${user_uuid}/`)
       .then((response) => {
         // 로그인 성공 시 처리
-        console.log("카드 정보 불러오기 성공!", response.data);
         const cardData: { result: CardType } = response.data;
-        console.log(cardData);
         setCardData(cardData.result);
       })
       .catch((error) => {
@@ -112,11 +108,13 @@ const UserPage: React.FC = () => {
             introduction={cardData.card_intro}
             photo={cardData.card_photo}
           />
-          <img
-            src="https://github.com/SV-Summer-BootCamp-Team-F/frontend/blob/feature/relation-page-api-integration-51/src/pages/User/techeer_ad.png?raw=true"
-            alt="ad"
-            className="ml-12 w-[230px] h-[603px] rounded-xl shadow-md"
-          />
+          <a href="https://youtu.be/su8KH8jT7e0" target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://github.com/SV-Summer-BootCamp-Team-F/frontend/blob/design/update-design-relation-page-69/src/pages/User/final_ad.png?raw=true"
+              alt="ad"
+              className="ml-12 w-[230px] h-[603px] rounded-xl shadow-md"
+            />
+          </a>
         </div>
       )}
       {showChart && (

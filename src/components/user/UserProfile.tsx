@@ -2,7 +2,6 @@ import axios from "axios";
 import UserInfoUpdateModal from "./UserInfoUpdateModal";
 import UserPhotoUpdateModal from "./UserPhotoUpdateModal";
 import { UserType } from "../../pages/User/UserPage";
-
 export type UserPropsType = {
   userData: UserType;
   setUserData: React.Dispatch<React.SetStateAction<UserType>>;
@@ -30,7 +29,7 @@ const UserProfile: React.FC<UserPropsType> = ({ userData, setUserData }) => {
     try {
       // Send the PUT request to the API endpoint with the updated data
       const response = await axios.put(
-        `http://127.0.0.1:8000/api/v1/users/update/${user_uuid}/`,
+        `http://127.0.0.1:8000//api/v1/users/update/${user_uuid}/`,
         updatedUserData
       );
       if (response.status === 202) {
@@ -38,11 +37,8 @@ const UserProfile: React.FC<UserPropsType> = ({ userData, setUserData }) => {
         setUserData((prev) => {
           return { ...prev, ...updatedUserData };
         });
-        console.log("유저 정보 수정 성공!", updatedUserData);
       }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
+    } catch (error) {}
   };
   const handlePhotoSaveChanges = async (user_photo: string) => {
     setUserData((prev) => {

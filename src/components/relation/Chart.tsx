@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { RelationType } from "../../types/types";
 import ChartContent from "./ChartContent";
 import ZoomableSVG from "./ZoomableSVG";
 import { fetchRelations } from "../../utils/fetchRelations";
+import RelationModal from "./RelationModal";
+import { useState, useEffect } from "react";
+import { NodeType, RelationType } from "../../types/types";
 
 const Chart: React.FC = () => {
   const [dimensions, setDimensions] = useState({
@@ -10,8 +11,8 @@ const Chart: React.FC = () => {
     height: window.innerHeight,
   });
 
-  // 초기 상태를 빈 객체로 설정
   const [localData, setLocalData] = useState<RelationType | null>(null);
+  const [clickedNode, setClickedNode] = useState<NodeType | null>(null); // State variable to hold the clicked node
 
   const updateData = () => {
     fetchRelations().then((fetchedData) => setLocalData(fetchedData));
@@ -31,15 +32,28 @@ const Chart: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // localData가 null인 경우 아무것도 렌더링하지 않음
   if (!localData) {
     return null;
   }
 
+  // Modify the onNodeClick function to set the clicked node in the state
+  const handleNodeClick = (node: NodeType) => {
+    setClickedNode(node); // Update the state with the clicked node
+  };
+
   return (
-    <ZoomableSVG width={dimensions.width} height={dimensions.height} updateData={updateData}>
-      <ChartContent data={localData} width={dimensions.width} height={dimensions.height} />
-    </ZoomableSVG>
+    <>
+      {clickedNode && <RelationModal node={clickedNode} onClose={() => setClickedNode(null)} />}
+      <ZoomableSVG width={dimensions.width} height={dimensions.height} updateData={updateData}>
+        {/* <Sky /> */}
+        <ChartContent
+          data={localData}
+          width={dimensions.width}
+          height={dimensions.height}
+          onNodeClick={handleNodeClick} // Pass the modified onNodeClick function
+        />
+      </ZoomableSVG>
+    </>
   );
 };
 
