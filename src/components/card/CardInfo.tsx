@@ -45,11 +45,8 @@ const CardInfo: React.FC<CardPropsType> = ({ name, email, phoneNumber, introduct
         setUpdatedName(updatedCardData.card_name);
         setUpdatedEmail(updatedCardData.card_email);
         setUpdatedIntro(updatedCardData.card_intro);
-        console.log("카드정보 수정 성공!", updatedCardData);
       }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
+    } catch (error) {}
   };
 
   const handlePhotoSaveChanges = async (updatedCardData: { photo_url: string }) => {

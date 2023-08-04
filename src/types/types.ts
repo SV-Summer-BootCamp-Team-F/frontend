@@ -46,4 +46,5 @@ export type ChartContentPropsType = {
   width: number;
   height: number;
   data: RelationType;
+  onNodeClick: (node: NodeType) => void;
 };

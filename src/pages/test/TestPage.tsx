@@ -1,4 +1,4 @@
 const TestPage = () => {
-  return <></>;
+  return <div></div>;
 };
 export default TestPage;

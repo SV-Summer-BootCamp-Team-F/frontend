@@ -1,7 +1,8 @@
 import React from "react";
+import axios from "axios";
 import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
-
+import { domain } from "../../domain/domain";
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -28,24 +29,31 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
   const handleSaveChanges = () => {
     if (selectedPhoto) {
       let formData = new FormData();
-      formData.append("photo", selectedPhoto);
-      // Using fetch API to send the form data to the server
-      fetch(`http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`, {
-        method: "PUT", // or 'POST'
-        body: formData,
-      })
-        .then((response) => response.json())
+      formData.append("user_photo", selectedPhoto); // "photo"에서 "user_photo"로 변경
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      // Using axios API to send the form data to the server
+      axios
+        .put(`${domain}:8000/api/v1/users/photo/${user_uuid}/`, formData, config)
         .then((response) => {
-          console.log("Success:", response.data);
           onSaveChanges(response.data.photo_url); // "user_photo"에서 "photo_url"로 변경
         })
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => {
+          console.log(error);
+        });
     }
     setShowModal(false);
   };
+
   const handleEditProfile = () => {
     setShowModal(true);
   };
+
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setSelectedPhoto(file);
@@ -58,6 +66,7 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <>
       <button

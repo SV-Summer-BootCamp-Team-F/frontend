@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const Sphere = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ const Sphere = () => {
       // Load the scene.gltf model
       const loader = new GLTFLoader();
       loader.load(
-        'src/sphere/scene.gltf',
+        "src/sphere/scene.gltf",
         (gltf) => {
           const model = gltf.scene;
 
@@ -48,7 +48,7 @@ const Sphere = () => {
             model.traverse((child) => {
               if (child instanceof THREE.Mesh) {
                 const material = new THREE.MeshPhysicalMaterial({
-                  color: 'skyblue',
+                  color: "skyblue",
                   metalness: 0.99,
                   roughness: 0.001,
                 });
@@ -67,7 +67,11 @@ const Sphere = () => {
               }
 
               // Change background color gradually
-              const backgroundColor = new THREE.Color().lerpColors(new THREE.Color(0x000000), new THREE.Color(0xffffff), model.scale.x / 3.5);
+              const backgroundColor = new THREE.Color().lerpColors(
+                new THREE.Color(0x000000),
+                new THREE.Color(0xffffff),
+                model.scale.x / 3.5
+              );
               scene.background = backgroundColor;
 
               renderer.render(scene, camera);
@@ -78,7 +82,7 @@ const Sphere = () => {
         },
         undefined,
         (error) => {
-          console.error('Error loading GLTF file:', error);
+          console.error("Error loading GLTF file:", error);
         }
       );
     };
@@ -123,17 +127,19 @@ const Sphere = () => {
       setShowText(false); // Hide the text when screen is clicked
     } else {
       setTimeout(() => {
-        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' }); // Scroll to next page
+        window.scrollTo({ top: window.innerHeight, behavior: "smooth" }); // Scroll to next page
       }, 2000);
     }
   };
 
   return (
     <div onClick={handleScreenClick}>
-      <div ref={containerRef} style={{ marginTop: '-237px', marginBottom: '-100px' }} onClick={handleModelClick} />
-      {showText && (
-        <Text isVisible={true} onClick={handleScreenClick} />
-      )}
+      <div
+        ref={containerRef}
+        style={{ marginTop: "-237px", marginBottom: "-100px" }}
+        onClick={handleModelClick}
+      />
+      {showText && <Text isVisible={true} onClick={handleScreenClick} />}
     </div>
   );
 };
@@ -163,8 +169,8 @@ const Text = ({ isVisible, onClick }: TextProps) => {
   }, [isVisible]);
 
   return (
-    <h1 className={`Text1 ${isShowing ? 'fadeIn' : 'fadeOut'}`} onClick={handleClick}>
-      나와 명함을 주고받은 사람들을 <span className='text2'>한눈에</span> 볼 수 있습니다!
+    <h1 className={`Text1 ${isShowing ? "fadeIn" : "fadeOut"}`} onClick={handleClick}>
+      나와 명함을 주고받은 사람들을 <span className="text2">한눈에</span> 볼 수 있습니다!
     </h1>
   );
 };

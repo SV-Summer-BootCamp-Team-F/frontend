@@ -1,7 +1,7 @@
 // utils/fetchRelations.ts
 import axios from "axios";
 import { NodeType, LinkType, RelationType } from "../types/types";
-
+import { domain } from "../domain/domain";
 // Mock 데이터 정의
 const mockData = {
   nodes: Array.from({ length: 20 }, (_, i) => ({
@@ -26,7 +26,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
   const user_uuid = localStorage.getItem("user_uuid"); // localStorage에서 user_uuid를 가져옵니다.
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/v1/relations/all/${user_uuid}/`);
+    const response = await axios.get(`${domain}:8000/api/v1/relations/all/${user_uuid}/`);
     const result = response.data.result;
 
     const nodes: NodeType[] = [];
@@ -49,6 +49,7 @@ export const fetchRelations = async (): Promise<RelationType> => {
         source: relation.user_uid,
         target: relation.friend_uid,
       };
+      console.log("link", link);
       links.push(link);
     });
 
