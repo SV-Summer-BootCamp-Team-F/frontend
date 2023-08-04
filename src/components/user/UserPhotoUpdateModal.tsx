@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { FiUpload } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
-
+import { domain } from "../../domain/domain";
 // SVG icon for the close button
 const CloseIcon = () => (
   <svg
@@ -39,7 +39,7 @@ export default function UserPhotoUpdateModal({ onSaveChanges }: UserPhotoUpdateM
 
       // Using axios API to send the form data to the server
       axios
-        .put(`http://127.0.0.1:8000/api/v1/users/photo/${user_uuid}/`, formData, config)
+        .put(`${domain}:8000/api/v1/users/photo/${user_uuid}/`, formData, config)
         .then((response) => {
           onSaveChanges(response.data.photo_url); // "user_photo"에서 "photo_url"로 변경
         })

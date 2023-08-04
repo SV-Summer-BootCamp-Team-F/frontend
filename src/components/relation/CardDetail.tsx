@@ -41,7 +41,7 @@ const CardDetail: React.FC<CardDetailPropsType> = (cardData) => {
               </div>
               <hr className="mt-[1px] mb-[14px]"></hr>
               <p className="text-[13px] text-gray-500">Memo</p>
-              <p className="text-[13px] text-gray-800">{cardData.memo}안녕하세요</p>
+              <p className="text-[13px] text-gray-800">{cardData.memo}</p>
             </div>
           </div>
         </div>
